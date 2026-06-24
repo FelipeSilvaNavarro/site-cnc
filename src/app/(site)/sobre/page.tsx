@@ -45,7 +45,7 @@ export default function SobrePage() {
           <Reveal delay={100}>
             <ImageSlot
               src="/fotos/sobre.jpg"
-              alt="{{PREENCHER: foto da fachada, do escritório ou da equipe da CNC}}"
+              alt="CNC — atendimento e suporte a sistemas de gestão"
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="aspect-[4/3] w-full rounded-sm shadow-xl shadow-brand-900/10"
             />
@@ -71,7 +71,8 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* Equipe */}
+      {/* Equipe (oculta enquanto não houver membros cadastrados) */}
+      {sobre.equipe.membros.length > 0 && (
       <section className="bg-paper-soft py-20 lg:py-28">
         <div className="container-cnc">
           <Reveal className="max-w-2xl">
@@ -108,6 +109,7 @@ export default function SobrePage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Dados legais visíveis */}
       <section className="bg-paper py-16">

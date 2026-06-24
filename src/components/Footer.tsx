@@ -104,13 +104,6 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <span>© {ano} CNC. Todos os direitos reservados.</span>
-            {/* Parceria é secundária: link discreto apenas aqui. */}
-            <Link
-              href="/seja-parceiro"
-              className="text-paper/40 underline-offset-2 transition-colors hover:text-paper/80 hover:underline"
-            >
-              Seja parceiro
-            </Link>
           </div>
         </div>
       </div>

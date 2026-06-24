@@ -11,7 +11,7 @@ export const suporte = {
   // Imagem real do atendimento/equipe.
   imagem: {
     src: "/fotos/suporte.jpg",
-    alt: "{{PREENCHER: descrição da foto da equipe de suporte da CNC}}",
+    alt: "Equipe de suporte da CNC em atendimento",
   },
 
   comoFunciona: {
@@ -37,8 +37,8 @@ export const suporte = {
 
   canais: {
     titulo: "Canais de atendimento",
-    // Detalhes de horário e SLA vêm do arquivo site.ts e do marcador abaixo.
+    // Detalhes de horário vêm do arquivo site.ts.
     observacao:
-      "{{PREENCHER: descrever política de atendimento real (horários, tempo médio de resposta, suporte emergencial, se houver)}}",
+      "Atendimento todos os dias, das 06h às 23h30, pelos canais oficiais da CNC. O suporte é feito por pessoas que conhecem o seu sistema, com resposta rápida e acompanhamento até a solução.",
   },
 };

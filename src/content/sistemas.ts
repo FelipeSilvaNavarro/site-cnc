@@ -31,7 +31,7 @@ export const sistemas: Sistema[] = [
       "Frente de caixa (PDV) ágil",
       "Controle de estoque e produtos",
       "Emissão de documentos fiscais",
-      "{{PREENCHER: confirmar principais módulos reais do AVANTE}}",
+      "Controle financeiro (contas a pagar e a receber)",
     ],
     logo: "/sistemas/avante.svg",
   },
@@ -48,7 +48,7 @@ export const sistemas: Sistema[] = [
       "Automação comercial",
       "Gestão de retaguarda",
       "Relatórios gerenciais",
-      "{{PREENCHER: confirmar principais módulos reais do SGBR}}",
+      "Emissão fiscal (NF-e e NFC-e)",
     ],
     logo: "/sistemas/sgbr.svg",
   },
@@ -60,11 +60,11 @@ export const sistemas: Sistema[] = [
     paraQueServe:
       "Apoia o controle de vendas, caixa e estoque com uma operação direta, pensada para quem precisa de praticidade.",
     indicadoPara:
-      "{{PREENCHER: confirmar para que tipo de negócio o PRODO é mais indicado}}",
+      "Comércios de pequeno e médio porte que buscam um sistema prático e acessível para o dia a dia, com o essencial de vendas, caixa e estoque.",
     destaques: [
       "Operação de caixa simplificada",
       "Controle de vendas e estoque",
-      "{{PREENCHER: confirmar principais módulos reais do PRODO}}",
+      "Emissão de cupom fiscal (NFC-e)",
     ],
     logo: "/sistemas/prodo.svg",
   },

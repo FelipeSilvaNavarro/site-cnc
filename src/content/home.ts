@@ -13,7 +13,7 @@ export const hero = {
   // Slot de imagem: foto real do atendimento/equipe/operação da CNC.
   imagem: {
     src: "/fotos/hero.jpg",
-    alt: "{{PREENCHER: descrição da foto do hero (ex.: equipe da CNC dando suporte no sistema)}}",
+    alt: "CNC — sistemas de gestão e suporte para o comércio",
   },
 };
 
@@ -80,29 +80,11 @@ export type Depoimento = {
 };
 
 /**
- * DEPOIMENTOS REAIS APENAS. Não inventar. Cada slot abaixo espera nome, empresa
- * e texto reais autorizados pelo cliente. Remova os slots que não usar.
+ * DEPOIMENTOS REAIS APENAS. Não inventar. Cada item espera nome, empresa e texto
+ * reais autorizados pelo cliente. Enquanto vazio, a seção de depoimentos fica
+ * oculta na home (ver condicional em app/(site)/page.tsx).
  */
-export const depoimentos: Depoimento[] = [
-  {
-    nome: "{{PREENCHER: nome do cliente 1}}",
-    empresa: "{{PREENCHER: nome da empresa do cliente 1}}",
-    texto: "{{PREENCHER: depoimento real autorizado do cliente 1}}",
-    foto: "/fotos/depoimentos/cliente-1.jpg",
-  },
-  {
-    nome: "{{PREENCHER: nome do cliente 2}}",
-    empresa: "{{PREENCHER: nome da empresa do cliente 2}}",
-    texto: "{{PREENCHER: depoimento real autorizado do cliente 2}}",
-    foto: "/fotos/depoimentos/cliente-2.jpg",
-  },
-  {
-    nome: "{{PREENCHER: nome do cliente 3}}",
-    empresa: "{{PREENCHER: nome da empresa do cliente 3}}",
-    texto: "{{PREENCHER: depoimento real autorizado do cliente 3}}",
-    foto: "/fotos/depoimentos/cliente-3.jpg",
-  },
-];
+export const depoimentos: Depoimento[] = [];
 
 export const segmentos = {
   titulo: "Segmentos que a CNC atende",

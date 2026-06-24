@@ -11,10 +11,9 @@ export const sobre = {
 
   historia: {
     titulo: "Nossa história",
-    // Texto factual de história: confirmar dados reais.
     paragrafos: [
-      "{{PREENCHER: parágrafo de história real da CNC (quando começou, como surgiu, fundadores)}}",
-      "{{PREENCHER: parágrafo sobre evolução e mercado atendido (nº de clientes, segmentos, foco)}}",
+      "A CNC nasceu em Maceió, há cerca de seis anos, com um objetivo claro: aproximar o comércio da região de sistemas de gestão confiáveis e de um suporte que realmente acompanha o dia a dia de quem está no balcão.",
+      "Desde então, a empresa cresceu junto com seus clientes e hoje atende cerca de 90 negócios ativos em segmentos variados — de mercados e restaurantes a óticas, confecções, materiais de construção e distribuidoras. Representando os sistemas AVANTE, SGBR e PRODO, a CNC reúne a escolha do software e o suporte humanizado em um só lugar, mantendo o atendimento próximo como marca registrada.",
     ],
   },
 
@@ -24,27 +23,11 @@ export const sobre = {
     { valor: "3", label: "sistemas representados" },
   ],
 
+  // Seção de equipe oculta por enquanto (membros vazio = seção não renderiza).
   equipe: {
     titulo: "Quem atende você",
     texto:
       "Pessoas reais que conhecem os sistemas e a rotina de cada operação. Conheça parte da equipe da CNC.",
-    // Slots de fotos reais da equipe.
-    membros: [
-      {
-        nome: "{{PREENCHER: nome do membro 1}}",
-        cargo: "{{PREENCHER: cargo/função do membro 1}}",
-        foto: "/fotos/equipe/membro-1.jpg",
-      },
-      {
-        nome: "{{PREENCHER: nome do membro 2}}",
-        cargo: "{{PREENCHER: cargo/função do membro 2}}",
-        foto: "/fotos/equipe/membro-2.jpg",
-      },
-      {
-        nome: "{{PREENCHER: nome do membro 3}}",
-        cargo: "{{PREENCHER: cargo/função do membro 3}}",
-        foto: "/fotos/equipe/membro-3.jpg",
-      },
-    ],
+    membros: [] as { nome: string; cargo: string; foto: string }[],
   },
 };

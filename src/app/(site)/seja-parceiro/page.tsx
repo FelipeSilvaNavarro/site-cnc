@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description:
     "Programa de parceria da CNC para revenda de sistemas de gestão. Página informativa secundária.",
   alternates: { canonical: "/seja-parceiro" },
-  // Parceria é secundária: não destacar nos buscadores como página de captação.
-  robots: { index: true, follow: true },
+  // Fora do menu/sitemap por enquanto: não indexar nos buscadores.
+  robots: { index: false, follow: false },
 };
 
 export default function SejaParceiroPage() {

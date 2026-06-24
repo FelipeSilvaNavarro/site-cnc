@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 
 /**
- * Slot de imagem com next/image. Reserva um espaço claro de proporção fixa.
+ * Slot de imagem com next/image. Reserva um espaço de proporção fixa.
  *
  * Comportamento: enquanto a foto real não existir em /public (no caminho `src`),
- * exibe um placeholder editorial discreto com a descrição esperada — sem stock
- * art, sem ilustração genérica e SEM ícone de imagem quebrada.
+ * exibe um painel de marca (pégaso sobre gradiente azul) que parece intencional,
+ * sem stock art e sem ícone de imagem quebrada.
  *
  * Para ativar a foto real: basta colocar o arquivo em /public no caminho `src`.
  * Não é preciso editar código: ao carregar com sucesso, a foto cobre o slot.
@@ -39,15 +39,16 @@ export default function ImageSlot({
       role="img"
       aria-label={descricao}
     >
-      {/* Placeholder editorial: visível até a foto real carregar. */}
+      {/* Painel de marca: visível até a foto real carregar. */}
       {!carregada && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[linear-gradient(135deg,#e7e0d4_0%,#efe9e0_100%)] p-6">
-          <span className="max-w-[85%] text-center text-[11px] font-semibold uppercase tracking-widest text-ink-muted">
-            Slot de foto
-            <span className="mt-2 block text-[11px] font-normal normal-case tracking-normal text-ink-muted/80">
-              {descricao}
-            </span>
-          </span>
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[linear-gradient(135deg,#2e477f_0%,#16213f_100%)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/pegaso-branco.svg"
+            alt=""
+            aria-hidden="true"
+            className="w-2/5 max-w-[170px] opacity-20"
+          />
         </div>
       )}
 

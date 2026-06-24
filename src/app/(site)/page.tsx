@@ -191,7 +191,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. DEPOIMENTOS */}
+      {/* 6. DEPOIMENTOS (oculto enquanto não houver depoimentos reais) */}
+      {depoimentos.length > 0 && (
       <section className="bg-paper-soft py-20 lg:py-28">
         <div className="container-cnc">
           <SectionHeading
@@ -229,6 +230,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* 7. SEGMENTOS ATENDIDOS */}
       <section className="bg-paper py-20 lg:py-28">

@@ -10,8 +10,8 @@ export const site = {
   // Domínio oficial. Usado em metadados, sitemap e robots. Trocar aqui só se
   // mudar o domínio.
   url: "https://cncsistemas.com.br",
-  nomeCompleto: "{{PREENCHER: razão social completa da CNC}}",
-  cnpj: "{{PREENCHER: CNPJ da CNC}}",
+  nomeCompleto: "C.N.C Sistemas e Representações",
+  cnpj: "39.866.982/0001-34",
   descricaoCurta:
     "Revenda e suporte de sistemas de gestão e PDV, com atendimento humanizado e contínuo.",
 
@@ -22,37 +22,37 @@ export const site = {
   // Contatos — substituir pelos números/e-mails reais.
   whatsapp: {
     // Apenas dígitos, com DDI 55. Ex.: 5582999999999
-    numero: "{{PREENCHER: número de WhatsApp com DDI, ex 5582999999999}}",
-    exibicao: "{{PREENCHER: telefone de exibição, ex (82) 99999-9999}}",
+    numero: "5582993660508",
+    exibicao: "(82) 99366-0508",
     mensagemPadrao:
       "Olá! Vim pelo site da CNC e gostaria de falar sobre um sistema de gestão para o meu comércio.",
   },
   telefone: {
-    numero: "{{PREENCHER: telefone fixo/celular com DDD}}",
-    exibicao: "{{PREENCHER: telefone de exibição, ex (82) 3333-3333}}",
+    numero: "+5582993660508",
+    exibicao: "(82) 99366-0508",
   },
-  email: "{{PREENCHER: e-mail de contato da CNC}}",
+  email: "contato@cncsistemas.com.br",
 
   endereco: {
-    logradouro: "{{PREENCHER: rua e número}}",
-    bairro: "{{PREENCHER: bairro}}",
+    logradouro: "Condomínio Recanto das Estrelas",
+    bairro: "Cidade Universitária",
     cidade: "Maceió",
     uf: "AL",
-    cep: "{{PREENCHER: CEP}}",
-    // Link do Google Maps (embed) — colar URL do local real.
-    mapsEmbedUrl: "{{PREENCHER: URL de embed do Google Maps do endereço}}",
-    mapsLinkUrl: "{{PREENCHER: URL do Google Maps (abrir no app) do endereço}}",
+    cep: "57074-215",
+    // Mapa genérico (Brasil) — não expõe o ponto exato do endereço.
+    mapsEmbedUrl: "https://www.google.com/maps?q=Brasil&z=4&output=embed",
+    mapsLinkUrl: "https://www.google.com/maps/place/Brasil",
   },
 
   horario: {
-    semana: "{{PREENCHER: horário seg–sex, ex 08h às 18h}}",
-    sabado: "{{PREENCHER: horário sábado, se houver}}",
+    semana: "Todos os dias, das 06h às 23h30",
+    sabado: "06h às 23h30",
   },
 
   // Redes sociais — deixe a string vazia para ocultar o link.
   redes: {
-    instagram: "{{PREENCHER: URL do Instagram (ou vazio)}}",
-    facebook: "{{PREENCHER: URL do Facebook (ou vazio)}}",
+    instagram: "https://www.instagram.com/cncsistemas/",
+    facebook: "https://www.facebook.com/cncsistemas/?locale=pt_BR",
   },
 
   // Provas de credibilidade exibidas na barra de prova social.
