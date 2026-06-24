@@ -39,6 +39,7 @@ export const metadata: Metadata = {
   },
   description:
     "Revenda e suporte de sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados. A CNC indica o sistema certo para o seu negócio.",
+  // Palavras-chave genéricas (sem marcas de fornecedores — ver sistemas.ts).
   keywords: [
     "sistema de gestão",
     "PDV",
@@ -47,9 +48,8 @@ export const metadata: Metadata = {
     "revenda de software de gestão",
     "suporte de sistema",
     "software para indústria",
-    "AVANTE",
-    "SGBR",
-    "PRODO",
+    "emissão de nota fiscal",
+    "controle de estoque",
   ],
   openGraph: {
     type: "website",
@@ -78,6 +78,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+/**
+ * RootLayout — layout raiz de TODO o site (App Router).
+ *
+ * Define `<html lang="pt-BR">` com as variáveis CSS das três fontes e renderiza
+ * o `<body>`. Os route groups `(site)` e `(area-cliente)` têm seus próprios
+ * layouts internos (header/footer ou casca isolada). Os metadados/Open Graph
+ * acima valem como padrão para todas as páginas (cada página pode sobrescrever).
+ */
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

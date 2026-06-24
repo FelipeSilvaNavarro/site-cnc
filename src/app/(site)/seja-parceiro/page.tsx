@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
-import { whatsappLink, site } from "@/content/site";
+import { whatsappLink } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Seja parceiro da CNC",
@@ -32,9 +32,9 @@ export default function SejaParceiroPage() {
 
           <div className="mt-8">
             <a
-              href={whatsappLink(
-                "Olá! Tenho interesse em ser parceiro da CNC."
-              )}
+              // Link padrão unificado do WhatsApp (mesma mensagem em todo o site).
+              // Original: whatsappLink("Olá! Tenho interesse em ser parceiro da CNC.")
+              href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
@@ -43,7 +43,9 @@ export default function SejaParceiroPage() {
             </a>
           </div>
 
-          <p className="mt-8 text-sm text-ink-muted">
+          {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
+              Para reativar, descomente este bloco. */}
+          {/* <p className="mt-8 text-sm text-ink-muted">
             Ou envie um e-mail para{" "}
             <a
               href={`mailto:${site.email}`}
@@ -52,7 +54,7 @@ export default function SejaParceiroPage() {
               {site.email}
             </a>
             .
-          </p>
+          </p> */}
         </Reveal>
       </div>
     </section>

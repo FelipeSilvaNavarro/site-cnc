@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { navPrincipal, site, whatsappLink } from "@/content/site";
 
+/**
+ * Footer — rodapé global do site institucional (renderizado pelo layout de
+ * `(site)`). Quatro colunas: identidade, navegação (de `navPrincipal` + Área do
+ * cliente), contato (WhatsApp/telefone — e-mail oculto) e endereço + horário
+ * (24/7). A barra inferior mostra razão social, CNPJ e o ano corrente.
+ */
 export default function Footer() {
   const ano = new Date().getFullYear();
   const e = site.endereco;
@@ -69,14 +75,16 @@ export default function Footer() {
                 Telefone: {site.telefone.exibicao}
               </a>
             </li>
-            <li>
+            {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
+                Para reativar, descomente este bloco. */}
+            {/* <li>
               <a
                 href={`mailto:${site.email}`}
                 className="transition-colors hover:text-paper"
               >
                 {site.email}
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
 

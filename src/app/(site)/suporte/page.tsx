@@ -12,6 +12,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/suporte" },
 };
 
+/**
+ * SuportePage — rota "/suporte".
+ *
+ * Apresenta o diferencial central (suporte humanizado, 24/7, sem central de
+ * chamados): cabeçalho + imagem, "como funciona o atendimento" e a tabela de
+ * canais (WhatsApp/telefone e horário 24/7). Conteúdo de `content/suporte.ts` e
+ * contatos/horário de `content/site.ts`.
+ */
 export default function SuportePage() {
   return (
     <>
@@ -109,7 +117,9 @@ export default function SuportePage() {
                   </a>
                 </dd>
               </div>
-              <div className="flex items-center justify-between gap-4 p-5">
+              {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
+                  Para reativar, descomente este bloco. */}
+              {/* <div className="flex items-center justify-between gap-4 p-5">
                 <dt className="text-sm font-semibold text-ink">E-mail</dt>
                 <dd>
                   <a
@@ -119,15 +129,16 @@ export default function SuportePage() {
                     {site.email}
                   </a>
                 </dd>
-              </div>
+              </div> */}
+              {/* Atendimento 24/7 (valores em site.horario). */}
               <div className="flex items-center justify-between gap-4 p-5">
-                <dt className="text-sm font-semibold text-ink">
-                  Horário (seg–sex)
-                </dt>
+                <dt className="text-sm font-semibold text-ink">Atendimento</dt>
                 <dd className="text-sm text-ink-soft">{site.horario.semana}</dd>
               </div>
               <div className="flex items-center justify-between gap-4 p-5">
-                <dt className="text-sm font-semibold text-ink">Sábado</dt>
+                <dt className="text-sm font-semibold text-ink">
+                  Disponibilidade
+                </dt>
                 <dd className="text-sm text-ink-soft">{site.horario.sabado}</dd>
               </div>
             </dl>

@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import CtaButtons from "@/components/CtaButtons";
-import { sistemas, sistemasIntro } from "@/content/sistemas";
+import { sistemas, sistemasIntro, recursosComuns } from "@/content/sistemas";
 
 export const metadata: Metadata = {
-  title: "Sistemas: AVANTE, SGBR e PRODO",
+  // Sem citar marcas de fornecedores (ver sistemas.ts).
+  title: "Soluções de gestão e PDV",
   description:
-    "Conheça os sistemas de gestão e PDV que a CNC representa: AVANTE, SGBR e PRODO. Ajudamos a escolher o ideal para o seu negócio.",
+    "Conheça as soluções de gestão e PDV da CNC, em três portes (PRO, MÉDIO e SIMPLES). Ajudamos a escolher a ideal para o seu negócio.",
   alternates: { canonical: "/sistemas" },
 };
 
+/**
+ * SistemasPage — rota "/sistemas".
+ *
+ * Renderiza: cabeçalho (`sistemasIntro`), o bloco de recursos comuns a todas as
+ * soluções (`recursosComuns` — controle financeiro, emissão de todas as notas,
+ * configuração por segmento) e a lista detalhada de `sistemas` (PRO/MÉDIO/
+ * SIMPLES). Cada solução vira uma âncora (`id={s.slug}`) para deep-link.
+ */
 export default function SistemasPage() {
   return (
     <>
@@ -23,6 +32,32 @@ export default function SistemasPage() {
           <p className="mt-6 text-lg leading-relaxed text-ink-soft">
             {sistemasIntro.texto}
           </p>
+        </div>
+      </section>
+
+      {/* Recursos comuns a TODAS as soluções (financeiro, notas, modelagem) */}
+      <section className="border-b border-ink/10 bg-brand-900 py-14 text-paper lg:py-16">
+        <div className="container-cnc">
+          <Reveal className="max-w-3xl">
+            <h2 className="text-2xl font-semibold leading-tight text-paper sm:text-3xl">
+              {recursosComuns.titulo}
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-paper/75">
+              {recursosComuns.texto}
+            </p>
+          </Reveal>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-3">
+            {recursosComuns.itens.map((item, i) => (
+              <Reveal
+                as="li"
+                key={item}
+                delay={i * 80}
+                className="rounded-sm border border-paper/15 bg-paper/5 p-5 text-sm leading-relaxed text-paper/85"
+              >
+                {item}
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 

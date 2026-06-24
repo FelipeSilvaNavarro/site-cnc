@@ -9,8 +9,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contato" },
 };
 
+/**
+ * ContatoPage — rota "/contato".
+ *
+ * Lista os canais de atendimento (WhatsApp e telefone; e-mail oculto), o
+ * endereço cadastral e o horário 24/7, e mostra um mapa. Enquanto
+ * `mapsEmbedUrl` estiver com placeholder `{{PREENCHER`, exibe um slot; caso
+ * contrário renderiza o iframe (hoje um mapa genérico do Brasil, por privacidade).
+ */
 export default function ContatoPage() {
   const e = site.endereco;
+  // Mostra o slot do mapa enquanto a URL de embed não estiver definida.
   const mapaInvalido = e.mapsEmbedUrl.startsWith("{{PREENCHER");
 
   return (
@@ -64,7 +73,9 @@ export default function ContatoPage() {
                   </span>
                 </a>
               </li>
-              <li>
+              {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
+                  Para reativar, descomente este bloco. */}
+              {/* <li>
                 <a
                   href={`mailto:${site.email}`}
                   className="group flex items-start gap-4 rounded-sm border border-ink/10 p-5 transition-colors hover:border-brand-700/40"
@@ -76,7 +87,7 @@ export default function ContatoPage() {
                     {site.email}
                   </span>
                 </a>
-              </li>
+              </li> */}
             </ul>
 
             <h2 className="mt-10 text-2xl font-semibold text-ink">
@@ -89,13 +100,13 @@ export default function ContatoPage() {
               </p>
               <p>CEP {e.cep}</p>
             </address>
+            {/* Atendimento 24/7 (valores em site.horario). */}
             <dl className="mt-4 space-y-1 text-sm text-ink-soft">
               <div className="flex gap-2">
-                <dt className="font-semibold text-ink">Seg–sex:</dt>
+                <dt className="font-semibold text-ink">Atendimento:</dt>
                 <dd>{site.horario.semana}</dd>
               </div>
               <div className="flex gap-2">
-                <dt className="font-semibold text-ink">Sábado:</dt>
                 <dd>{site.horario.sabado}</dd>
               </div>
             </dl>

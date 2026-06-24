@@ -1,5 +1,9 @@
 /**
- * Conteúdo da página de Suporte — o diferencial central da CNC.
+ * suporte.ts — Conteúdo da página de Suporte (o diferencial central da CNC).
+ *
+ * Exporta o objeto `suporte`, consumido por `app/(site)/suporte/page.tsx`:
+ * cabeçalho + imagem, "como funciona o atendimento" e o bloco de canais. Os
+ * horários exibidos na tabela de canais vêm de `site.horario` (24/7).
  */
 
 export const suporte = {
@@ -37,8 +41,8 @@ export const suporte = {
 
   canais: {
     titulo: "Canais de atendimento",
-    // Detalhes de horário vêm do arquivo site.ts.
+    // Detalhes de horário vêm do arquivo site.ts (24/7).
     observacao:
-      "Atendimento todos os dias, das 06h às 23h30, pelos canais oficiais da CNC. O suporte é feito por pessoas que conhecem o seu sistema, com resposta rápida e acompanhamento até a solução.",
+      "Atendimento 24 horas por dia, 7 dias por semana, sem parar. O suporte é feito por pessoas que conhecem o seu sistema, com resposta rápida e acompanhamento até a solução.",
   },
 };

@@ -1,13 +1,19 @@
 /**
- * Conteúdo das seções da Home: diferenciais, etapas, depoimentos e segmentos.
- * Textos de chamada/benefício são livres; dados factuais usam {{PREENCHER}}.
+ * home.ts — Conteúdo das seções da página inicial.
+ *
+ * Exporta os blocos consumidos por `app/(site)/page.tsx`: `hero` (chamada
+ * principal), `diferenciais`, `comoFunciona` (etapas), `depoimentos` (oculto
+ * enquanto vazio), `segmentos` e `ctaFinal`. Editar texto aqui altera a Home
+ * sem mexer no JSX.
  */
 
 export const hero = {
   sobrelinha: "Sistemas de gestão e PDV",
-  titulo: "O sistema de gestão certo para o seu negócio, com suporte que responde de verdade.",
+  titulo: "O sistema de gestão certo para o seu negócio.",
+  // Texto sem citar marcas de fornecedores (decisão de negócio — ver sistemas.ts).
+  // Original: "A CNC representa e dá suporte aos principais sistemas de gestão e PDV do mercado. ..."
   subtitulo:
-    "A CNC representa e dá suporte aos principais sistemas de gestão e PDV do mercado. Atendimento humanizado, direto e contínuo: você fala com quem resolve, sem central de chamados e sem fila de protocolo.",
+    "A CNC oferece e dá suporte a sistemas de gestão e PDV sob medida para o seu negócio. Atendimento humanizado, direto e contínuo: você fala com quem resolve.",
   ctaPrimario: "Falar no WhatsApp",
   ctaSecundario: "Pedir orçamento",
   // Slot de imagem: foto real do atendimento/equipe/operação da CNC.

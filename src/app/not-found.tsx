@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+/**
+ * NotFound — página 404 global (App Router). Renderizada automaticamente pelo
+ * Next quando nenhuma rota casa com a URL. Mostra mensagem e link para a home.
+ */
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-paper px-6 text-center">

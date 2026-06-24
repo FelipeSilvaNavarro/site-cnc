@@ -17,11 +17,21 @@ import {
 
 export const metadata: Metadata = {
   title: "Revenda de sistemas de gestão e PDV com suporte humanizado",
+  // Sem citar marcas de fornecedores (ver sistemas.ts).
   description:
-    "A CNC representa e dá suporte aos sistemas AVANTE, SGBR e PRODO. Suporte humanizado, direto e contínuo, sem central de chamados.",
+    "A CNC oferece e dá suporte a sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados.",
   alternates: { canonical: "/" },
 };
 
+/**
+ * HomePage — página inicial do site (rota "/").
+ *
+ * Monta as 8 seções na ordem: (1) hero, (2) barra de prova social
+ * (clientes/anos/soluções), (3) cards das soluções, (4) "por que a CNC",
+ * (5) como funciona, (6) depoimentos — oculto enquanto `depoimentos` vazio,
+ * (7) segmentos e (8) CTA final. Todo o texto vem de `content/home.ts`,
+ * `content/site.ts` e `content/sistemas.ts`.
+ */
 export default function HomePage() {
   return (
     <>
@@ -84,9 +94,8 @@ export default function HomePage() {
             <span className="text-sm text-ink-muted">anos de mercado</span>
           </div>
           <div className="flex flex-col gap-2">
-            <span className="text-sm text-ink-muted">
-              Sistemas que representamos
-            </span>
+            {/* Rótulos de porte (PRO/MÉDIO/SIMPLES), sem marcas — ver sistemas.ts */}
+            <span className="text-sm text-ink-muted">Nossas soluções</span>
             <ul className="flex flex-wrap gap-x-5 gap-y-1 font-display text-base font-semibold text-ink-soft">
               {sistemas.map((s) => (
                 <li key={s.slug}>{s.nome}</li>

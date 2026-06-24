@@ -34,9 +34,9 @@ export default function AreaDoClientePage() {
       </p>
       <div className="mt-8 flex flex-col items-center gap-3">
         <a
-          href={whatsappLink(
-            "Olá! Preciso de atendimento da CNC (ex.: segunda via de boleto)."
-          )}
+          // Link padrão unificado do WhatsApp (mesma mensagem em todo o site).
+          // Original: whatsappLink("Olá! Preciso de atendimento da CNC (ex.: segunda via de boleto).")
+          href={whatsappLink()}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary w-full sm:w-auto"

@@ -6,8 +6,21 @@ import { useState } from "react";
 import { navPrincipal, site, whatsappLink } from "@/content/site";
 import Logo from "./Logo";
 
+/**
+ * Header — cabeçalho fixo (sticky) do site institucional.
+ *
+ * Client Component (precisa de estado e de `usePathname`):
+ * - `aberto`: controla a abertura do menu mobile (hambúrguer → X).
+ * - `usePathname()`: destaca o item de navegação da rota atual.
+ *
+ * Os itens do menu vêm de `navPrincipal` (content/site.ts) e o botão de WhatsApp
+ * usa o link padrão `whatsappLink()`. Some o menu desktop em telas < lg e mostra
+ * o botão hambúrguer; o menu mobile abre abaixo do cabeçalho.
+ */
 export default function Header() {
+  // Estado do menu mobile (true = aberto).
   const [aberto, setAberto] = useState(false);
+  // Rota atual, para marcar o link ativo na navegação.
   const pathname = usePathname();
 
   return (
