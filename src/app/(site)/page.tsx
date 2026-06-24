@@ -16,7 +16,8 @@ import {
 } from "@/content/home";
 
 export const metadata: Metadata = {
-  title: "Revenda de sistemas de gestão e PDV com suporte humanizado",
+  // Sem `title` aqui de propósito: a Home usa o `title.default` do layout raiz
+  // ("CNC Sistemas — ..."), que é o que aparece na aba do navegador.
   // Sem citar marcas de fornecedores (ver sistemas.ts).
   description:
     "A CNC oferece e dá suporte a sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados.",

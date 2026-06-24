@@ -33,8 +33,10 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
+  // `default`: título da aba quando a página não define o seu (ex.: a Home).
+  // `template`: demais páginas viram "<título> | CNC Sistemas".
   title: {
-    default: "CNC — Revenda de sistemas de gestão e PDV com suporte humanizado",
+    default: "CNC Sistemas — Sistemas de gestão e PDV com suporte humanizado",
     template: "%s | CNC Sistemas",
   },
   description:
