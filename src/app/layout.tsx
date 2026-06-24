@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import { site } from "@/content/site";
 import "./globals.css";
 
 /**
@@ -24,7 +25,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.cnc-maceio.com.br"),
+  metadataBase: new URL(site.url),
   title: {
     default: "CNC — Sistema de gestão e PDV em Maceió com suporte local",
     template: "%s | CNC Maceió",
@@ -45,6 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
+    url: site.url,
     siteName: "CNC Maceió",
     title: "CNC — Sistema de gestão e PDV em Maceió com suporte local",
     description:

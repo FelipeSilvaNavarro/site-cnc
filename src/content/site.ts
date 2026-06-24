@@ -7,6 +7,9 @@
 
 export const site = {
   nome: "CNC",
+  // Domínio oficial. Usado em metadados, sitemap e robots. Trocar aqui só se
+  // mudar o domínio.
+  url: "https://cncsistemas.com.br",
   nomeCompleto: "{{PREENCHER: razão social completa da CNC}}",
   cnpj: "{{PREENCHER: CNPJ da CNC}}",
   descricaoCurta:
