@@ -28,12 +28,12 @@ export default function Logo({ className = "" }: { className?: string }) {
 
   return (
     <Image
-      src="/logo.png"
+      src="/logo.svg"
       alt="CNC Sistemas & Representações"
-      width={260}
-      height={88}
+      width={771}
+      height={686}
       priority
-      className={`h-10 w-auto lg:h-12 ${className}`}
+      className={`h-11 w-auto lg:h-14 ${className}`}
       onError={() => setErro(true)}
     />
   );

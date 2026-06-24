@@ -59,6 +59,21 @@ export const metadata: Metadata = {
     title: "CNC — Revenda de sistemas de gestão e PDV com suporte humanizado",
     description:
       "Revenda e suporte de sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados.",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "CNC Sistemas & Representações",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CNC — Revenda de sistemas de gestão e PDV com suporte humanizado",
+    description:
+      "Revenda e suporte de sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados.",
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
 };
