@@ -4,9 +4,9 @@ import CtaButtons from "@/components/CtaButtons";
 import { sistemas, sistemasIntro } from "@/content/sistemas";
 
 export const metadata: Metadata = {
-  title: "Sistemas: AVANTE, SGBR, PRODO e DigiSat",
+  title: "Sistemas: AVANTE, SGBR e PRODO",
   description:
-    "Conheça os sistemas de gestão e PDV que a CNC representa em Maceió. A gente ajuda a escolher o ideal para o seu comércio: AVANTE, SGBR, PRODO e DigiSat.",
+    "Conheça os sistemas de gestão e PDV que a CNC representa: AVANTE, SGBR e PRODO. Ajudamos a escolher o ideal para o seu negócio.",
   alternates: { canonical: "/sistemas" },
 };
 
@@ -38,10 +38,10 @@ export default function SistemasPage() {
             >
               <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
                 <div>
-                  <span className="font-serif text-sm font-semibold text-accent-600">
+                  <span className="font-display text-sm font-semibold text-accent-600">
                     0{i + 1}
                   </span>
-                  <h2 className="mt-2 font-serif text-3xl font-semibold text-brand-800">
+                  <h2 className="mt-2 font-display text-3xl font-semibold text-brand-800">
                     {s.nome}
                   </h2>
                   <p className="mt-3 text-base leading-relaxed text-ink-soft">
@@ -100,8 +100,8 @@ export default function SistemasPage() {
               Não sabe qual sistema escolher?
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-paper/75">
-              Conte como funciona o seu comércio. A CNC analisa sua operação e
-              indica a solução certa, com suporte local de quem está por perto.
+              Conte como funciona o seu negócio. A CNC analisa a sua operação,
+              indica o sistema certo e cuida do suporte no dia a dia.
             </p>
           </div>
           <CtaButtons

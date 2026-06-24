@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="container-cnc grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         {/* Identidade */}
         <div className="lg:col-span-1">
-          <span className="font-serif text-2xl font-semibold text-paper">
+          <span className="font-display text-2xl font-semibold text-paper">
             CNC
           </span>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/70">

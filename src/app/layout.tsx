@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
 /**
- * Tipografia centralizada.
- * - Títulos: Fraunces (serifada, com personalidade e autoridade).
- * - Corpo: Inter (sans-serif limpa e legível).
- * Para trocar a tipografia, altere apenas estes dois imports e as variáveis.
+ * Tipografia centralizada (perfil técnico, de empresa de software).
+ * - Títulos: Space Grotesk (sans geométrica com personalidade).
+ * - Corpo: Inter (sans neutra e legível).
+ * - Detalhes: JetBrains Mono (rótulos, números, sensação técnica).
+ * Para trocar a tipografia, altere apenas estes imports e as variáveis.
  */
-const fraunces = Fraunces({
+const display = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -24,33 +24,41 @@ const inter = Inter({
   display: "swap",
 });
 
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "CNC — Sistema de gestão e PDV em Maceió com suporte local",
-    template: "%s | CNC Maceió",
+    default: "CNC — Revenda de sistemas de gestão e PDV com suporte humanizado",
+    template: "%s | CNC Sistemas",
   },
   description:
-    "Revenda e suporte local de sistemas de gestão e PDV em Maceió/AL. Atendimento humano, presencial e rápido para o seu comércio.",
+    "Revenda e suporte de sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados. A CNC indica o sistema certo para o seu negócio.",
   keywords: [
-    "sistema de gestão Maceió",
-    "PDV Maceió",
-    "ERP Maceió",
-    "automação comercial Maceió",
-    "suporte de sistema Maceió",
+    "sistema de gestão",
+    "PDV",
+    "ERP",
+    "automação comercial",
+    "revenda de software de gestão",
+    "suporte de sistema",
+    "software para indústria",
     "AVANTE",
     "SGBR",
     "PRODO",
-    "DigiSat",
   ],
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: site.url,
-    siteName: "CNC Maceió",
-    title: "CNC — Sistema de gestão e PDV em Maceió com suporte local",
+    siteName: "CNC Sistemas & Representações",
+    title: "CNC — Revenda de sistemas de gestão e PDV com suporte humanizado",
     description:
-      "Revenda e suporte local de sistemas de gestão e PDV em Maceió/AL. Atendimento humano, presencial e rápido.",
+      "Revenda e suporte de sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados.",
   },
   robots: { index: true, follow: true },
 };
@@ -59,7 +67,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR" className={`${fraunces.variable} ${inter.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${display.variable} ${inter.variable} ${mono.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

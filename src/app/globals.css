@@ -20,47 +20,55 @@
   h2,
   h3,
   h4 {
-    @apply font-serif text-ink;
+    @apply font-display text-ink;
     text-wrap: balance;
   }
 
   /* Foco visível para navegação por teclado (acessibilidade). */
   :focus-visible {
-    @apply outline-none ring-2 ring-accent-400 ring-offset-2 ring-offset-paper;
+    @apply outline-none ring-2 ring-accent-500 ring-offset-2 ring-offset-paper;
   }
 }
 
 @layer components {
-  /* Largura de conteúdo e respiro lateral padrão do layout editorial. */
+  /* Largura de conteúdo e respiro lateral padrão do layout. */
   .container-cnc {
     @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-10;
   }
 
-  /* Rótulo superior em versalete, recurso editorial recorrente. */
+  /* Rótulo superior técnico (mono, versalete). */
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-widest text-accent-600;
+    @apply font-mono text-xs font-medium uppercase tracking-widest text-accent-600;
   }
 
   /* Botões. Centralizados aqui para consistência. */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold tracking-wide transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold tracking-wide transition-colors duration-200;
   }
   .btn-primary {
-    @apply btn bg-brand-700 text-paper hover:bg-brand-800;
+    @apply btn bg-brand-600 text-white hover:bg-brand-700;
   }
   .btn-secondary {
-    @apply btn border border-brand-700/30 bg-transparent text-brand-800 hover:border-brand-700 hover:bg-brand-700/5;
+    @apply btn border border-brand-600/30 bg-transparent text-brand-700 hover:border-brand-600 hover:bg-brand-600/5;
   }
   .btn-accent {
-    @apply btn bg-accent-500 text-ink hover:bg-accent-600 hover:text-paper;
+    @apply btn bg-accent-500 text-white hover:bg-accent-600;
   }
 }
 
 @layer utilities {
-  /* Linha fina decorativa do estilo editorial. */
+  /* Linha fina decorativa. */
   .rule-accent::before {
     content: "";
-    @apply mb-6 block h-px w-12 bg-accent-400;
+    @apply mb-6 block h-px w-12 bg-accent-500;
+  }
+
+  /* Malha técnica sutil para fundos (sensação de software/grid). */
+  .tech-grid {
+    background-image:
+      linear-gradient(to right, rgba(58, 93, 168, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(58, 93, 168, 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
   }
 }
 

@@ -22,8 +22,8 @@ export default function SejaParceiroPage() {
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-ink-soft">
             Você atua com tecnologia, contabilidade ou atende o comércio e quer
-            oferecer sistemas de gestão com suporte local de Maceió? A CNC
-            trabalha com parcerias para ampliar o atendimento na região.
+            oferecer sistemas de gestão com suporte humanizado? A CNC trabalha
+            com parcerias para ampliar o atendimento.
           </p>
           <p className="mt-4 text-base leading-relaxed text-ink-soft">
             {/* Texto institucional genérico; condições reais a definir. */}

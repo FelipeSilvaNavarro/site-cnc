@@ -6,9 +6,9 @@ import { suporte } from "@/content/suporte";
 import { site, whatsappLink } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Suporte local de sistema de gestão em Maceió",
+  title: "Suporte humanizado de sistema de gestão",
   description:
-    "O diferencial da CNC: suporte local, presencial e humano em Maceió. Atendimento remoto rápido e presença quando o caixa não pode parar.",
+    "O diferencial da CNC: suporte humanizado, direto e contínuo, sem central de chamados. Você fala com quem conhece o seu sistema e resolve.",
   alternates: { canonical: "/suporte" },
 };
 
@@ -59,7 +59,7 @@ export default function SuportePage() {
                 delay={i * 100}
                 className="rounded-sm border border-ink/10 bg-paper p-7"
               >
-                <h3 className="font-serif text-xl font-semibold text-brand-800">
+                <h3 className="font-display text-xl font-semibold text-brand-800">
                   {item.titulo}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">

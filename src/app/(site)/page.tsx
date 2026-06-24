@@ -16,9 +16,9 @@ import {
 } from "@/content/home";
 
 export const metadata: Metadata = {
-  title: "Sistema de gestão e PDV em Maceió com suporte local",
+  title: "Revenda de sistemas de gestão e PDV com suporte humanizado",
   description:
-    "A CNC representa e dá suporte aos sistemas AVANTE, SGBR, PRODO e DigiSat em Maceió/AL. Suporte local, presencial e humano para o seu comércio.",
+    "A CNC representa e dá suporte aos sistemas AVANTE, SGBR e PRODO. Suporte humanizado, direto e contínuo, sem central de chamados.",
   alternates: { canonical: "/" },
 };
 
@@ -52,13 +52,13 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="aspect-[4/5] w-full rounded-sm shadow-xl shadow-brand-900/10"
               />
-              {/* Selo editorial de credibilidade local */}
-              <div className="absolute -bottom-5 -left-5 hidden rounded-sm border border-ink/10 bg-paper px-5 py-4 shadow-lg sm:block">
-                <p className="font-serif text-sm font-semibold text-brand-800">
-                  Atendimento em {site.cidade}/{site.uf}
+              {/* Selo de credibilidade: suporte direto */}
+              <div className="absolute -bottom-5 -left-5 hidden rounded-md border border-ink/10 bg-paper px-5 py-4 shadow-lg sm:block">
+                <p className="font-display text-sm font-semibold text-brand-700">
+                  Suporte humanizado
                 </p>
                 <p className="text-xs text-ink-muted">
-                  Suporte presencial e na hora
+                  Sem central, sem fila de chamado
                 </p>
               </div>
             </div>
@@ -70,15 +70,15 @@ export default function HomePage() {
       <section className="border-b border-ink/10 bg-paper-soft">
         <div className="container-cnc grid gap-8 py-10 md:grid-cols-3 md:items-center md:gap-12">
           <div className="flex flex-col gap-1">
-            <span className="font-serif text-3xl font-semibold text-brand-800">
+            <span className="font-display text-3xl font-semibold text-brand-800">
               {site.numeros.clientesAtivos}
             </span>
             <span className="text-sm text-ink-muted">
-              comércios atendidos em Maceió e região
+              clientes ativos usando nossos sistemas
             </span>
           </div>
           <div className="flex flex-col gap-1 md:border-x md:border-ink/10 md:px-8">
-            <span className="font-serif text-3xl font-semibold text-brand-800">
+            <span className="font-display text-3xl font-semibold text-brand-800">
               {site.numeros.anosMercado}
             </span>
             <span className="text-sm text-ink-muted">anos de mercado</span>
@@ -87,7 +87,7 @@ export default function HomePage() {
             <span className="text-sm text-ink-muted">
               Sistemas que representamos
             </span>
-            <ul className="flex flex-wrap gap-x-5 gap-y-1 font-serif text-base font-semibold text-ink-soft">
+            <ul className="flex flex-wrap gap-x-5 gap-y-1 font-display text-base font-semibold text-ink-soft">
               {sistemas.map((s) => (
                 <li key={s.slug}>{s.nome}</li>
               ))}
@@ -104,14 +104,14 @@ export default function HomePage() {
             titulo={sistemasIntro.titulo}
             texto={sistemasIntro.texto}
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {sistemas.map((s, i) => (
               <Reveal as="article" key={s.slug} delay={i * 80}>
                 <Link
                   href={`/sistemas#${s.slug}`}
                   className="group flex h-full flex-col rounded-sm border border-ink/10 bg-paper-soft/40 p-6 transition-colors hover:border-brand-700/40 hover:bg-paper-soft"
                 >
-                  <h3 className="font-serif text-xl font-semibold text-brand-800">
+                  <h3 className="font-display text-xl font-semibold text-brand-800">
                     {s.nome}
                   </h3>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">
@@ -141,17 +141,17 @@ export default function HomePage() {
               {diferenciais.texto}
             </p>
           </Reveal>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-paper/10 bg-paper/10 md:grid-cols-3">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-paper/10 bg-paper/10 sm:grid-cols-2 lg:grid-cols-4">
             {diferenciais.blocos.map((b, i) => (
               <Reveal
                 key={b.titulo}
                 delay={i * 100}
                 className="bg-brand-900 p-8"
               >
-                <span className="font-serif text-2xl font-semibold text-accent-300">
+                <span className="font-display text-2xl font-semibold text-accent-300">
                   0{i + 1}
                 </span>
-                <h3 className="mt-4 font-serif text-xl font-semibold text-paper">
+                <h3 className="mt-4 font-display text-xl font-semibold text-paper">
                   {b.titulo}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-paper/70">
@@ -175,11 +175,11 @@ export default function HomePage() {
             {comoFunciona.etapas.map((e, i) => (
               <Reveal as="li" key={e.numero} delay={i * 100}>
                 <div className="rule-accent">
-                  <span className="font-serif text-5xl font-semibold text-paper-dark">
+                  <span className="font-display text-5xl font-semibold text-paper-dark">
                     {e.numero}
                   </span>
                 </div>
-                <h3 className="mt-4 font-serif text-xl font-semibold text-brand-800">
+                <h3 className="mt-4 font-display text-xl font-semibold text-brand-800">
                   {e.titulo}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">
@@ -197,7 +197,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Depoimentos"
             titulo="Quem confia a operação à CNC"
-            texto="Lojistas de Maceió que contam com nosso suporte no dia a dia."
+            texto="Clientes que contam com os nossos sistemas e o nosso suporte no dia a dia."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {depoimentos.map((d, i) => (
@@ -219,7 +219,7 @@ export default function HomePage() {
                   “{d.texto}”
                 </p>
                 <footer className="mt-6 border-t border-ink/10 pt-4">
-                  <p className="font-serif text-base font-semibold text-brand-800">
+                  <p className="font-display text-base font-semibold text-brand-800">
                     {d.nome}
                   </p>
                   <p className="text-sm text-ink-muted">{d.empresa}</p>
@@ -246,7 +246,7 @@ export default function HomePage() {
                 delay={i * 50}
                 className="flex items-center bg-paper p-6 text-center"
               >
-                <span className="w-full font-serif text-lg font-medium text-ink-soft">
+                <span className="w-full font-display text-lg font-medium text-ink-soft">
                   {seg.nome}
                 </span>
               </Reveal>

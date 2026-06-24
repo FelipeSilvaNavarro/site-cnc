@@ -3,11 +3,10 @@ import type { Config } from "tailwindcss";
 /**
  * Identidade visual da CNC centralizada.
  *
- * Paleta provisória (NÃO derivada do logo ainda — arquivo do logo não foi
- * fornecido). É sóbria e profissional: petróleo/azul-esverdeado como cor de
- * autoridade, bronze/dourado como acento elegante, marfim quente de fundo e
- * grafite para texto. Para trocar a identidade depois, edite SOMENTE os tokens
- * abaixo; todo o site referencia estas cores por nome.
+ * Paleta derivada do logo (pégaso azul / "CNC Sistemas & Representações"):
+ * azul royal como cor de marca, um azul mais vivo como destaque e neutros
+ * frios (slate) para texto e fundos. Visual de empresa de software: limpo,
+ * técnico, sóbrio. Para trocar a identidade, edite SOMENTE os tokens abaixo.
  */
 const config: Config = {
   content: [
@@ -18,55 +17,59 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Cor de marca (petróleo / azul-esverdeado profundo)
+        // Cor de marca: azul royal do logo.
         brand: {
-          50: "#eef5f5",
-          100: "#d3e4e4",
-          200: "#a7c9c9",
-          300: "#6fa3a4",
-          400: "#3f7d80",
-          500: "#1f5e62",
-          600: "#164b4f",
-          700: "#103c40",
-          800: "#0c2e31",
-          900: "#0a2426",
-          950: "#051517",
+          50: "#eef3fb",
+          100: "#d8e4f6",
+          200: "#b3c8ec",
+          300: "#85a4de",
+          400: "#5b80cf",
+          500: "#3a5da8", // azul aproximado do logo
+          600: "#314f93",
+          700: "#293f77",
+          800: "#22335f",
+          900: "#1a2848",
+          950: "#0f1830",
         },
-        // Acento (bronze / dourado discreto)
+        // Destaque: azul mais vivo para links, números e detalhes interativos.
         accent: {
-          50: "#faf5ea",
-          100: "#f1e4c6",
-          200: "#e4c98c",
-          300: "#d3ab57",
-          400: "#c2922f",
-          500: "#a8791f",
-          600: "#8a6019",
-          700: "#6c4a16",
-          800: "#503716",
-          900: "#3c2a14",
+          50: "#ecf2ff",
+          100: "#dbe6ff",
+          200: "#bcd0ff",
+          300: "#8fb1ff",
+          400: "#5e87fb",
+          500: "#3b65f0",
+          600: "#274ed6",
+          700: "#1f3eb0",
+          800: "#1d358c",
+          900: "#1d306f",
         },
-        // Fundo (marfim quente)
+        // Fundos frios (cinza-azulado quase branco).
         paper: {
-          DEFAULT: "#f7f4ef",
-          soft: "#efe9e0",
-          dark: "#e7e0d4",
+          DEFAULT: "#ffffff",
+          soft: "#f4f6fb",
+          dark: "#e7ecf5",
         },
-        // Texto (grafite)
+        // Texto (slate frio, com leve viés azul).
         ink: {
-          DEFAULT: "#1a2226",
-          soft: "#3c474d",
-          muted: "#6b767c",
+          DEFAULT: "#0f1b2d",
+          soft: "#3a4860",
+          muted: "#6a7791",
         },
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Georgia", "serif"],
+        // Títulos: sans geométrica com personalidade técnica.
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        // Corpo: sans neutra e legível.
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        // Detalhes técnicos (rótulos, números, código).
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       maxWidth: {
         content: "1180px",
       },
       letterSpacing: {
-        widest: "0.18em",
+        widest: "0.2em",
       },
       keyframes: {
         "fade-up": {

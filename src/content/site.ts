@@ -13,8 +13,9 @@ export const site = {
   nomeCompleto: "{{PREENCHER: razão social completa da CNC}}",
   cnpj: "{{PREENCHER: CNPJ da CNC}}",
   descricaoCurta:
-    "Revenda e suporte local de sistemas de gestão e PDV em Maceió/AL.",
+    "Revenda e suporte de sistemas de gestão e PDV, com atendimento humanizado e contínuo.",
 
+  // Usados apenas no endereço cadastral (não como argumento de venda).
   cidade: "Maceió",
   uf: "AL",
 
@@ -56,8 +57,8 @@ export const site = {
 
   // Provas de credibilidade exibidas na barra de prova social.
   numeros: {
-    clientesAtivos: "{{PREENCHER: nº de clientes ativos, ex 90}}",
-    anosMercado: "{{PREENCHER: anos de mercado}}",
+    clientesAtivos: "90",
+    anosMercado: "6",
   },
 } as const;
 

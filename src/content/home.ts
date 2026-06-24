@@ -4,39 +4,43 @@
  */
 
 export const hero = {
-  // Reforça o diferencial central: suporte local e presencial em Maceió.
-  sobrelinha: "Sistema de gestão e PDV em Maceió",
-  titulo: "Suporte local, presencial e na hora. O sistema certo para o seu comércio.",
+  sobrelinha: "Sistemas de gestão e PDV",
+  titulo: "O sistema de gestão certo para o seu negócio, com suporte que responde de verdade.",
   subtitulo:
-    "A CNC representa e dá suporte aos principais sistemas de gestão do mercado. Aqui o lojista não fica na mão de central distante: tem atendimento humano, próximo e rápido de quem resolve em Maceió.",
+    "A CNC representa e dá suporte aos principais sistemas de gestão e PDV do mercado. Atendimento humanizado, direto e contínuo: você fala com quem resolve, sem central de chamados e sem fila de protocolo.",
   ctaPrimario: "Falar no WhatsApp",
   ctaSecundario: "Pedir orçamento",
-  // Slot de imagem: foto real do atendimento/equipe da CNC.
+  // Slot de imagem: foto real do atendimento/equipe/operação da CNC.
   imagem: {
     src: "/fotos/hero.jpg",
-    alt: "{{PREENCHER: descrição da foto do hero (ex.: técnico da CNC atendendo cliente no balcão da loja)}}",
+    alt: "{{PREENCHER: descrição da foto do hero (ex.: equipe da CNC dando suporte no sistema)}}",
   },
 };
 
 export const diferenciais = {
-  titulo: "Por que o comércio de Maceió escolhe a CNC",
+  titulo: "Por que trabalhar com a CNC",
   texto:
-    "A diferença não está só no software. Está em ter alguém perto quando o caixa não pode parar.",
+    "Mais do que vender licença: a CNC acompanha a escolha, a implantação e o uso do sistema no seu dia a dia.",
   blocos: [
     {
-      titulo: "Suporte local e presencial",
+      titulo: "Suporte humanizado",
       texto:
-        "Quando o problema exige presença, a CNC vai até a sua loja. Atendimento em Maceió, sem fila de protocolo em central distante.",
+        "Você fala com gente que conhece o seu sistema e o seu negócio. Atendimento direto, sem central, sem abrir chamado e sem ficar pulando de setor.",
     },
     {
-      titulo: "Atendimento humano",
+      titulo: "Consultoria na escolha",
       texto:
-        "Você fala com pessoas que conhecem o seu negócio e respondem rápido. Sem robô, sem empurrar para o próximo setor.",
+        "A CNC analisa a sua operação e indica o sistema que faz sentido para o seu porte e segmento, com o que você precisa e sem o que não vai usar.",
     },
     {
-      titulo: "Proximidade que resolve",
+      titulo: "Implantação e treinamento",
       texto:
-        "Implantação, treinamento e suporte contínuo com quem entende a rotina do comércio pequeno e médio da região.",
+        "Instalação, configuração e treinamento da equipe para o sistema entrar em produção com segurança desde o primeiro dia.",
+    },
+    {
+      titulo: "Acompanhamento contínuo",
+      texto:
+        "Depois de implantar, a CNC continua presente: suporte contínuo para manter a operação rodando sem travar o seu faturamento.",
     },
   ],
 };
@@ -44,13 +48,13 @@ export const diferenciais = {
 export const comoFunciona = {
   titulo: "Como a CNC trabalha",
   texto:
-    "Do primeiro contato ao dia a dia da loja, um processo simples e acompanhado de perto.",
+    "Do primeiro contato ao uso diário do sistema, um processo simples e acompanhado de perto.",
   etapas: [
     {
       numero: "01",
-      titulo: "Diagnóstico do comércio",
+      titulo: "Diagnóstico do negócio",
       texto:
-        "Entendemos como funciona a sua operação, o seu segmento e o seu porte para indicar o sistema certo, sem vender o que você não precisa.",
+        "Entendemos a sua operação, o seu segmento e o seu porte para indicar o sistema certo, com o que a sua rotina realmente exige.",
     },
     {
       numero: "02",
@@ -62,7 +66,7 @@ export const comoFunciona = {
       numero: "03",
       titulo: "Suporte contínuo",
       texto:
-        "Depois da implantação, a CNC continua por perto: suporte presencial e remoto para manter o caixa rodando sem sustos.",
+        "Depois da implantação, a CNC segue por perto: suporte humanizado e direto para resolver o que aparecer no dia a dia.",
     },
   ],
 };
@@ -82,19 +86,19 @@ export type Depoimento = {
 export const depoimentos: Depoimento[] = [
   {
     nome: "{{PREENCHER: nome do cliente 1}}",
-    empresa: "{{PREENCHER: nome do comércio do cliente 1}}",
+    empresa: "{{PREENCHER: nome da empresa do cliente 1}}",
     texto: "{{PREENCHER: depoimento real autorizado do cliente 1}}",
     foto: "/fotos/depoimentos/cliente-1.jpg",
   },
   {
     nome: "{{PREENCHER: nome do cliente 2}}",
-    empresa: "{{PREENCHER: nome do comércio do cliente 2}}",
+    empresa: "{{PREENCHER: nome da empresa do cliente 2}}",
     texto: "{{PREENCHER: depoimento real autorizado do cliente 2}}",
     foto: "/fotos/depoimentos/cliente-2.jpg",
   },
   {
     nome: "{{PREENCHER: nome do cliente 3}}",
-    empresa: "{{PREENCHER: nome do comércio do cliente 3}}",
+    empresa: "{{PREENCHER: nome da empresa do cliente 3}}",
     texto: "{{PREENCHER: depoimento real autorizado do cliente 3}}",
     foto: "/fotos/depoimentos/cliente-3.jpg",
   },
@@ -102,15 +106,14 @@ export const depoimentos: Depoimento[] = [
 
 export const segmentos = {
   titulo: "Segmentos que a CNC atende",
-  texto:
-    "Sistemas e suporte ajustados à realidade de cada tipo de comércio.",
+  texto: "Sistemas e suporte ajustados à realidade de cada tipo de operação.",
   lista: [
+    { nome: "Indústrias e fábricas", icone: "industria" },
     { nome: "Mercados e mercearias", icone: "mercado" },
     { nome: "Restaurantes e lanchonetes", icone: "restaurante" },
     { nome: "Lojas de roupa e calçados", icone: "moda" },
     { nome: "Farmácias e drogarias", icone: "farmacia" },
     { nome: "Materiais de construção", icone: "construcao" },
-    { nome: "Padarias e conveniências", icone: "padaria" },
     { nome: "Autopeças e oficinas", icone: "autopecas" },
     { nome: "Comércio em geral", icone: "comercio" },
   ],
@@ -119,7 +122,7 @@ export const segmentos = {
 export const ctaFinal = {
   titulo: "Fale com um especialista da CNC",
   texto:
-    "Conte como funciona o seu comércio. A gente indica o sistema certo e cuida do suporte para você focar em vender.",
+    "Conte como funciona o seu negócio. Indicamos o sistema certo e cuidamos do suporte para você focar no que importa.",
   ctaPrimario: "Falar no WhatsApp",
   ctaSecundario: "Pedir orçamento",
 };

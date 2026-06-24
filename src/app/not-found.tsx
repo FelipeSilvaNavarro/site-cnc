@@ -4,7 +4,7 @@ export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-paper px-6 text-center">
       <p className="eyebrow mb-4">Erro 404</p>
-      <h1 className="font-serif text-4xl font-semibold text-brand-800">
+      <h1 className="font-display text-4xl font-semibold text-brand-800">
         Página não encontrada
       </h1>
       <p className="mt-4 max-w-md text-ink-soft">

@@ -23,7 +23,7 @@ export default function AreaClienteLayout({
         <div className="container-cnc flex h-16 items-center justify-between">
           <Link
             href="/"
-            className="font-serif text-xl font-semibold text-brand-800"
+            className="font-display text-xl font-semibold text-brand-800"
           >
             CNC
           </Link>

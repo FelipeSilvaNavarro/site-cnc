@@ -6,9 +6,9 @@ import { sobre } from "@/content/sobre";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Sobre a CNC — revenda local de sistemas em Maceió",
+  title: "Sobre a CNC — revenda e suporte de sistemas de gestão",
   description:
-    "Conheça a CNC: revenda e suporte de sistemas de gestão e PDV em Maceió/AL. História, equipe, CNPJ e endereço.",
+    "Conheça a CNC: revenda e suporte de sistemas de gestão e PDV. História, equipe, CNPJ e endereço.",
   alternates: { canonical: "/sobre" },
 };
 
@@ -45,7 +45,7 @@ export default function SobrePage() {
           <Reveal delay={100}>
             <ImageSlot
               src="/fotos/sobre.jpg"
-              alt="{{PREENCHER: foto da fachada ou do escritório da CNC em Maceió}}"
+              alt="{{PREENCHER: foto da fachada, do escritório ou da equipe da CNC}}"
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="aspect-[4/3] w-full rounded-sm shadow-xl shadow-brand-900/10"
             />
@@ -58,7 +58,7 @@ export default function SobrePage() {
               <div key={n.label} className="bg-paper-soft p-8 text-center">
                 <dt className="sr-only">{n.label}</dt>
                 <dd>
-                  <span className="block font-serif text-4xl font-semibold text-brand-800">
+                  <span className="block font-display text-4xl font-semibold text-brand-800">
                     {n.valor}
                   </span>
                   <span className="mt-1 block text-sm text-ink-muted">
@@ -98,7 +98,7 @@ export default function SobrePage() {
                   className="aspect-[4/5] w-full"
                 />
                 <div className="p-5">
-                  <h3 className="font-serif text-lg font-semibold text-brand-800">
+                  <h3 className="font-display text-lg font-semibold text-brand-800">
                     {m.nome}
                   </h3>
                   <p className="text-sm text-ink-muted">{m.cargo}</p>
@@ -113,7 +113,7 @@ export default function SobrePage() {
       <section className="bg-paper py-16">
         <div className="container-cnc">
           <div className="rounded-sm border border-ink/10 bg-paper-soft/50 p-8">
-            <h2 className="font-serif text-xl font-semibold text-brand-800">
+            <h2 className="font-display text-xl font-semibold text-brand-800">
               Dados da empresa
             </h2>
             <dl className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -148,7 +148,7 @@ export default function SobrePage() {
       <section className="bg-brand-800 py-16 text-paper lg:py-20">
         <div className="container-cnc flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
           <h2 className="max-w-2xl text-3xl font-semibold leading-tight text-paper sm:text-4xl">
-            Vamos conversar sobre o seu comércio?
+            Vamos conversar sobre o seu negócio?
           </h2>
           <CtaButtons
             primario="Falar no WhatsApp"

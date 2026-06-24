@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navPrincipal, site, whatsappLink } from "@/content/site";
+import Logo from "./Logo";
 
 export default function Header() {
   const [aberto, setAberto] = useState(false);
@@ -12,18 +13,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-ink/10 bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/80">
       <div className="container-cnc flex h-16 items-center justify-between lg:h-20">
-        {/* Logo da CNC. Slot: coloque /public/logo.svg para substituir o texto. */}
-        <Link
-          href="/"
-          className="flex items-center gap-3"
-          aria-label="CNC — página inicial"
-        >
-          <span className="font-serif text-2xl font-semibold tracking-tight text-brand-800">
-            CNC
-          </span>
-          <span className="hidden text-[11px] uppercase tracking-widest text-ink-muted sm:block">
-            Gestão e suporte
-          </span>
+        {/* Logo da CNC (componente com fallback de texto). */}
+        <Link href="/" aria-label="CNC — página inicial">
+          <Logo />
         </Link>
 
         {/* Navegação desktop */}

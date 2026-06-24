@@ -4,9 +4,9 @@
 
 export const suporte = {
   sobrelinha: "O diferencial da CNC",
-  titulo: "Suporte que atende de verdade, aqui em Maceió",
+  titulo: "Suporte humanizado, direto e contínuo",
   intro:
-    "O sistema é só metade da solução. A outra metade é ter quem responda quando algo trava no meio do expediente. A CNC foi construída para isso: ser o suporte local que o comércio de Maceió pode contar.",
+    "Quando algo trava no meio do expediente, você precisa de resposta, não de protocolo. Na CNC o suporte é com gente que conhece o seu sistema e o seu negócio, do primeiro contato ao dia a dia.",
 
   // Imagem real do atendimento/equipe.
   imagem: {
@@ -18,19 +18,19 @@ export const suporte = {
     titulo: "Como funciona o atendimento",
     itens: [
       {
-        titulo: "Atendimento remoto rápido",
+        titulo: "Sem central de chamados",
         texto:
-          "Acesso remoto para resolver a maioria das situações na hora, sem você sair do balcão.",
+          "Você fala direto com quem resolve. Nada de abrir ticket, esperar fila ou repetir o problema para três setores diferentes.",
       },
       {
-        titulo: "Suporte presencial em Maceió",
+        titulo: "Atendimento humanizado",
         texto:
-          "Quando o caso exige presença, a CNC vai até a sua loja. Esse é o diferencial de comprar com revenda local.",
+          "Pessoas reais que conhecem o seu sistema e a sua operação acompanham o seu negócio e respondem rápido.",
       },
       {
-        titulo: "Quem atende conhece o seu negócio",
+        titulo: "Suporte contínuo",
         texto:
-          "Sem repetir o problema para três setores. Você fala com quem entende a sua operação.",
+          "O acompanhamento não termina na implantação. A CNC segue presente para resolver o que aparecer no uso diário.",
       },
     ],
   },

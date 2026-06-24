@@ -3,9 +3,9 @@ import Reveal from "@/components/Reveal";
 import { site, whatsappLink } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Contato — fale com a CNC em Maceió",
+  title: "Contato — fale com a CNC",
   description:
-    "Fale com a CNC: WhatsApp, telefone, e-mail e endereço em Maceió/AL. Atendimento humano e local para o seu comércio.",
+    "Fale com a CNC: WhatsApp, telefone, e-mail e endereço. Atendimento humanizado e direto para o seu negócio.",
   alternates: { canonical: "/contato" },
 };
 
@@ -22,8 +22,8 @@ export default function ContatoPage() {
             Fale com a CNC
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-            Atendimento humano e local. Chame no WhatsApp, ligue ou venha até a
-            nossa unidade em {site.cidade}/{site.uf}.
+            Atendimento humanizado e direto. Chame no WhatsApp, ligue ou mande
+            um e-mail. A gente responde rápido.
           </p>
         </div>
       </section>
