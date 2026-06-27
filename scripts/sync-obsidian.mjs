@@ -46,8 +46,11 @@ const PASTA_FICHAS =
 const SAIDA = join(raizProjeto, "src", "content", "metrics.json");
 
 /**
- * Conta as fichas de cliente: arquivos .md que contenham a tag `#cliente`.
- * @returns {number} quantidade de clientes
+ * Conta os clientes PAGANTES (ativos): fichas .md que têm um dia de cobrança,
+ * identificado pela presença de "Vencimento Dia" na ficha. Fichas sem dia de
+ * vencimento (ex.: a própria CNC, cadastros de família/cortesia) NÃO contam.
+ * Esse critério bate com o painel financeiro (clientes que geram receita).
+ * @returns {number} quantidade de clientes pagantes
  */
 function contarClientes() {
   let arquivos;
@@ -60,7 +63,9 @@ function contarClientes() {
   }
   return arquivos.filter((nome) => {
     try {
-      return readFileSync(join(PASTA_FICHAS, nome), "utf8").includes("#cliente");
+      const txt = readFileSync(join(PASTA_FICHAS, nome), "utf8");
+      // Cliente pagante = ficha de cliente COM dia de vencimento (cobrança).
+      return txt.includes("#cliente") && txt.includes("Vencimento Dia");
     } catch {
       return false;
     }
