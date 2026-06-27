@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sync:obsidian": "node scripts/sync-obsidian.mjs"
+    "sync:obsidian": "node scripts/sync-obsidian.mjs",
+    "clientes:publish": "node scripts/publish-clientes.mjs"
   },
   "dependencies": {
     "next": "^15.5.19",
