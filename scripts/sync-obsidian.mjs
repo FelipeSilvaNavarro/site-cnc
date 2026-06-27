@@ -77,10 +77,25 @@ if (clientes < 0) {
   process.exit(0);
 }
 
+// Lê o valor atual já gravado para evitar reescrita desnecessária. Importante:
+// se o número NÃO mudou, NÃO regravamos o arquivo (senão o timestamp mudaria a
+// cada execução e geraria commit/deploy à toa a cada rodada do agendador).
+let atual = null;
+try {
+  atual = JSON.parse(readFileSync(SAIDA, "utf8")).clientesAtivos;
+} catch {
+  atual = null;
+}
+
+if (atual === clientes) {
+  console.log(`[sync-obsidian] sem mudança (${clientes} clientes). Nada a gravar.`);
+  process.exit(0);
+}
+
 const metrics = {
   // Quantidade de clientes ativos exibida no site (barra de prova social etc.).
   clientesAtivos: clientes,
-  // Data/hora da última sincronização (ISO).
+  // Data/hora da última sincronização (ISO). Só muda quando o número muda.
   atualizadoEm: new Date().toISOString(),
   // De onde veio o número (rastreabilidade).
   fonte: "obsidian:CNC/Clientes/Fichas",
@@ -88,5 +103,8 @@ const metrics = {
 
 writeFileSync(SAIDA, JSON.stringify(metrics, null, 2) + "\n");
 console.log(
-  `[sync-obsidian] ${clientes} clientes → ${SAIDA.replace(raizProjeto + "/", "")}`
+  `[sync-obsidian] ${atual ?? "?"} → ${clientes} clientes (${SAIDA.replace(
+    raizProjeto + "/",
+    ""
+  )})`
 );
