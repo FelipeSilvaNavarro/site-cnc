@@ -22,17 +22,15 @@ export default function CtaButtons({
         href={whatsappLink()}
         target="_blank"
         rel="noopener noreferrer"
-        className={variant === "dark" ? "btn-accent" : "btn-primary"}
+        // O primário é amarelo nas duas variantes: a ação é a mesma, e o
+        // amarelo de sinalização funciona sobre fundo claro e escuro.
+        className="btn-primary"
       >
         {primario}
       </a>
       <Link
         href="/contato"
-        className={
-          variant === "dark"
-            ? "btn border border-paper/40 text-paper hover:bg-paper/10"
-            : "btn-secondary"
-        }
+        className={variant === "dark" ? "btn-ghost-dark" : "btn-secondary"}
       >
         {secundario}
       </Link>

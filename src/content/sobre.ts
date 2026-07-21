@@ -2,7 +2,7 @@
  * sobre.ts — Conteúdo da página "Sobre a CNC".
  *
  * Exporta o objeto `sobre`, consumido por `app/(site)/sobre/page.tsx`: cabeçalho
- * (sobrelinha/título/intro), história, números de prova social e equipe.
+ * (título/intro), história, números de prova social e equipe.
  *
  * - `numeros.clientesAtivos` é DINÂMICO: vem de `metrics.json` (sincronizado do
  *   Obsidian via `npm run sync:obsidian`).
@@ -13,7 +13,6 @@
 import metrics from "./metrics.json";
 
 export const sobre = {
-  sobrelinha: "Sobre a CNC",
   titulo: "Revenda e suporte de sistemas de gestão para o seu negócio",
   // Sem citar marcas — "oferece" no lugar de "representa os sistemas X, Y, Z".
   intro:

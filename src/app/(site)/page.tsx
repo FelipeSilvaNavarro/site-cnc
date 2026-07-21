@@ -27,21 +27,37 @@ export const metadata: Metadata = {
 /**
  * HomePage — página inicial do site (rota "/").
  *
- * Monta as 8 seções na ordem: (1) hero, (2) barra de prova social
- * (clientes/anos/soluções), (3) cards das soluções, (4) "por que a CNC",
- * (5) como funciona, (6) depoimentos — oculto enquanto `depoimentos` vazio,
- * (7) segmentos e (8) CTA final. Todo o texto vem de `content/home.ts`,
- * `content/site.ts` e `content/sistemas.ts`.
+ * Ritmo deliberado, não uniforme. A régua de respiro por seção:
+ *
+ *   hero           generoso   py-20/28   abre a página
+ *   prova social   apertado   py-8       faixa de dado, colada no hero
+ *   soluções       generoso   py-20/28   catálogo em linhas, não em cards
+ *   por que a CNC  máximo     py-24/32   bloco escuro, o peso da página
+ *   como funciona  médio      py-16/20   sequência densa de 3 passos
+ *   segmentos      apertado   py-14/16   é só uma lista de nomes
+ *   CTA final      generoso   py-20/24   fecha
+ *
+ * Espaçamento uniforme elimina hierarquia; era o que acontecia antes, com as
+ * quatro grades de blocos iguais em py-20 lg:py-28.
+ *
+ * Movimento: dois momentos escolhidos na página inteira (o bloco escuro e a
+ * sequência de passos). Todo o resto entra estático.
  */
 export default function HomePage() {
   return (
     <>
-      {/* 1. HERO */}
-      <section className="relative overflow-hidden border-b border-ink/10 bg-paper">
+      {/* 1. HERO — generoso */}
+      <section className="border-b border-ink/10 bg-paper">
         <div className="container-cnc grid items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16 lg:py-24">
-          <Reveal>
-            <p className="eyebrow mb-4">{hero.sobrelinha}</p>
-            <h1 className="text-4xl font-semibold leading-[1.08] text-ink sm:text-5xl lg:text-[3.4rem]">
+          <div>
+            {/* Único rótulo superior do site, e só aqui: tratamento próprio
+                (caixa normal, filete à esquerda), não o kicker versalete que
+                aparecia em toda seção. */}
+            <p className="mb-5 flex items-center gap-3 text-sm font-semibold text-brand-700">
+              <span aria-hidden="true" className="h-0.5 w-8 bg-signal-500" />
+              {hero.sobrelinha}
+            </p>
+            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tightest text-ink sm:text-5xl lg:text-[3.4rem]">
               {hero.titulo}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
@@ -52,52 +68,54 @@ export default function HomePage() {
               secundario={hero.ctaSecundario}
               className="mt-8"
             />
-          </Reveal>
+          </div>
 
-          <Reveal delay={120}>
-            <div className="relative">
-              <ImageSlot
-                src={hero.imagem.src}
-                alt={hero.imagem.alt}
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="aspect-[4/5] w-full rounded-sm shadow-xl shadow-brand-900/10"
-              />
-              {/* Selo de credibilidade: suporte direto */}
-              <div className="absolute -bottom-5 -left-5 hidden rounded-md border border-ink/10 bg-paper px-5 py-4 shadow-lg sm:block">
-                <p className="font-display text-sm font-semibold text-brand-700">
-                  Suporte humanizado
-                </p>
-                <p className="text-xs text-ink-muted">
-                  Sem central, sem fila de chamado
-                </p>
-              </div>
+          <div className="relative">
+            <ImageSlot
+              src={hero.imagem.src}
+              alt={hero.imagem.alt}
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="aspect-[4/5] w-full"
+            />
+            {/* Selo de credibilidade: bloco chapado, sem sombra nem raio.
+                Peso de placa aplicada sobre a foto. */}
+            <div className="absolute -bottom-4 -left-4 hidden bg-ink px-5 py-4 sm:block">
+              <p className="text-sm font-bold text-paper">Suporte humanizado</p>
+              <p className="mt-0.5 text-xs text-paper/70">
+                Sem central, sem fila de chamado
+              </p>
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* 2. BARRA DE PROVA SOCIAL */}
-      <section className="border-b border-ink/10 bg-paper-soft">
-        <div className="container-cnc grid gap-8 py-10 md:grid-cols-3 md:items-center md:gap-12">
-          <div className="flex flex-col gap-1">
-            <span className="font-display text-3xl font-semibold text-brand-800">
+      {/* 2. PROVA SOCIAL — apertado, faixa de dado colada no hero.
+          Superfície tinta: quebra a sequência branco-branco-branco e dá à
+          página um ponto de contraste máximo logo no início. */}
+      <section className="bg-ink text-paper">
+        <div className="container-cnc grid gap-6 py-8 md:grid-cols-3 md:items-center md:gap-10">
+          <div className="flex items-baseline gap-3">
+            {/* Dado real: mono com algarismo tabular. */}
+            <span className="dado text-4xl font-medium leading-none text-paper">
               {site.numeros.clientesAtivos}
             </span>
-            <span className="text-sm text-ink-muted">
+            <span className="text-sm leading-snug text-paper/70">
               clientes ativos usando nossos sistemas
             </span>
           </div>
-          <div className="flex flex-col gap-1 md:border-x md:border-ink/10 md:px-8">
-            <span className="font-display text-3xl font-semibold text-brand-800">
+          <div className="flex items-baseline gap-3 md:border-x md:border-paper/15 md:px-10">
+            <span className="dado text-4xl font-medium leading-none text-paper">
               {site.numeros.anosMercado}
             </span>
-            <span className="text-sm text-ink-muted">anos de mercado</span>
+            <span className="text-sm leading-snug text-paper/70">
+              anos de mercado
+            </span>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             {/* Rótulos de porte (PRO/MÉDIO/SIMPLES), sem marcas — ver sistemas.ts */}
-            <span className="text-sm text-ink-muted">Nossas soluções</span>
-            <ul className="flex flex-wrap gap-x-5 gap-y-1 font-display text-base font-semibold text-ink-soft">
+            <span className="label-dado text-paper/60">Nossas soluções</span>
+            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-base font-bold text-paper">
               {sistemas.map((s) => (
                 <li key={s.slug}>{s.nome}</li>
               ))}
@@ -106,93 +124,89 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. SISTEMAS OFERECIDOS */}
+      {/* 3. SOLUÇÕES — generoso.
+          Era grade de 3 cards idênticos; virou catálogo em linhas. Um sistema
+          é uma entrada de catálogo, não um cartão de marketing. */}
       <section className="bg-paper py-20 lg:py-28">
         <div className="container-cnc">
           <SectionHeading
-            eyebrow="Sistemas"
             titulo={sistemasIntro.titulo}
             texto={sistemasIntro.texto}
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {sistemas.map((s, i) => (
-              <Reveal as="article" key={s.slug} delay={i * 80}>
+          <ul className="mt-10 border-t-2 border-ink">
+            {sistemas.map((s) => (
+              <li key={s.slug} className="border-b border-ink/15">
                 <Link
                   href={`/sistemas#${s.slug}`}
-                  className="group flex h-full flex-col rounded-sm border border-ink/10 bg-paper-soft/40 p-6 transition-colors hover:border-brand-700/40 hover:bg-paper-soft"
+                  className="group grid gap-2 py-6 transition-colors hover:bg-paper-soft sm:grid-cols-[minmax(0,13rem)_1fr_auto] sm:items-baseline sm:gap-8 sm:px-3"
                 >
-                  <h3 className="font-display text-xl font-semibold text-brand-800">
+                  <h3 className="text-xl font-bold tracking-tightest text-ink">
                     {s.nome}
                   </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">
+                  <p className="text-sm leading-relaxed text-ink-soft">
                     {s.resumo}
                   </p>
-                  <span className="mt-5 text-sm font-semibold text-accent-600 transition-transform group-hover:translate-x-1">
-                    Ver detalhes →
+                  <span className="text-sm font-semibold text-brand-700 group-hover:underline">
+                    Ver detalhes
                   </span>
                 </Link>
-              </Reveal>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* 4. POR QUE A CNC */}
-      <section className="bg-brand-900 py-20 text-paper lg:py-28">
+      {/* 4. POR QUE A CNC — respiro máximo. É o bloco de maior peso da página.
+          MOMENTO DE MOVIMENTO 1 de 2: o bloco inteiro entra como uma unidade. */}
+      <section className="bg-brand-900 py-24 text-paper lg:py-32">
         <div className="container-cnc">
-          <Reveal className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent-300">
-              Por que a CNC
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight text-paper sm:text-4xl">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl font-bold tracking-tightest text-paper sm:text-4xl">
               {diferenciais.titulo}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-paper/70">
+            <p className="mt-4 text-lg leading-relaxed text-brand-200">
               {diferenciais.texto}
             </p>
-          </Reveal>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-paper/10 bg-paper/10 sm:grid-cols-2 lg:grid-cols-4">
-            {diferenciais.blocos.map((b, i) => (
-              <Reveal
-                key={b.titulo}
-                delay={i * 100}
-                className="bg-brand-900 p-8"
-              >
-                <span className="font-display text-2xl font-semibold text-accent-300">
-                  0{i + 1}
-                </span>
-                <h3 className="mt-4 font-display text-xl font-semibold text-paper">
+          </div>
+          <Reveal className="mt-14 grid gap-px bg-paper/15 sm:grid-cols-2 lg:grid-cols-4">
+            {diferenciais.blocos.map((b) => (
+              // Sem numeração: estes blocos não são sequência, a ordem não
+              // carrega informação (diferente de "Como funciona").
+              <div key={b.titulo} className="bg-brand-900 p-8">
+                <h3 className="text-lg font-bold tracking-tightest text-paper">
                   {b.titulo}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-paper/70">
+                <p className="mt-3 text-sm leading-relaxed text-brand-200">
                   {b.texto}
                 </p>
-              </Reveal>
+              </div>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* 5. COMO FUNCIONA */}
-      <section className="bg-paper py-20 lg:py-28">
+      {/* 5. COMO FUNCIONA — respiro médio, sequência densa.
+          MOMENTO DE MOVIMENTO 2 de 2: os 3 passos entram escalonados. Escalonar
+          os itens de UMA lista é legítimo; o tique era animar toda seção. */}
+      <section className="bg-paper py-16 lg:py-20">
         <div className="container-cnc">
           <SectionHeading
-            eyebrow="Como funciona"
             titulo={comoFunciona.titulo}
             texto={comoFunciona.texto}
           />
-          <ol className="mt-12 grid gap-8 md:grid-cols-3">
+          <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-10">
             {comoFunciona.etapas.map((e, i) => (
-              <Reveal as="li" key={e.numero} delay={i * 100}>
-                <div className="rule-accent">
-                  <span className="font-display text-5xl font-semibold text-paper-dark">
+              <Reveal as="li" key={e.numero} delay={i * 90}>
+                <div className="rule-signal">
+                  {/* Numeração mantida: aqui é etapa real, a ordem informa. */}
+                  <span className="dado text-3xl font-medium text-ink-muted">
                     {e.numero}
                   </span>
                 </div>
-                <h3 className="mt-4 font-display text-xl font-semibold text-brand-800">
+                <h3 className="mt-3 text-xl font-bold tracking-tightest text-ink">
                   {e.titulo}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                   {e.texto}
                 </p>
               </Reveal>
@@ -203,88 +217,73 @@ export default function HomePage() {
 
       {/* 6. DEPOIMENTOS (oculto enquanto não houver depoimentos reais) */}
       {depoimentos.length > 0 && (
-      <section className="bg-paper-soft py-20 lg:py-28">
-        <div className="container-cnc">
-          <SectionHeading
-            eyebrow="Depoimentos"
-            titulo="Quem confia a operação à CNC"
-            texto="Clientes que contam com os nossos sistemas e o nosso suporte no dia a dia."
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {depoimentos.map((d, i) => (
-              <Reveal
-                as="article"
-                key={i}
-                delay={i * 90}
-                className="flex h-full flex-col rounded-sm border border-ink/10 bg-paper p-7"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-8 w-8 text-accent-300"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M9.5 7H5.5C4.7 7 4 7.7 4 8.5v4C4 13.3 4.7 14 5.5 14H8v.5C8 15.9 6.9 17 5.5 17H5v2h.5C8 19 10 17 10 14.5v-6C10 7.7 9.3 7 8.5 7h1zm9 0h-4c-.8 0-1.5.7-1.5 1.5v4c0 .8.7 1.5 1.5 1.5H17v.5c0 1.4-1.1 2.5-2.5 2.5H14v2h.5c2.5 0 4.5-2 4.5-4.5v-6c0-.8-.7-1.5-1.5-1.5h1z" />
-                </svg>
-                <p className="mt-4 flex-1 text-base italic leading-relaxed text-ink-soft">
-                  “{d.texto}”
-                </p>
-                <footer className="mt-6 border-t border-ink/10 pt-4">
-                  <p className="font-display text-base font-semibold text-brand-800">
-                    {d.nome}
+        <section className="border-t border-ink/10 bg-paper-soft py-20 lg:py-24">
+          <div className="container-cnc">
+            <SectionHeading
+              titulo="Quem confia a operação à CNC"
+              texto="Clientes que contam com os nossos sistemas e o nosso suporte no dia a dia."
+            />
+            <div className="mt-10 grid gap-px bg-ink/15 md:grid-cols-3">
+              {depoimentos.map((d, i) => (
+                <article key={i} className="flex flex-col bg-paper p-7">
+                  <p className="flex-1 text-base leading-relaxed text-ink-soft">
+                    “{d.texto}”
                   </p>
-                  <p className="text-sm text-ink-muted">{d.empresa}</p>
-                </footer>
-              </Reveal>
-            ))}
+                  <footer className="mt-6 border-t border-ink/15 pt-4">
+                    <p className="text-base font-bold text-ink">{d.nome}</p>
+                    <p className="text-sm text-ink-muted">{d.empresa}</p>
+                  </footer>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       )}
 
-      {/* 7. SEGMENTOS ATENDIDOS */}
-      <section className="bg-paper py-20 lg:py-28">
+      {/* 7. SEGMENTOS — apertado. Era grade emoldurada de 8 caixas; virou o que
+          sempre foi: uma lista de nomes. Sem moldura, sem célula, sem card. */}
+      <section className="border-t border-ink/10 bg-paper py-14 lg:py-16">
         <div className="container-cnc">
-          <SectionHeading
-            eyebrow="Segmentos"
-            titulo={segmentos.titulo}
-            texto={segmentos.texto}
-          />
-          <ul className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-ink/10 bg-ink/10 sm:grid-cols-3 lg:grid-cols-4">
+          <h2 className="max-w-2xl text-2xl font-bold tracking-tightest text-ink sm:text-3xl">
+            {segmentos.titulo}
+          </h2>
+          <ul className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-2">
             {segmentos.lista.map((seg, i) => (
-              <Reveal
-                as="li"
+              <li
                 key={seg.nome}
-                delay={i * 50}
-                className="flex items-center bg-paper p-6 text-center"
+                className="flex items-baseline gap-4 text-lg font-semibold text-ink sm:text-xl"
               >
-                <span className="w-full font-display text-lg font-medium text-ink-soft">
-                  {seg.nome}
-                </span>
-              </Reveal>
+                {i > 0 && (
+                  <span aria-hidden="true" className="text-signal-600">
+                    /
+                  </span>
+                )}
+                {seg.nome}
+              </li>
             ))}
           </ul>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft">
+            {segmentos.texto}
+          </p>
         </div>
       </section>
 
-      {/* 8. CTA FINAL */}
+      {/* 8. CTA FINAL — generoso */}
       <section className="bg-brand-800 py-20 text-paper lg:py-24">
         <div className="container-cnc flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
-          <Reveal className="max-w-2xl">
-            <h2 className="text-3xl font-semibold leading-tight text-paper sm:text-4xl">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl font-bold tracking-tightest text-paper sm:text-4xl">
               {ctaFinal.titulo}
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-paper/75">
+            <p className="mt-4 text-lg leading-relaxed text-brand-100">
               {ctaFinal.texto}
             </p>
-          </Reveal>
-          <Reveal delay={120}>
-            <CtaButtons
-              primario={ctaFinal.ctaPrimario}
-              secundario={ctaFinal.ctaSecundario}
-              variant="dark"
-            />
-          </Reveal>
+          </div>
+          <CtaButtons
+            primario={ctaFinal.ctaPrimario}
+            secundario={ctaFinal.ctaSecundario}
+            variant="dark"
+          />
         </div>
       </section>
     </>

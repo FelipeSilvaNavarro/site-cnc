@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
 import { site, whatsappLink } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -24,10 +23,9 @@ export default function ContatoPage() {
 
   return (
     <>
-      <section className="border-b border-ink/10 bg-paper-soft py-16 lg:py-20">
+      <section className="border-b border-ink/10 bg-paper py-14 lg:py-16">
         <div className="container-cnc max-w-3xl">
-          <p className="eyebrow mb-4">Contato</p>
-          <h1 className="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+          <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tightest text-ink sm:text-5xl">
             Fale com a CNC
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-ink-soft">
@@ -40,22 +38,20 @@ export default function ContatoPage() {
       <section className="bg-paper py-16 lg:py-24">
         <div className="container-cnc grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Canais */}
-          <Reveal>
-            <h2 className="text-2xl font-semibold text-ink">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tightest text-ink">
               Canais de atendimento
             </h2>
-            <ul className="mt-6 space-y-5">
+            <ul className="mt-6 border-t-2 border-ink">
               <li>
                 <a
                   href={whatsappLink()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-start gap-4 rounded-sm border border-ink/10 p-5 transition-colors hover:border-brand-700/40"
+                  className="group flex items-baseline gap-4 border-b border-ink/15 py-4 transition-colors hover:bg-paper-soft"
                 >
-                  <span className="text-xs font-semibold uppercase tracking-widest text-accent-600">
-                    WhatsApp
-                  </span>
-                  <span className="ml-auto text-base font-medium text-brand-700 group-hover:underline">
+                  <span className="label-dado text-ink">WhatsApp</span>
+                  <span className="dado ml-auto text-brand-700 group-hover:underline">
                     {site.whatsapp.exibicao}
                   </span>
                 </a>
@@ -63,12 +59,10 @@ export default function ContatoPage() {
               <li>
                 <a
                   href={`tel:${site.telefone.numero}`}
-                  className="group flex items-start gap-4 rounded-sm border border-ink/10 p-5 transition-colors hover:border-brand-700/40"
+                  className="group flex items-baseline gap-4 border-b border-ink/15 py-4 transition-colors hover:bg-paper-soft"
                 >
-                  <span className="text-xs font-semibold uppercase tracking-widest text-accent-600">
-                    Telefone
-                  </span>
-                  <span className="ml-auto text-base font-medium text-brand-700 group-hover:underline">
+                  <span className="label-dado text-ink">Telefone</span>
+                  <span className="dado ml-auto text-brand-700 group-hover:underline">
                     {site.telefone.exibicao}
                   </span>
                 </a>
@@ -78,19 +72,17 @@ export default function ContatoPage() {
               {/* <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="group flex items-start gap-4 rounded-sm border border-ink/10 p-5 transition-colors hover:border-brand-700/40"
+                  className="group flex items-baseline gap-4 border-b border-ink/15 py-4 transition-colors hover:bg-paper-soft"
                 >
-                  <span className="text-xs font-semibold uppercase tracking-widest text-accent-600">
-                    E-mail
-                  </span>
-                  <span className="ml-auto text-base font-medium text-brand-700 group-hover:underline">
+                  <span className="label-dado text-ink">E-mail</span>
+                  <span className="dado ml-auto text-brand-700 group-hover:underline">
                     {site.email}
                   </span>
                 </a>
               </li> */}
             </ul>
 
-            <h2 className="mt-10 text-2xl font-semibold text-ink">
+            <h2 className="mt-10 text-2xl font-bold tracking-tightest text-ink">
               Endereço e horário
             </h2>
             <address className="mt-4 space-y-1 text-base not-italic leading-relaxed text-ink-soft">
@@ -110,46 +102,41 @@ export default function ContatoPage() {
                 <dd>{site.horario.sabado}</dd>
               </div>
             </dl>
-          </Reveal>
+          </div>
 
-          {/* Mapa */}
-          <Reveal delay={100}>
-            <div className="h-full min-h-[360px] overflow-hidden rounded-sm border border-ink/10 bg-paper-dark">
-              {mapaInvalido ? (
-                <div className="flex h-full min-h-[360px] flex-col items-center justify-center p-8 text-center">
-                  <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-muted">
-                    Slot do mapa
-                  </span>
-                  <span className="mt-2 text-sm text-ink-muted">
-                    {/* FUTURO/PREENCHER: definir site.endereco.mapsEmbedUrl */}
-                    Definir a URL de embed do Google Maps em
-                    <br />
-                    <code className="text-xs">content/site.ts</code> →{" "}
-                    <code className="text-xs">endereco.mapsEmbedUrl</code>
-                  </span>
-                  <a
-                    href={
-                      e.mapsLinkUrl.startsWith("{{PREENCHER")
-                        ? "#"
-                        : e.mapsLinkUrl
-                    }
-                    className="mt-4 text-sm font-semibold text-brand-700 hover:underline"
-                  >
-                    Abrir no Google Maps
-                  </a>
-                </div>
-              ) : (
-                <iframe
-                  title={`Mapa da CNC em ${site.cidade}/${site.uf}`}
-                  src={e.mapsEmbedUrl}
-                  className="h-full min-h-[360px] w-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-              )}
-            </div>
-          </Reveal>
+          {/* Mapa. Sem revelação: um mapa que aparece deslizando não informa
+              nada, e o iframe já entra com carregamento próprio. */}
+          <div className="h-full min-h-[360px] overflow-hidden border border-ink/15 bg-paper-dark">
+            {mapaInvalido ? (
+              <div className="flex h-full min-h-[360px] flex-col items-center justify-center p-8 text-center">
+                <span className="label-dado text-ink">Slot do mapa</span>
+                <span className="mt-2 text-sm text-ink-muted">
+                {/* FUTURO/PREENCHER: definir site.endereco.mapsEmbedUrl */}
+                Definir a URL de embed do Google Maps em
+                <br />
+                <code className="dado">content/site.ts</code> →{" "}
+                <code className="dado">endereco.mapsEmbedUrl</code>
+              </span>
+              <a
+                href={
+                  e.mapsLinkUrl.startsWith("{{PREENCHER") ? "#" : e.mapsLinkUrl
+                }
+                className="mt-4 text-sm font-semibold text-brand-700 hover:underline"
+              >
+                Abrir no Google Maps
+              </a>
+              </div>
+            ) : (
+              <iframe
+                title={`Mapa da CNC em ${site.cidade}/${site.uf}`}
+                src={e.mapsEmbedUrl}
+                className="h-full min-h-[360px] w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            )}
+          </div>
         </div>
       </section>
     </>

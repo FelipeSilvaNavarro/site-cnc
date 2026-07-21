@@ -16,8 +16,7 @@ export default function SejaParceiroPage() {
     <section className="bg-paper py-20 lg:py-28">
       <div className="container-cnc max-w-2xl">
         <Reveal>
-          <p className="eyebrow mb-4">Parceria</p>
-          <h1 className="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+          <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tightest text-ink sm:text-5xl">
             Seja parceiro da CNC
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-ink-soft">

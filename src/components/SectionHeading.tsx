@@ -1,30 +1,33 @@
-import Reveal from "./Reveal";
-
-/** Cabeçalho de seção no estilo editorial: eyebrow + título serifado + apoio. */
+/**
+ * Cabeçalho de seção: título + texto de apoio.
+ *
+ * Sem rótulo superior ("eyebrow") de propósito: a separação entre seções vem do
+ * espaçamento e do peso tipográfico, não de um rótulo repetido em toda seção.
+ *
+ * Também sem `Reveal`: cabeçalho de seção animado em toda seção era metade do
+ * movimento reflexo do site. A entrada agora é escolhida caso a caso.
+ */
 export default function SectionHeading({
-  eyebrow,
   titulo,
   texto,
   centered = false,
   className = "",
 }: {
-  eyebrow?: string;
   titulo: string;
   texto?: string;
   centered?: boolean;
   className?: string;
 }) {
   return (
-    <Reveal
+    <div
       className={`${centered ? "mx-auto text-center" : ""} max-w-2xl ${className}`}
     >
-      {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
-      <h2 className="text-3xl font-semibold leading-tight text-ink sm:text-4xl">
+      <h2 className="text-3xl font-bold tracking-tightest text-ink sm:text-4xl">
         {titulo}
       </h2>
       {texto && (
         <p className="mt-4 text-lg leading-relaxed text-ink-soft">{texto}</p>
       )}
-    </Reveal>
+    </div>
   );
 }

@@ -7,7 +7,6 @@
  */
 
 export const suporte = {
-  sobrelinha: "O diferencial da CNC",
   titulo: "Suporte humanizado, direto e contínuo",
   intro:
     "Quando algo trava no meio do expediente, você precisa de resposta, não de protocolo. Na CNC o suporte é com gente que conhece o seu sistema e o seu negócio, do primeiro contato ao dia a dia.",

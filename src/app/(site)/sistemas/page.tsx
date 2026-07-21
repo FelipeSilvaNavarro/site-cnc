@@ -22,11 +22,10 @@ export const metadata: Metadata = {
 export default function SistemasPage() {
   return (
     <>
-      {/* Cabeçalho da página */}
-      <section className="border-b border-ink/10 bg-paper-soft py-16 lg:py-20">
+      {/* Cabeçalho da página — apertado, é só entrada */}
+      <section className="border-b border-ink/10 bg-paper py-14 lg:py-16">
         <div className="container-cnc max-w-3xl">
-          <p className="eyebrow mb-4">Sistemas e soluções</p>
-          <h1 className="text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+          <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tightest text-ink sm:text-5xl">
             {sistemasIntro.titulo}
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-ink-soft">
@@ -35,27 +34,26 @@ export default function SistemasPage() {
         </div>
       </section>
 
-      {/* Recursos comuns a TODAS as soluções (financeiro, notas, modelagem) */}
-      <section className="border-b border-ink/10 bg-brand-900 py-14 text-paper lg:py-16">
+      {/* Recursos comuns a TODAS as soluções (financeiro, notas, modelagem).
+          Faixa escura: separa o que vale para tudo do detalhe de cada porte. */}
+      <section className="bg-brand-900 py-14 text-paper lg:py-16">
         <div className="container-cnc">
-          <Reveal className="max-w-3xl">
-            <h2 className="text-2xl font-semibold leading-tight text-paper sm:text-3xl">
+          <div className="max-w-3xl">
+            <h2 className="text-2xl font-bold tracking-tightest text-paper sm:text-3xl">
               {recursosComuns.titulo}
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-paper/75">
+            <p className="mt-4 text-base leading-relaxed text-brand-200">
               {recursosComuns.texto}
             </p>
-          </Reveal>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-3">
-            {recursosComuns.itens.map((item, i) => (
-              <Reveal
-                as="li"
+          </div>
+          <ul className="mt-8 grid gap-px bg-paper/15 sm:grid-cols-3">
+            {recursosComuns.itens.map((item) => (
+              <li
                 key={item}
-                delay={i * 80}
-                className="rounded-sm border border-paper/15 bg-paper/5 p-5 text-sm leading-relaxed text-paper/85"
+                className="bg-brand-900 p-5 text-sm leading-relaxed text-brand-100"
               >
                 {item}
-              </Reveal>
+              </li>
             ))}
           </ul>
         </div>
@@ -73,10 +71,9 @@ export default function SistemasPage() {
             >
               <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12">
                 <div>
-                  <span className="font-display text-sm font-semibold text-accent-600">
-                    0{i + 1}
-                  </span>
-                  <h2 className="mt-2 font-display text-3xl font-semibold text-brand-800">
+                  {/* Número de referência de catálogo (dado, não decoração). */}
+                  <span className="dado text-ink-muted">0{i + 1}</span>
+                  <h2 className="mt-2 text-3xl font-extrabold tracking-tightest text-ink">
                     {s.nome}
                   </h2>
                   <p className="mt-3 text-base leading-relaxed text-ink-soft">
@@ -86,33 +83,27 @@ export default function SistemasPage() {
 
                 <div className="grid gap-8 sm:grid-cols-2">
                   <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-widest text-ink-muted">
-                      Para que serve
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                    <h3 className="label-dado text-ink">Para que serve</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                       {s.paraQueServe}
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-widest text-ink-muted">
-                      Indicado para
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                    <h3 className="label-dado text-ink">Indicado para</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                       {s.indicadoPara}
                     </p>
                   </div>
                   <div className="sm:col-span-2">
-                    <h3 className="text-xs font-semibold uppercase tracking-widest text-ink-muted">
-                      Destaques
-                    </h3>
-                    <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                    <h3 className="label-dado text-ink">Destaques</h3>
+                    <ul className="mt-3 grid gap-x-8 gap-y-2 sm:grid-cols-2">
                       {s.destaques.map((d) => (
                         <li
                           key={d}
-                          className="flex items-start gap-2 text-sm text-ink-soft"
+                          className="flex items-start gap-3 border-t border-ink/10 pt-2 text-sm text-ink-soft"
                         >
                           <span
-                            className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-accent-400"
+                            className="mt-1.5 h-0.5 w-3 flex-none bg-signal-500"
                             aria-hidden="true"
                           />
                           {d}
@@ -131,10 +122,10 @@ export default function SistemasPage() {
       <section className="bg-brand-800 py-16 text-paper lg:py-20">
         <div className="container-cnc flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
-            <h2 className="text-3xl font-semibold leading-tight text-paper sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tightest text-paper sm:text-4xl">
               Não sabe qual sistema escolher?
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-paper/75">
+            <p className="mt-4 text-lg leading-relaxed text-brand-100">
               Conte como funciona o seu negócio. A CNC analisa a sua operação,
               indica o sistema certo e cuida do suporte no dia a dia.
             </p>
