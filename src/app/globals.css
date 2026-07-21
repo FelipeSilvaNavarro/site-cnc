@@ -24,9 +24,23 @@
     text-wrap: balance;
   }
 
-  /* Foco visível para navegação por teclado (acessibilidade). */
+  /* Prosa longa: reduz órfãs sem mexer no layout. */
+  p {
+    text-wrap: pretty;
+  }
+
+  /**
+   * Foco visível de duas cores (amarelo + tinta).
+   *
+   * Por que duas: um anel de uma cor só falha em metade do site. O amarelo
+   * some sobre fundo claro; a tinta some sobre as seções azul-escuro. O par
+   * amarelo-sobre-tinta é legível nos dois, e é a convenção de sinalização
+   * que a marca adotou (mesma lógica do GOV.UK).
+   */
   :focus-visible {
-    @apply outline-none ring-2 ring-accent-500 ring-offset-2 ring-offset-paper;
+    outline: 3px solid theme("colors.signal.500");
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px theme("colors.ink.DEFAULT");
   }
 }
 
@@ -36,46 +50,72 @@
     @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-10;
   }
 
-  /* Rótulo superior técnico (mono, versalete). */
-  .eyebrow {
-    @apply font-mono text-xs font-medium uppercase tracking-widest text-accent-600;
-  }
-
-  /* Botões. Centralizados aqui para consistência. */
+  /**
+   * Botões. Cantos retos, sem sombra, sem gradiente.
+   *
+   * O primário é amarelo de sinalização com texto preto (12.12:1). É a única
+   * superfície amarela do site: se está amarelo, é ação. O secundário é uma
+   * moldura de 2px que inverte no hover — peso de placa, não de card.
+   */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold tracking-wide transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold transition-colors duration-150;
   }
   .btn-primary {
-    @apply btn bg-brand-600 text-white hover:bg-brand-700;
+    @apply btn bg-signal-500 text-ink hover:bg-signal-400;
   }
   .btn-secondary {
-    @apply btn border border-brand-600/30 bg-transparent text-brand-700 hover:border-brand-600 hover:bg-brand-600/5;
+    @apply btn border-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-paper;
   }
-  .btn-accent {
-    @apply btn bg-accent-500 text-white hover:bg-accent-600;
+  /* Secundário sobre superfície escura. */
+  .btn-ghost-dark {
+    @apply btn border-2 border-paper/40 bg-transparent text-paper hover:border-paper hover:bg-paper hover:text-ink;
+  }
+
+  /**
+   * Ficha técnica: rótulo e valor.
+   *
+   * O rótulo usa peso alto em caixa normal — NÃO versalete espaçado, que era
+   * a assinatura repetida em todo o site. O valor usa mono com algarismo
+   * tabular, e só vale para dado real: telefone, CNPJ, CEP, horário, versão.
+   */
+  .label-dado {
+    @apply text-sm font-semibold leading-tight;
+  }
+  .dado {
+    @apply font-mono text-sm font-normal tabular-nums;
   }
 }
 
 @layer utilities {
-  /* Linha fina decorativa. */
-  .rule-accent::before {
+  /* Filete de sinalização: marca início de bloco numerado. 2px, não 1px. */
+  .rule-signal::before {
     content: "";
-    @apply mb-6 block h-px w-12 bg-accent-500;
-  }
-
-  /* Malha técnica sutil para fundos (sensação de software/grid). */
-  .tech-grid {
-    background-image:
-      linear-gradient(to right, rgba(58, 93, 168, 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(58, 93, 168, 0.06) 1px, transparent 1px);
-    background-size: 56px 56px;
+    @apply mb-5 block h-0.5 w-10 bg-signal-500;
   }
 }
 
-/* Respeita usuários que pedem menos movimento (acessibilidade). */
+/**
+ * Rede de segurança da revelação.
+ *
+ * O conteúdo NUNCA pode depender da animação para existir. Em impressão e
+ * para quem pede menos movimento, tudo aparece no estado final imediatamente.
+ * O componente Reveal tem ainda um timeout próprio para o caso de o
+ * IntersectionObserver não disparar (aba oculta, renderer headless).
+ */
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
   *,
   *::before,

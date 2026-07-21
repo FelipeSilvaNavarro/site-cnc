@@ -1,30 +1,30 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Archivo, Azeret_Mono } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
 /**
- * Tipografia centralizada (perfil técnico, de empresa de software).
- * - Títulos: Space Grotesk (sans geométrica com personalidade).
- * - Corpo: Inter (sans neutra e legível).
- * - Detalhes: JetBrains Mono (rótulos, números, sensação técnica).
- * Para trocar a tipografia, altere apenas estes imports e as variáveis.
+ * Tipografia — direção "direto e utilitário".
+ *
+ * UMA família (Archivo) em pesos extremos, não duas fontes disputando. O
+ * contraste tipográfico vem do peso (800 no título, 400 no corpo) e do
+ * tamanho, que é mais robusto e mais rápido que um par display+corpo.
+ *
+ * Archivo é grotesca de alta legibilidade desenhada para uso em destaque e
+ * sinalização — o oposto da sans geométrica de startup que estava aqui antes
+ * (Space Grotesk + Inter + JetBrains Mono eram, as três, escolha por reflexo).
+ *
+ * Azeret Mono entra SÓ para dado real: telefone, CNPJ, CEP, horário. Nunca
+ * como decoração "técnica".
  */
-const display = Space_Grotesk({
+const display = Archivo({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
+const mono = Azeret_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
@@ -94,7 +94,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${display.variable} ${inter.variable} ${mono.variable}`}
+      className={`${display.variable} ${mono.variable}`}
     >
       <body>{children}</body>
     </html>
