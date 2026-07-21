@@ -1,6 +1,16 @@
 import { whatsappLink } from "@/content/site";
 
-/** Botão flutuante de WhatsApp, presente em todas as páginas do site. */
+/**
+ * Botão flutuante de WhatsApp, presente em todas as páginas do site.
+ *
+ * Amarelo de sinalização, não azul: é a ação principal do site inteiro, e a
+ * regra da paleta é "se está amarelo, é ação". Em azul ele competia com a
+ * identidade sem se distinguir dela.
+ *
+ * Sem círculo, sem sombra e sem `scale` no hover — essa combinação é a
+ * assinatura do botão flutuante de template. Bloco reto com moldura de tinta
+ * tem peso de placa, que é a direção do resto do site.
+ */
 export default function WhatsAppFloat() {
   return (
     <a
@@ -8,7 +18,7 @@ export default function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
-      className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-700 text-paper shadow-lg shadow-brand-900/30 transition-transform duration-200 hover:scale-105 hover:bg-brand-800 focus-visible:scale-105"
+      className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center border-2 border-ink bg-signal-500 text-ink transition-colors duration-150 hover:bg-signal-400"
     >
       {/* Ícone WhatsApp (SVG inline, sem dependência externa). */}
       <svg

@@ -7,8 +7,11 @@ import { useState } from "react";
  * Slot de imagem com next/image. Reserva um espaço de proporção fixa.
  *
  * Comportamento: enquanto a foto real não existir em /public (no caminho `src`),
- * exibe um painel de marca (pégaso sobre gradiente azul) que parece intencional,
+ * exibe um painel de marca (pégaso sobre azul chapado) que parece intencional,
  * sem stock art e sem ícone de imagem quebrada.
+ *
+ * Azul chapado, não gradiente: o gradiente diagonal é da mesma família de
+ * clichê que a auditoria mandou tirar do resto do site.
  *
  * Para ativar a foto real: basta colocar o arquivo em /public no caminho `src`.
  * Não é preciso editar código: ao carregar com sucesso, a foto cobre o slot.
@@ -41,7 +44,7 @@ export default function ImageSlot({
     >
       {/* Painel de marca: visível até a foto real carregar. */}
       {!carregada && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[linear-gradient(135deg,#2e477f_0%,#16213f_100%)]">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-brand-900">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/pegaso-branco.svg"

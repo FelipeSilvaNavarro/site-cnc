@@ -20,8 +20,7 @@ export const metadata: Metadata = {
 export default function AreaDoClientePage() {
   return (
     <div className="mx-auto max-w-md text-center">
-      <p className="eyebrow mb-4">Área do cliente</p>
-      <h1 className="font-display text-4xl font-semibold text-brand-800">
+      <h1 className="text-4xl font-extrabold tracking-tightest text-ink">
         Em breve
       </h1>
       <p className="mt-5 text-base leading-relaxed text-ink-soft">

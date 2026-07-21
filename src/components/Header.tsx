@@ -24,7 +24,10 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/80">
+    // Fundo sólido e filete de 2px. O par "translúcido + backdrop-blur" é a
+    // assinatura de header de template, e ainda deixa o texto da página passar
+    // por trás dos links. Opaco resolve os dois.
+    <header className="sticky top-0 z-50 border-b-2 border-ink bg-paper">
       <div className="container-cnc flex h-16 items-center justify-between lg:h-20">
         {/* Logo da CNC (componente com fallback de texto). */}
         <Link href="/" aria-label="CNC — página inicial">
@@ -42,11 +45,14 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium transition-colors ${
+                // Item ativo marcado por filete de sinalização, não só por cor:
+                // cor sozinha falha para daltônicos e some na impressão.
+                className={`border-b-2 py-1 text-sm font-semibold transition-colors ${
                   ativo
-                    ? "text-brand-700"
-                    : "text-ink-soft hover:text-brand-700"
+                    ? "border-signal-500 text-ink"
+                    : "border-transparent text-ink-soft hover:border-ink/20 hover:text-ink"
                 }`}
+                aria-current={ativo ? "page" : undefined}
               >
                 {item.label}
               </Link>
@@ -67,7 +73,7 @@ export default function Header() {
           {/* Botão do menu mobile */}
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-ink/15 text-ink-soft lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center border-2 border-ink text-ink lg:hidden"
             aria-expanded={aberto}
             aria-controls="menu-mobile"
             aria-label={aberto ? "Fechar menu" : "Abrir menu"}
@@ -76,17 +82,17 @@ export default function Header() {
             <span className="sr-only">Menu</span>
             <div className="space-y-1.5">
               <span
-                className={`block h-px w-5 bg-current transition-transform ${
+                className={`block h-0.5 w-5 bg-current transition-transform ${
                   aberto ? "translate-y-[6px] rotate-45" : ""
                 }`}
               />
               <span
-                className={`block h-px w-5 bg-current transition-opacity ${
+                className={`block h-0.5 w-5 bg-current transition-opacity ${
                   aberto ? "opacity-0" : ""
                 }`}
               />
               <span
-                className={`block h-px w-5 bg-current transition-transform ${
+                className={`block h-0.5 w-5 bg-current transition-transform ${
                   aberto ? "-translate-y-[6px] -rotate-45" : ""
                 }`}
               />

@@ -12,23 +12,21 @@ export default function Footer() {
   const e = site.endereco;
 
   return (
-    <footer className="border-t border-ink/10 bg-brand-900 text-paper/80">
+    <footer className="bg-brand-900 text-paper/80">
       <div className="container-cnc grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         {/* Identidade */}
         <div className="lg:col-span-1">
-          <span className="font-display text-2xl font-semibold text-paper">
+          <span className="text-2xl font-extrabold tracking-tightest text-paper">
             CNC
           </span>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/70">
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-brand-200">
             {site.descricaoCurta}
           </p>
         </div>
 
         {/* Navegação */}
         <nav aria-label="Rodapé">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-accent-300">
-            Navegação
-          </h2>
+          <h2 className="label-dado text-paper">Navegação</h2>
           <ul className="mt-4 space-y-2 text-sm">
             {navPrincipal.map((item) => (
               <li key={item.href}>
@@ -53,10 +51,8 @@ export default function Footer() {
 
         {/* Contato */}
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-accent-300">
-            Contato
-          </h2>
-          <ul className="mt-4 space-y-2 text-sm text-paper/70">
+          <h2 className="label-dado text-paper">Contato</h2>
+          <ul className="mt-4 space-y-2 text-sm text-brand-200">
             <li>
               <a
                 href={whatsappLink()}
@@ -90,25 +86,24 @@ export default function Footer() {
 
         {/* Endereço */}
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-accent-300">
-            Endereço
-          </h2>
-          <address className="mt-4 space-y-1 text-sm not-italic text-paper/70">
+          <h2 className="label-dado text-paper">Endereço</h2>
+          <address className="mt-4 space-y-1 text-sm not-italic text-brand-200">
             <p>{e.logradouro}</p>
             <p>
               {e.bairro} — {e.cidade}/{e.uf}
             </p>
-            <p>CEP {e.cep}</p>
-            <p className="pt-2">{site.horario.semana}</p>
+            {/* Dado real: CEP e horário em mono. */}
+            <p className="dado">CEP {e.cep}</p>
+            <p className="dado pt-2">{site.horario.semana}</p>
           </address>
         </div>
       </div>
 
       {/* Barra inferior: dados legais + link discreto de parceria */}
-      <div className="border-t border-paper/10">
-        <div className="container-cnc flex flex-col gap-3 py-6 text-xs text-paper/50 sm:flex-row sm:items-center sm:justify-between">
+      <div className="border-t border-paper/15">
+        <div className="container-cnc flex flex-col gap-3 py-6 text-xs text-brand-200 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            {site.nomeCompleto} — CNPJ {site.cnpj}
+            {site.nomeCompleto} — CNPJ <span className="dado">{site.cnpj}</span>
           </p>
           <div className="flex items-center gap-4">
             <span>© {ano} CNC. Todos os direitos reservados.</span>

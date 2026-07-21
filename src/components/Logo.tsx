@@ -16,10 +16,10 @@ export default function Logo({ className = "" }: { className?: string }) {
   if (erro) {
     return (
       <span className="flex items-baseline gap-2">
-        <span className="font-display text-2xl font-bold tracking-tight text-brand-700">
+        <span className="text-2xl font-extrabold tracking-tightest text-brand-700">
           CNC
         </span>
-        <span className="hidden text-[11px] font-medium uppercase tracking-widest text-ink-muted sm:block">
+        <span className="hidden text-xs font-semibold text-ink-muted sm:block">
           Sistemas &amp; Representações
         </span>
       </span>
