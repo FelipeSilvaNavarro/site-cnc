@@ -46,11 +46,11 @@ export const sistemas: Sistema[] = [
     slug: "pro", // originalmente: "avante"
     nome: "PRO", // originalmente: "AVANTE"
     resumo:
-      "Solução completa de gestão e PDV para o comércio que precisa de controle total, do balcão ao estoque.",
+      "Para quem tem mais de um caixa, muita nota saindo e estoque que não pode furar.",
     paraQueServe:
-      "Controla vendas, frente de caixa (PDV), estoque, emissão fiscal e financeiro em uma única ferramenta, integrando o dia a dia da operação com as obrigações fiscais.",
+      "Segura a operação inteira no mesmo lugar: frente de caixa, estoque, emissão fiscal e financeiro conversando entre si, sem a planilha paralela que ninguém atualiza e sem descobrir a diferença de estoque só no balanço.",
     indicadoPara:
-      "Comércios de varejo que querem um sistema para organizar caixa, estoque e notas sem depender de planilhas.",
+      "Mercado com duas ou mais frentes de caixa, distribuidora, atacado, material de construção e autopeças, ou seja, quem já sente que perde dinheiro no que não consegue enxergar.",
     destaques: [
       "Frente de caixa (PDV) ágil",
       "Controle de estoque e produtos",
@@ -63,11 +63,11 @@ export const sistemas: Sistema[] = [
     slug: "medio", // originalmente: "sgbr"
     nome: "MÉDIO", // originalmente: "SGBR"
     resumo:
-      "Plataforma de gestão para o varejo, com foco em automação comercial e retaguarda.",
+      "Para o comércio que já cresceu do caderno, mas ainda não precisa de tudo.",
     paraQueServe:
-      "Unifica vendas, retaguarda, estoque e emissão fiscal, com módulos para acompanhar o desempenho do negócio e organizar as rotinas administrativas.",
+      "Junta venda, retaguarda, estoque e nota fiscal com relatório que responde as perguntas que o dono faz de verdade, do tipo o que mais saiu no mês e quanto sobrou depois de pagar tudo.",
     indicadoPara:
-      "Empresas que buscam automação comercial e relatórios para tomada de decisão.",
+      "Loja de roupa e calçados, farmácia, padaria e mercearia de bairro que querem organizar a retaguarda sem carregar recurso que não vão usar.",
     destaques: [
       "Automação comercial",
       "Gestão de retaguarda",
@@ -80,11 +80,11 @@ export const sistemas: Sistema[] = [
     slug: "simples", // originalmente: "prodo"
     nome: "SIMPLES", // originalmente: "PRODO"
     resumo:
-      "Solução de gestão voltada à operação prática do negócio no dia a dia.",
+      "A porta de entrada, a partir de R$ 150 por mês, para quem tem um caixa só.",
     paraQueServe:
-      "Apoia o controle de vendas, caixa e estoque com uma operação direta, pensada para quem precisa de praticidade.",
+      "Cobre o que o balcão pede todo dia, que é vender rápido, emitir a nota na hora e saber o que tem no estoque, sem tela cheia de coisa que você nunca vai abrir.",
     indicadoPara:
-      "Comércios de pequeno e médio porte que buscam um sistema prático e acessível para o dia a dia, com o essencial de vendas, caixa e estoque.",
+      "Mercadinho, açougue, quitanda, lanchonete e loja de bairro com um caixa, quem está saindo do caderno ou trocando um sistema que ninguém dá suporte.",
     destaques: [
       "Operação de caixa simplificada",
       "Controle de vendas e estoque",
