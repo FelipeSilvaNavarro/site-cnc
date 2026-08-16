@@ -134,6 +134,7 @@ export default function SobrePage() {
             Vamos conversar sobre o seu negócio?
           </h2>
           <CtaButtons
+            origem="sobre"
             primario="Falar no WhatsApp"
             secundario="Pedir orçamento"
             variant="dark"

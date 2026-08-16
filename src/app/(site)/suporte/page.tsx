@@ -3,7 +3,8 @@ import ImageSlot from "@/components/ImageSlot";
 import Reveal from "@/components/Reveal";
 import CtaButtons from "@/components/CtaButtons";
 import { suporte } from "@/content/suporte";
-import { site, whatsappLink } from "@/content/site";
+import { site } from "@/content/site";
+import LinkContato from "@/components/LinkContato";
 
 export const metadata: Metadata = {
   title: "Suporte humanizado de sistema de gestão",
@@ -34,6 +35,7 @@ export default function SuportePage() {
               {suporte.intro}
             </p>
             <CtaButtons
+              origem="suporte"
               primario="Falar com o suporte"
               secundario="Pedir orçamento"
               className="mt-8"
@@ -90,25 +92,24 @@ export default function SuportePage() {
               <div className="flex items-center justify-between gap-4 py-4">
                 <dt className="label-dado text-ink">WhatsApp</dt>
                 <dd>
-                  <a
-                    href={whatsappLink()}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <LinkContato
+                    origem="suporte"
                     className="dado text-brand-700 hover:underline"
                   >
                     {site.whatsapp.exibicao}
-                  </a>
+                  </LinkContato>
                 </dd>
               </div>
               <div className="flex items-center justify-between gap-4 py-4">
                 <dt className="label-dado text-ink">Telefone</dt>
                 <dd>
-                  <a
-                    href={`tel:${site.telefone.numero}`}
+                  <LinkContato
+                    origem="suporte"
+                    canal="telefone"
                     className="dado text-brand-700 hover:underline"
                   >
                     {site.telefone.exibicao}
-                  </a>
+                  </LinkContato>
                 </dd>
               </div>
               {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).

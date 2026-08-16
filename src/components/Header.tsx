@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { navPrincipal, site, whatsappLink } from "@/content/site";
+import { navPrincipal, site } from "@/content/site";
 import Logo from "./Logo";
+import LinkContato from "./LinkContato";
 
 /**
  * Header — cabeçalho fixo (sticky) do site institucional.
@@ -61,14 +62,12 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
+          <LinkContato
+            origem="header"
             className="btn-primary hidden sm:inline-flex"
           >
             Falar no WhatsApp
-          </a>
+          </LinkContato>
 
           {/* Botão do menu mobile */}
           <button
@@ -119,21 +118,20 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <a
-              href={whatsappLink()}
-              target="_blank"
-              rel="noopener noreferrer"
+            <LinkContato
+              origem="menu-mobile"
               className="btn-primary mt-4"
               onClick={() => setAberto(false)}
             >
               Falar no WhatsApp
-            </a>
-            <a
-              href={`tel:${site.telefone.numero}`}
+            </LinkContato>
+            <LinkContato
+              origem="menu-mobile"
+              canal="telefone"
               className="mt-2 py-2 text-center text-sm text-ink-muted"
             >
               {site.telefone.exibicao}
-            </a>
+            </LinkContato>
           </div>
         </nav>
       )}

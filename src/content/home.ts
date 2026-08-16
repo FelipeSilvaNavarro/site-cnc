@@ -7,13 +7,26 @@
  * sem mexer no JSX.
  */
 
+/**
+ * HERO — a única parte da página que a maioria vê.
+ *
+ * A versão anterior dizia "O sistema de gestão certo para o seu negócio", que
+ * serve para qualquer empresa do Brasil e não respondia nenhuma das três
+ * perguntas de quem chega de uma busca: o que é, para quem é e onde é. Quem
+ * pesquisou "sistema para mercadinho em Maceió" caía numa página que não
+ * repetia nem "mercadinho" nem "Maceió", e incoerência entre o termo buscado e
+ * a primeira linha é a causa mais comum de clique caro sem conversa.
+ *
+ * O que sustenta a promessa é presença física em Alagoas, porque o concorrente
+ * nacional que aparece no mesmo anúncio não consegue prometer técnico na loja.
+ */
 export const hero = {
-  sobrelinha: "Sistemas de gestão e PDV",
-  titulo: "O sistema de gestão certo para o seu negócio.",
+  sobrelinha: "Mercadinho, açougue, padaria, loja, distribuidora",
+  titulo: "Sistema de gestão e PDV para o comércio de Maceió e do interior de Alagoas.",
   // Texto sem citar marcas de fornecedores (decisão de negócio — ver sistemas.ts).
   // Original: "A CNC representa e dá suporte aos principais sistemas de gestão e PDV do mercado. ..."
   subtitulo:
-    "A CNC oferece e dá suporte a sistemas de gestão e PDV sob medida para o seu negócio. Atendimento humanizado, direto e contínuo: você fala com quem resolve.",
+    "Quando a nota trava no meio do movimento, você fala direto com quem conhece a sua operação, e o técnico vai até a loja quando o caso pede. A partir de R$ 150 por mês, com instalação, migração dos seus dados e treinamento da equipe inclusos.",
   ctaPrimario: "Falar no WhatsApp",
   ctaSecundario: "Pedir orçamento",
   // Slot de imagem: foto real do atendimento/equipe/operação da CNC.
@@ -105,6 +118,28 @@ export const segmentos = {
     { nome: "Autopeças e oficinas", icone: "autopecas" },
     { nome: "Comércio em geral", icone: "comercio" },
   ],
+};
+
+/**
+ * PREÇO — seção nova, e ela existe para filtrar antes de custar conversa.
+ *
+ * O valor de entrada é o mesmo do vault (R$ 150,00 por mês). Se o piso mudar
+ * lá, muda aqui, porque página que promete um número e proposta que entrega
+ * outro queima a conversa que o anúncio pagou para acontecer.
+ */
+export const preco = {
+  titulo: "Quanto custa",
+  valor: "R$ 150",
+  periodo: "por mês",
+  texto:
+    "É o valor de entrada, para o comércio de um caixa. O preço final depende do porte da operação, do número de caixas e do que a sua rotina fiscal exige, e a gente fecha isso na conversa, sem enrolação.",
+  inclui: [
+    "Instalação e configuração do sistema na sua loja",
+    "Migração dos dados que você já tem hoje",
+    "Treinamento da equipe até o caixa rodar sozinho",
+    "Suporte durante todo o mês, sem custo por chamado",
+  ],
+  cta: "Falar no WhatsApp",
 };
 
 export const ctaFinal = {

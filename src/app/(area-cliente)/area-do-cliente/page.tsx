@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { whatsappLink } from "@/content/site";
+import LinkContato from "@/components/LinkContato";
 
 export const metadata: Metadata = {
   title: "Área do cliente — em breve",
@@ -32,16 +32,14 @@ export default function AreaDoClientePage() {
         com a gente.
       </p>
       <div className="mt-8 flex flex-col items-center gap-3">
-        <a
-          // Link padrão unificado do WhatsApp (mesma mensagem em todo o site).
-          // Original: whatsappLink("Olá! Preciso de atendimento da CNC (ex.: segunda via de boleto).")
-          href={whatsappLink()}
-          target="_blank"
-          rel="noopener noreferrer"
+        <LinkContato
+          // A mensagem já chega dizendo que é cliente pedindo atendimento, e
+          // não interessado novo: quem está na área do cliente não é lead.
+          origem="area-do-cliente"
           className="btn-primary w-full sm:w-auto"
         >
           Falar no WhatsApp
-        </a>
+        </LinkContato>
         <Link href="/contato" className="text-sm text-brand-700 hover:underline">
           Ver todos os canais de contato
         </Link>

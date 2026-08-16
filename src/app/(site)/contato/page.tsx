@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { site, whatsappLink } from "@/content/site";
+import { site } from "@/content/site";
+import LinkContato from "@/components/LinkContato";
 
 export const metadata: Metadata = {
   title: "Contato — fale com a CNC",
@@ -44,28 +45,27 @@ export default function ContatoPage() {
             </h2>
             <ul className="mt-6 border-t-2 border-ink">
               <li>
-                <a
-                  href={whatsappLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <LinkContato
+                  origem="contato"
                   className="group flex items-baseline gap-4 border-b border-ink/15 py-4 transition-colors hover:bg-paper-soft"
                 >
                   <span className="label-dado text-ink">WhatsApp</span>
                   <span className="dado ml-auto text-brand-700 group-hover:underline">
                     {site.whatsapp.exibicao}
                   </span>
-                </a>
+                </LinkContato>
               </li>
               <li>
-                <a
-                  href={`tel:${site.telefone.numero}`}
+                <LinkContato
+                  origem="contato"
+                  canal="telefone"
                   className="group flex items-baseline gap-4 border-b border-ink/15 py-4 transition-colors hover:bg-paper-soft"
                 >
                   <span className="label-dado text-ink">Telefone</span>
                   <span className="dado ml-auto text-brand-700 group-hover:underline">
                     {site.telefone.exibicao}
                   </span>
-                </a>
+                </LinkContato>
               </li>
               {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
                   Para reativar, descomente este bloco. */}

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { navPrincipal, site, whatsappLink } from "@/content/site";
+import { navPrincipal, site } from "@/content/site";
+import LinkContato from "./LinkContato";
 
 /**
  * Footer — rodapé global do site institucional (renderizado pelo layout de
@@ -54,22 +55,21 @@ export default function Footer() {
           <h2 className="label-dado text-paper">Contato</h2>
           <ul className="mt-4 space-y-2 text-sm text-brand-200">
             <li>
-              <a
-                href={whatsappLink()}
-                target="_blank"
-                rel="noopener noreferrer"
+              <LinkContato
+                origem="rodape"
                 className="transition-colors hover:text-paper"
               >
                 WhatsApp: {site.whatsapp.exibicao}
-              </a>
+              </LinkContato>
             </li>
             <li>
-              <a
-                href={`tel:${site.telefone.numero}`}
+              <LinkContato
+                origem="rodape"
+                canal="telefone"
                 className="transition-colors hover:text-paper"
               >
                 Telefone: {site.telefone.exibicao}
-              </a>
+              </LinkContato>
             </li>
             {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
                 Para reativar, descomente este bloco. */}

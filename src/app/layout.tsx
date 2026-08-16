@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Azeret_Mono } from "next/font/google";
+import Analytics from "@/components/Analytics";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -35,22 +36,28 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   // `default`: título da aba quando a página não define o seu (ex.: a Home).
   // `template`: demais páginas viram "<título> | CNC Sistemas".
+  // Título com cidade e estado de propósito. A disputa que a CNC ganha é
+  // "em Maceió" e "em Alagoas", não a palavra genérica, onde ela compete com
+  // fornecedor nacional que gasta em mídia o faturamento dela de um ano.
+  // Cuidado permanente: "CNC" sozinho é usinagem, então o par que identifica
+  // é sempre "CNC Sistemas" mais Maceió ou Alagoas.
   title: {
-    default: "CNC Sistemas — Sistemas de gestão e PDV com suporte humanizado",
-    template: "%s | CNC Sistemas",
+    default:
+      "CNC Sistemas — Sistema de gestão e PDV em Maceió e no interior de Alagoas",
+    template: "%s | CNC Sistemas Maceió",
   },
   description:
-    "Revenda e suporte de sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados. A CNC indica o sistema certo para o seu negócio.",
+    "Sistema de gestão e PDV para o comércio de Maceió e do interior de Alagoas, com técnico que vai na sua loja. A partir de R$ 150 por mês, com instalação, migração e treinamento inclusos.",
   // Palavras-chave genéricas (sem marcas de fornecedores — ver sistemas.ts).
   keywords: [
-    "sistema de gestão",
-    "PDV",
-    "ERP",
-    "automação comercial",
-    "revenda de software de gestão",
-    "suporte de sistema",
-    "software para indústria",
-    "emissão de nota fiscal",
+    "sistema de gestão Maceió",
+    "sistema PDV Maceió",
+    "sistema para mercadinho",
+    "sistema para açougue",
+    "sistema para padaria",
+    "automação comercial Alagoas",
+    "emissão de NFC-e",
+    "programa de caixa para comércio",
     "controle de estoque",
   ],
   openGraph: {
@@ -96,7 +103,12 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${display.variable} ${mono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Medição de conversa iniciada. Sem os IDs em variável de ambiente,
+            não injeta nada. Ver src/lib/analytics.ts. */}
+        <Analytics />
+      </body>
     </html>
   );
 }

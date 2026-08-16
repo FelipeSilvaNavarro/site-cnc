@@ -6,12 +6,14 @@ import SectionHeading from "@/components/SectionHeading";
 import CtaButtons from "@/components/CtaButtons";
 import { site } from "@/content/site";
 import { sistemas, sistemasIntro } from "@/content/sistemas";
+import LinkContato from "@/components/LinkContato";
 import {
   hero,
   diferenciais,
   comoFunciona,
   depoimentos,
   segmentos,
+  preco,
   ctaFinal,
 } from "@/content/home";
 
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
   // ("CNC Sistemas — ..."), que é o que aparece na aba do navegador.
   // Sem citar marcas de fornecedores (ver sistemas.ts).
   description:
-    "A CNC oferece e dá suporte a sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados.",
+    "Sistema de gestão e PDV para mercadinho, açougue, padaria, loja e distribuidora em Maceió e no interior de Alagoas. A partir de R$ 150 por mês, com instalação, migração e treinamento inclusos.",
   alternates: { canonical: "/" },
 };
 
@@ -66,6 +68,7 @@ export default function HomePage() {
             <CtaButtons
               primario={hero.ctaPrimario}
               secundario={hero.ctaSecundario}
+              origem="hero"
               className="mt-8"
             />
           </div>
@@ -104,22 +107,23 @@ export default function HomePage() {
               clientes ativos usando nossos sistemas
             </span>
           </div>
+          {/* Avaliação do Google: a prova mais forte que a CNC tem, e estava
+              fora do site. Nota real do perfil, não adjetivo. */}
           <div className="flex items-baseline gap-3 md:border-x md:border-paper/15 md:px-10">
+            <span className="dado text-4xl font-medium leading-none text-paper">
+              {site.numeros.notaGoogle}
+            </span>
+            <span className="text-sm leading-snug text-paper/70">
+              no Google, em {site.numeros.avaliacoesGoogle} avaliações de clientes
+            </span>
+          </div>
+          <div className="flex items-baseline gap-3">
             <span className="dado text-4xl font-medium leading-none text-paper">
               {site.numeros.anosMercado}
             </span>
             <span className="text-sm leading-snug text-paper/70">
-              anos de mercado
+              anos atendendo o comércio em Alagoas
             </span>
-          </div>
-          <div>
-            {/* Rótulos de porte (PRO/MÉDIO/SIMPLES), sem marcas — ver sistemas.ts */}
-            <span className="label-dado text-paper/60">Nossas soluções</span>
-            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-base font-bold text-paper">
-              {sistemas.map((s) => (
-                <li key={s.slug}>{s.nome}</li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>
@@ -268,7 +272,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. CTA FINAL — generoso */}
+      {/* 8. PREÇO — respiro médio, duas colunas.
+          Seção nova. O preço estava fora do site inteiro, o que empurrava toda
+          a filtragem para a conversa do WhatsApp e encarecia justamente o
+          contato que o anúncio paga. */}
+      <section
+        id="preco"
+        className="border-t-2 border-ink bg-paper-soft py-16 lg:py-20"
+      >
+        <div className="container-cnc grid gap-10 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tightest text-ink sm:text-4xl">
+              {preco.titulo}
+            </h2>
+            <p className="mt-6 flex items-baseline gap-2">
+              <span className="dado text-5xl font-medium leading-none text-ink">
+                {preco.valor}
+              </span>
+              <span className="text-base font-semibold text-ink-soft">
+                {preco.periodo}
+              </span>
+            </p>
+            <LinkContato origem="preco" className="btn-primary mt-6">
+              {preco.cta}
+            </LinkContato>
+          </div>
+
+          <div>
+            <p className="max-w-xl text-lg leading-relaxed text-ink-soft">
+              {preco.texto}
+            </p>
+            <ul className="mt-8 border-t border-ink/15">
+              {preco.inclui.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 border-b border-ink/15 py-3 text-base text-ink"
+                >
+                  <span aria-hidden="true" className="font-bold text-signal-600">
+                    +
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. CTA FINAL — generoso */}
       <section className="bg-brand-800 py-20 text-paper lg:py-24">
         <div className="container-cnc flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
@@ -282,6 +333,7 @@ export default function HomePage() {
           <CtaButtons
             primario={ctaFinal.ctaPrimario}
             secundario={ctaFinal.ctaSecundario}
+            origem="cta-final"
             variant="dark"
           />
         </div>

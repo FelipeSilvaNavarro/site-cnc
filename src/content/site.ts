@@ -103,11 +103,50 @@ export const site = {
    * Números de prova social. `clientesAtivos` é DINÂMICO: vem do `metrics.json`
    * sincronizado do Obsidian (rode `npm run sync:obsidian` quando a base mudar).
    * `anosMercado` é fixo (a CNC nasceu em 2020).
+   *
+   * `avaliacoesGoogle` é a prova mais forte que a CNC tem e estava fora do site.
+   * CONFERIR no perfil do Google Meu Negócio antes de cada publicação: número
+   * exposto que não bate com o painel do Google destrói a confiança que ele
+   * deveria construir.
    */
   numeros: {
     clientesAtivos: String(metrics.clientesAtivos),
     anosMercado: "6",
+    avaliacoesGoogle: "39",
+    notaGoogle: "5,0",
   },
+
+  /**
+   * Preço de entrada. Fica visível de propósito.
+   *
+   * Esconder preço faz o curioso gastar clique de anúncio e meia hora de
+   * conversa para descobrir que não é para ele, e em mídia paga isso é o custo
+   * que mais dói. Preço na página é o filtro mais barato que existe.
+   *
+   * O piso real da CNC é R$ 150,00 por mês (decisão registrada no vault). Mudar
+   * aqui exige mudar lá também, senão a página promete o que a proposta desmente.
+   */
+  precos: {
+    pisoMensal: "R$ 150",
+    pisoMensalPorExtenso: "R$ 150 por mês",
+  },
+
+  /** Cidades onde a CNC já tem cliente. Alimenta o JSON-LD de área atendida. */
+  cidadesAtendidas: [
+    "Maceió",
+    "Rio Largo",
+    "Marechal Deodoro",
+    "Messias",
+    "Pilar",
+    "União dos Palmares",
+    "Satuba",
+    "Atalaia",
+    "Capela",
+    "Maragogi",
+    "Passo de Camaragibe",
+    "Santa Luzia do Norte",
+    "São Miguel dos Milagres",
+  ],
 } as const;
 
 /**
@@ -123,6 +162,35 @@ export const site = {
 export function whatsappLink(mensagem?: string): string {
   const texto = encodeURIComponent(mensagem ?? site.whatsapp.mensagemPadrao);
   return `https://wa.me/${site.whatsapp.numero}?text=${texto}`;
+}
+
+/**
+ * Texto pré-preenchido conforme o lugar de onde a pessoa clicou.
+ *
+ * Serve para o Felipe abrir o celular já sabendo o assunto, e serve como
+ * segunda fonte de origem quando o bloqueador do visitante derrubar o gtag,
+ * que é justamente o público mais difícil de medir.
+ *
+ * Mantém o tom de quem escreve, e não de formulário: quem manda a mensagem é
+ * o cliente, então ela precisa soar como coisa que uma pessoa digitaria.
+ */
+export function mensagemPorOrigem(origem: string): string {
+  const textos: Record<string, string> = {
+    hero: "Oi! Vi o site da CNC e quero saber sobre o sistema para o meu comércio.",
+    "cta-final":
+      "Oi! Vi o site da CNC e quero conversar sobre qual sistema serve para o meu negócio.",
+    preco: `Oi! Vi no site que começa em ${site.precos.pisoMensal} por mês e quero entender o que entra nesse valor.`,
+    header: "Oi! Vim pelo site da CNC e quero falar sobre sistema de gestão.",
+    "menu-mobile": "Oi! Vim pelo site da CNC e quero falar sobre sistema de gestão.",
+    flutuante: "Oi! Vim pelo site da CNC e quero falar sobre sistema de gestão.",
+    rodape: "Oi! Vim pelo site da CNC e quero falar sobre sistema de gestão.",
+    contato: "Oi! Vim pela página de contato do site da CNC.",
+    suporte: "Oi! Preciso de suporte no meu sistema.",
+    parceiro: "Oi! Tenho interesse em ser parceiro da CNC.",
+    "area-do-cliente":
+      "Oi! Sou cliente da CNC e preciso de atendimento (segunda via, acesso, suporte).",
+  };
+  return textos[origem] ?? site.whatsapp.mensagemPadrao;
 }
 
 /**
