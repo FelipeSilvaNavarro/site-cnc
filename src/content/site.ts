@@ -85,12 +85,17 @@ export const site = {
   },
 
   /**
-   * Atendimento 24/7. `semana`/`sabado` mantêm a mesma mensagem porque o suporte
-   * não para — exibidos no Footer, em Contato e em Suporte.
+   * Horário de atendimento. Corrigido em 16/08/2026: o site anunciava 24 horas
+   * por dia, o perfil do Google dizia que fechava 23:30 e a verdade é 22h.
+   *
+   * Os três precisam contar a mesma história, porque promessa de atendimento
+   * que a operação não cumpre gera a ligação das 23h que ninguém atende, e
+   * divergência entre site e Google Meu Negócio ainda derruba ranqueamento
+   * local. Mudou aqui, muda no perfil do Google e no JSON-LD do layout.
    */
   horario: {
-    semana: "24 horas por dia, 7 dias por semana",
-    sabado: "Todos os dias, inclusive sábados, domingos e feriados",
+    semana: "Todos os dias, das 6h às 22h",
+    sabado: "Inclusive sábado, domingo e feriado",
   },
 
   // Redes sociais — string vazia oculta o link (não usado hoje, reservado).

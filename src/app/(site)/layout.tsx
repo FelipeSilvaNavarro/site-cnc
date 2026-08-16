@@ -50,8 +50,11 @@ const dadosEstruturados = {
         "Saturday",
         "Sunday",
       ],
-      opens: "00:00",
-      closes: "23:59",
+      // 06:00 às 22:00, todos os dias, confirmado pelo Felipe em 16/08/2026.
+      // Estes dois valores, o texto em content/site.ts e o horário do perfil
+      // do Google Meu Negócio contam a mesma história ou nenhum deles vale.
+      opens: "06:00",
+      closes: "22:00",
     },
   ],
   sameAs: [site.redes.instagram, site.redes.facebook],

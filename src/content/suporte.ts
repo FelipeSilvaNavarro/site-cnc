@@ -3,7 +3,7 @@
  *
  * Exporta o objeto `suporte`, consumido por `app/(site)/suporte/page.tsx`:
  * cabeçalho + imagem, "como funciona o atendimento" e o bloco de canais. Os
- * horários exibidos na tabela de canais vêm de `site.horario` (24/7).
+ * horários exibidos na tabela de canais vêm de `site.horario`.
  */
 
 export const suporte = {
@@ -40,8 +40,8 @@ export const suporte = {
 
   canais: {
     titulo: "Canais de atendimento",
-    // Detalhes de horário vêm do arquivo site.ts (24/7).
+    // Detalhes de horário vêm do arquivo site.ts.
     observacao:
-      "Atendimento 24 horas por dia, 7 dias por semana, sem parar. O suporte é feito por pessoas que conhecem o seu sistema, com resposta rápida e acompanhamento até a solução.",
+      "Atendimento todos os dias das 6h às 22h, inclusive sábado, domingo e feriado. O suporte é feito por pessoas que conhecem o seu sistema, com resposta rápida e acompanhamento até a solução.",
   },
 };

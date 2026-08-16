@@ -5,8 +5,8 @@ import LinkContato from "./LinkContato";
 /**
  * Footer — rodapé global do site institucional (renderizado pelo layout de
  * `(site)`). Quatro colunas: identidade, navegação (de `navPrincipal` + Área do
- * cliente), contato (WhatsApp/telefone — e-mail oculto) e endereço + horário
- * (24/7). A barra inferior mostra razão social, CNPJ e o ano corrente.
+ * cliente), contato (WhatsApp/telefone, e-mail oculto) e endereço mais o
+ * horário de atendimento. A barra inferior mostra razão social, CNPJ e o ano.
  */
 export default function Footer() {
   const ano = new Date().getFullYear();

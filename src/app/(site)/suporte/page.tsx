@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 /**
  * SuportePage — rota "/suporte".
  *
- * Apresenta o diferencial central (suporte humanizado, 24/7, sem central de
+ * Apresenta o diferencial central (suporte humanizado, sem central de
  * chamados): cabeçalho + imagem, "como funciona o atendimento" e a tabela de
- * canais (WhatsApp/telefone e horário 24/7). Conteúdo de `content/suporte.ts` e
+ * canais (WhatsApp/telefone e horário de atendimento). Conteúdo de `content/suporte.ts` e
  * contatos/horário de `content/site.ts`.
  */
 export default function SuportePage() {
@@ -125,7 +125,7 @@ export default function SuportePage() {
                   </a>
                 </dd>
               </div> */}
-              {/* Atendimento 24/7 (valores em site.horario). */}
+              {/* Horário de atendimento (valores em site.horario). */}
               <div className="flex items-center justify-between gap-4 py-4">
                 <dt className="label-dado text-ink">Atendimento</dt>
                 <dd className="dado text-ink-soft">{site.horario.semana}</dd>

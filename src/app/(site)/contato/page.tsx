@@ -13,7 +13,7 @@ export const metadata: Metadata = {
  * ContatoPage — rota "/contato".
  *
  * Lista os canais de atendimento (WhatsApp e telefone; e-mail oculto), o
- * endereço cadastral e o horário 24/7, e mostra um mapa. Enquanto
+ * endereço cadastral e o horário de atendimento, e mostra um mapa. Enquanto
  * `mapsEmbedUrl` estiver com placeholder `{{PREENCHER`, exibe um slot; caso
  * contrário renderiza o iframe (hoje um mapa genérico do Brasil, por privacidade).
  */
@@ -92,7 +92,7 @@ export default function ContatoPage() {
               </p>
               <p>CEP {e.cep}</p>
             </address>
-            {/* Atendimento 24/7 (valores em site.horario). */}
+            {/* Horário de atendimento (valores em site.horario). */}
             <dl className="mt-4 space-y-1 text-sm text-ink-soft">
               <div className="flex gap-2">
                 <dt className="font-semibold text-ink">Atendimento:</dt>
