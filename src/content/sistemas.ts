@@ -96,9 +96,12 @@ export const sistemas: Sistema[] = [
 
 /** Texto da CNC como consultora que ajuda a escolher a solução certa. */
 export const sistemasIntro = {
-  titulo: "Indicamos a solução ideal para o seu negócio",
+  // "Indicamos a solução ideal para o seu negócio" era o título antigo, e ele
+  // não dizia porte, preço nem lugar. Quem chega de busca precisa saber em
+  // dez segundos se cabe no bolso dele e se o atendimento chega até a loja.
+  titulo: "Três portes, um preço de entrada, o mesmo atendimento",
   texto:
-    "Cada operação tem uma rotina. A CNC entende como o seu negócio funciona e recomenda, entre as soluções que oferece, a que melhor se encaixa no seu porte, no seu segmento e no seu orçamento. A escolha vem acompanhada de implantação, treinamento e suporte humanizado e contínuo.",
+    "A escolha começa em R$ 150 por mês e depende do tamanho da operação, não do tamanho do discurso: um caixa e estoque simples pedem uma coisa, várias frentes de caixa e exigência fiscal pesada pedem outra. A CNC olha a sua rotina, indica o porte que serve e entrega instalação, migração dos seus dados e treinamento da equipe junto, com técnico que vai na loja em Maceió e no interior de Alagoas.",
 };
 
 /**
