@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Archivo, Azeret_Mono } from "next/font/google";
 import Analytics from "@/components/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -108,6 +110,11 @@ export default function RootLayout({
         {/* Medição de conversa iniciada. Sem os IDs em variável de ambiente,
             não injeta nada. Ver src/lib/analytics.ts. */}
         <Analytics />
+        {/* Medição da Vercel: visita e origem no painel Analytics, Core Web
+            Vitals de gente real no painel Speed Insights. Só coleta em
+            produção, então em desenvolvimento não polui o dado. */}
+        <VercelAnalytics />
+        <SpeedInsights />
       </body>
     </html>
   );
