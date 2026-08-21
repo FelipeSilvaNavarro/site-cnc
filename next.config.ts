@@ -17,6 +17,9 @@ import type { NextConfig } from "next";
  * - Em DEV o `next dev` usa `eval` (HMR/React Refresh) e WebSocket; por isso
  *   'unsafe-eval' e `ws:` entram SOMENTE em desenvolvimento. Em produção a CSP
  *   permanece estrita (sem eval).
+ * - Vercel Speed Insights precisa de `https://va.vercel-scripts.com` em DEV e
+ *   `https://vitals.vercel-insights.com` sempre (para enviar métricas). Em
+ *   produção, os scripts carregam do próprio domínio ('self').
  * - Se adicionar imagens remotas, inclua a origem em `img-src` e em
  *   `next.config` images.remotePatterns.
  */
@@ -31,8 +34,8 @@ const csp = [
   "img-src 'self' data: blob:",
   "font-src 'self'",
   "style-src 'self' 'unsafe-inline'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
-  `connect-src 'self'${isDev ? " ws:" : ""}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval' https://va.vercel-scripts.com" : ""}`,
+  `connect-src 'self' https://vitals.vercel-insights.com${isDev ? " ws:" : ""}`,
   "frame-src https://www.google.com",
   "worker-src 'self' blob:",
   "manifest-src 'self'",
