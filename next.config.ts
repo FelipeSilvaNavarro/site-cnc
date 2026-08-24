@@ -19,8 +19,49 @@ import type { NextConfig } from "next";
  *   permanece estrita (sem eval).
  * - Se adicionar imagens remotas, inclua a origem em `img-src` e em
  *   `next.config` images.remotePatterns.
+ * - Medição da Vercel (Analytics e Speed Insights) é servida same-origin, em
+ *   caminho ofuscado sob o próprio domínio, e cabe em 'self' sem exceção.
  */
 const isDev = process.env.NODE_ENV !== "production";
+
+/**
+ * Origens do Google usadas pela medição (GA4 e Google Ads).
+ *
+ * Sem estas exceções o navegador bloqueia o gtag e o GA4 não registra nada,
+ * que foi exatamente o que aconteceu entre 16/08/2026 e 24/08/2026: a tag
+ * estava no HTML e o console respondia "The action has been blocked".
+ *
+ * Separado por diretiva porque o fluxo do GA4 usa três canais distintos: o
+ * script vem do googletagmanager, o beacon de evento sai por fetch para o
+ * google-analytics regionalizado, e a conversão do Ads ainda cai em pixel de
+ * imagem no doubleclick.
+ */
+const googleScript = [
+  "https://www.googletagmanager.com",
+  "https://www.googleadservices.com",
+  "https://googleads.g.doubleclick.net",
+];
+
+const googleConnect = [
+  "https://www.googletagmanager.com",
+  "https://www.google-analytics.com",
+  "https://*.google-analytics.com",
+  "https://analytics.google.com",
+  "https://*.analytics.google.com",
+  "https://stats.g.doubleclick.net",
+  "https://*.g.doubleclick.net",
+];
+
+const googleImg = [
+  "https://www.google-analytics.com",
+  "https://*.google-analytics.com",
+  "https://www.google.com",
+  "https://www.google.com.br",
+  "https://googleads.g.doubleclick.net",
+  "https://stats.g.doubleclick.net",
+];
+
+const googleFrame = ["https://td.doubleclick.net", "https://www.googletagmanager.com"];
 
 const csp = [
   "default-src 'self'",
@@ -28,12 +69,12 @@ const csp = [
   "object-src 'none'",
   "frame-ancestors 'none'",
   "form-action 'self'",
-  "img-src 'self' data: blob:",
+  `img-src 'self' data: blob: ${googleImg.join(" ")}`,
   "font-src 'self'",
   "style-src 'self' 'unsafe-inline'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
-  `connect-src 'self'${isDev ? " ws:" : ""}`,
-  "frame-src https://www.google.com",
+  `script-src 'self' 'unsafe-inline' ${googleScript.join(" ")}${isDev ? " 'unsafe-eval'" : ""}`,
+  `connect-src 'self' ${googleConnect.join(" ")}${isDev ? " ws:" : ""}`,
+  `frame-src https://www.google.com ${googleFrame.join(" ")}`,
   "worker-src 'self' blob:",
   "manifest-src 'self'",
   "upgrade-insecure-requests",
