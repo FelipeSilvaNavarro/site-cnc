@@ -3,9 +3,11 @@ import { site } from "@/content/site";
 import LinkContato from "@/components/LinkContato";
 
 export const metadata: Metadata = {
-  title: "Contato — fale com a CNC",
+  title: "Contato da CNC Sistemas em Maceió, WhatsApp e telefone",
+  // Busca por contato é intenção máxima, e quem pesquisa isso quer o número e
+  // o horário na própria lista de resultados, sem abrir a página.
   description:
-    "Fale com a CNC: WhatsApp, telefone, e-mail e endereço. Atendimento humanizado e direto para o seu negócio.",
+    "Fale com a CNC Sistemas no WhatsApp ou no telefone (82) 99366-0508, todos os dias das 6h às 22h. Atendimento para o comércio de Maceió e do interior de Alagoas.",
   alternates: { canonical: "/contato" },
 };
 

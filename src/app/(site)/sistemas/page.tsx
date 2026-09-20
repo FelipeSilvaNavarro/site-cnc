@@ -5,9 +5,13 @@ import { sistemas, sistemasIntro, recursosComuns } from "@/content/sistemas";
 
 export const metadata: Metadata = {
   // Sem citar marcas de fornecedores (ver sistemas.ts).
-  title: "Soluções de gestão e PDV",
+  title: "Sistema de gestão e PDV para mercadinho, açougue e padaria",
+  // Descrição escrita para a lista de resultados, não para a página: cita o
+  // ramo (é por ele que a pessoa pesquisa), a cidade (é aí que a CNC ganha) e
+  // o preço de entrada (filtra quem não tem orçamento antes do clique custar
+  // uma conversa). "Conheça as soluções" não é motivo de clicar em nada.
   description:
-    "Conheça as soluções de gestão e PDV da CNC, em três portes (PRO, MÉDIO e SIMPLES). Ajudamos a escolher a ideal para o seu negócio.",
+    "Três portes de sistema de gestão e PDV para mercadinho, açougue, padaria, loja e distribuidora em Maceió e no interior de Alagoas, a partir de R$ 150 por mês. A CNC indica o porte que serve à sua operação.",
   alternates: { canonical: "/sistemas" },
 };
 

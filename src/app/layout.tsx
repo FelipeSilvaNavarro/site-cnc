@@ -50,7 +50,17 @@ export const metadata: Metadata = {
   },
   description:
     "Sistema de gestão e PDV para o comércio de Maceió e do interior de Alagoas, com técnico que vai na sua loja. A partir de R$ 150 por mês, com instalação, migração e treinamento inclusos.",
-  // Palavras-chave genéricas (sem marcas de fornecedores — ver sistemas.ts).
+  /**
+   * `keywords` não move ranqueamento: o Google ignora essa meta desde 2009, e
+   * quem decide por qual termo a página entra é o texto visível dela (título,
+   * H1 e corpo). Fica aqui porque alguns agregadores e buscadores menores
+   * ainda leem, e porque não custa nada. Otimizar por esta lista é perder
+   * tempo com o campo errado.
+   *
+   * Os termos são de intenção de compra e de socorro, os mesmos que valem em
+   * anúncio, nunca os institucionais tipo "ERP" e "gestão empresarial", que
+   * atraem quem está estudando o assunto e não quem está com a loja parada.
+   */
   keywords: [
     "sistema de gestão Maceió",
     "sistema PDV Maceió",
@@ -61,15 +71,26 @@ export const metadata: Metadata = {
     "emissão de NFC-e",
     "programa de caixa para comércio",
     "controle de estoque",
+    "sistema para mercearia",
+    "sistema para distribuidora",
+    "sistema para material de construção",
+    "automação comercial Maceió",
+    "sistema de gestão Rio Largo",
+    "suporte de sistema de gestão em Maceió",
   ],
+  // Open Graph é o cartão que aparece quando o link é colado no WhatsApp, e
+  // WhatsApp é por onde a conversa desta empresa acontece, então o cartão
+  // conta a mesma história do título da busca: o que é, onde é e a partir de
+  // quanto. Antes ele repetia "suporte humanizado" sem citar Maceió, e quem
+  // recebia o link não sabia que era empresa da cidade dele.
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: site.url,
     siteName: "CNC Sistemas & Representações",
-    title: "CNC — Revenda de sistemas de gestão e PDV com suporte humanizado",
+    title: "CNC Sistemas — Sistema de gestão e PDV em Maceió e no interior de Alagoas",
     description:
-      "Revenda e suporte de sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados.",
+      "Técnico que vai na sua loja, sem central de chamados. A partir de R$ 150 por mês, com instalação, migração e treinamento inclusos.",
     images: [
       {
         url: "/og.png",
@@ -81,12 +102,40 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CNC — Revenda de sistemas de gestão e PDV com suporte humanizado",
+    title: "CNC Sistemas — Sistema de gestão e PDV em Maceió e no interior de Alagoas",
     description:
-      "Revenda e suporte de sistemas de gestão e PDV. Suporte humanizado, direto e contínuo, sem central de chamados.",
+      "Técnico que vai na sua loja, sem central de chamados. A partir de R$ 150 por mês, com instalação, migração e treinamento inclusos.",
     images: ["/og.png"],
   },
-  robots: { index: true, follow: true },
+  /**
+   * Verificação de propriedade do Google Search Console pela meta tag.
+   *
+   * Vazia em desenvolvimento e enquanto a variável não estiver cadastrada na
+   * Vercel, e nesse caso o Next simplesmente não emite a tag. O valor é só o
+   * conteúdo do content= que o Search Console mostra na opção "tag HTML", sem
+   * a marcação em volta.
+   *
+   * A verificação por DNS TXT no registro.br cobre o domínio inteiro de uma
+   * vez, inclusive subdomínio e http, e é a que vale a pena fazer depois. Esta
+   * aqui existe porque não depende de esperar propagação de DNS.
+   */
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
+  robots: {
+    index: true,
+    follow: true,
+    // Diz ao Google que ele pode mostrar trecho longo, imagem grande e prévia
+    // de vídeo. Sem isso ele escolhe conservador, e trecho curto em resultado
+    // local rende menos clique.
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
 };
 
 /**

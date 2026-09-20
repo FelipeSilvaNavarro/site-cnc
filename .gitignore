@@ -36,3 +36,7 @@ yarn-error.log*
 
 # claude code (configurações locais da máquina)
 .claude/settings.local.json
+
+# Cópias de segurança feitas antes de reescrever arquivo (regra do CLAUDE.md:
+# inativar e guardar, nunca apagar). Ficam no disco, fora do histórico.
+*.bak-antes-*

@@ -7,9 +7,13 @@ import { site } from "@/content/site";
 import LinkContato from "@/components/LinkContato";
 
 export const metadata: Metadata = {
-  title: "Suporte humanizado de sistema de gestão",
+  title: "Suporte de sistema de gestão em Maceió, com técnico na loja",
+  // A objeção que esta página responde é medo de ficar na mão com a loja
+  // cheia, então a descrição precisa dizer o horário real e a ida à loja, que
+  // é o que nenhum fornecedor nacional promete. "Suporte humanizado" sozinho
+  // é adjetivo e não prova nada.
   description:
-    "O diferencial da CNC: suporte humanizado, direto e contínuo, sem central de chamados. Você fala com quem conhece o seu sistema e resolve.",
+    "Suporte de sistema de gestão e PDV em Maceió e no interior de Alagoas, todos os dias das 6h às 22h, direto com quem conhece a sua operação e com técnico na loja quando o caso pede. Sem central e sem fila de chamado.",
   alternates: { canonical: "/suporte" },
 };
 

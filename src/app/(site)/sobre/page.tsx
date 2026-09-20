@@ -6,9 +6,12 @@ import { sobre } from "@/content/sobre";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Sobre a CNC — revenda e suporte de sistemas de gestão",
+  title: "Sobre a CNC Sistemas, empresa de Maceió desde 2020",
+  // Esta página existe para quem está conferindo se a empresa é real antes de
+  // fechar, então a descrição adianta o que ele procura: tempo de casa,
+  // tamanho da base e CNPJ aberto.
   description:
-    "Conheça a CNC: revenda e suporte de sistemas de gestão e PDV. História, equipe, CNPJ e endereço.",
+    "A CNC Sistemas atende o comércio de Maceió e do interior de Alagoas desde 2020, com CNPJ aberto, endereço na cidade e nota 5,0 no Google. Quem atende é quem conhece a sua operação.",
   alternates: { canonical: "/sobre" },
 };
 
