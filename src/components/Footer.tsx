@@ -5,87 +5,55 @@ import { BotaoCookies } from "./AvisoCookies";
 import { medicaoAtiva } from "@/lib/analytics";
 
 /**
- * Footer — rodapé global do site institucional (renderizado pelo layout de
- * `(site)`). Quatro colunas: identidade, navegação (de `navPrincipal` + Área do
- * cliente), contato (WhatsApp/telefone, e-mail oculto) e endereço mais o
- * horário de atendimento. A barra inferior mostra razão social, CNPJ e o ano.
+ * Rodapé — cor da noite, quatro colunas (a marca, navegação, contato e
+ * endereço) e o nome "CNC Sistemas" em letra de letreiro ocupando a largura
+ * inteira, cortado pela borda de baixo como fachada vista da calçada.
+ *
+ * A barra inferior leva razão social, CNPJ, o ano gerado e as preferências de
+ * cookies. O telefone gigante que abria o rodapé saiu em 23/09/2026, porque
+ * a faixa amarela logo acima já faz esse papel.
  */
 export default function Footer() {
   const ano = new Date().getFullYear();
   const e = site.endereco;
 
   return (
-    <footer className="bg-brand-900 text-paper/80">
-      {/* O número em escala de placa: é o único dado do rodapé que alguém
-          procura, então ele abre o rodapé em vez de ficar numa coluna. */}
-      <div className="border-b border-paper/15">
-        <div className="container-cnc py-12 lg:py-16">
-          <p className="text-sm font-semibold text-brand-200">
-            WhatsApp e telefone, {site.horario.semana.toLowerCase()}
-          </p>
-          <LinkContato
-            origem="rodape"
-            className="mt-3 block w-fit text-[clamp(2.2rem,8.5vw,7.5rem)] font-extrabold leading-none tracking-tightest text-paper transition-colors hover:text-signal-500"
-          >
-            {site.whatsapp.exibicao}
-          </LinkContato>
-        </div>
-      </div>
-      <div className="container-cnc grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
-        {/* Identidade */}
-        <div className="lg:col-span-1">
-          <span className="text-2xl font-extrabold tracking-tightest text-paper">
-            CNC
-          </span>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-brand-200">
-            {site.descricaoCurta}
-          </p>
+    <footer className="grao relative overflow-hidden bg-noite text-papel/70">
+      <div className="container-cnc relative z-[2] grid gap-12 pb-16 pt-20 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-10">
+        <div>
+          <p className="semilarga text-2xl text-papel">CNC Sistemas</p>
+          <p className="mt-4 max-w-xs text-[0.95rem] leading-relaxed">{site.descricaoCurta}</p>
         </div>
 
-        {/* Navegação */}
         <nav aria-label="Rodapé">
-          <h2 className="label-dado text-paper">Navegação</h2>
-          <ul className="mt-4 space-y-2 text-sm">
+          <h2 className="text-sm font-semibold text-papel">Navegação</h2>
+          <ul className="mt-4 space-y-2.5 text-[0.95rem]">
             {navPrincipal.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="text-paper/70 transition-colors hover:text-paper"
-                >
+                <Link href={item.href} className="transition-colors hover:text-papel">
                   {item.label}
                 </Link>
               </li>
             ))}
             <li>
-              <Link
-                href="/area-do-cliente"
-                className="text-paper/70 transition-colors hover:text-paper"
-              >
+              <Link href="/area-do-cliente" className="transition-colors hover:text-papel">
                 Área do cliente
               </Link>
             </li>
           </ul>
         </nav>
 
-        {/* Contato */}
         <div>
-          <h2 className="label-dado text-paper">Contato</h2>
-          <ul className="mt-4 space-y-2 text-sm text-brand-200">
+          <h2 className="text-sm font-semibold text-papel">Contato</h2>
+          <ul className="mt-4 space-y-2.5 text-[0.95rem]">
             <li>
-              <LinkContato
-                origem="rodape"
-                className="transition-colors hover:text-paper"
-              >
-                WhatsApp: {site.whatsapp.exibicao}
+              <LinkContato origem="rodape" className="tabular-nums transition-colors hover:text-papel">
+                WhatsApp {site.whatsapp.exibicao}
               </LinkContato>
             </li>
             <li>
-              <LinkContato
-                origem="rodape"
-                canal="telefone"
-                className="transition-colors hover:text-paper"
-              >
-                Telefone: {site.telefone.exibicao}
+              <LinkContato origem="rodape" canal="telefone" className="tabular-nums transition-colors hover:text-papel">
+                Telefone {site.telefone.exibicao}
               </LinkContato>
             </li>
             <li>
@@ -93,51 +61,50 @@ export default function Footer() {
                 href={site.googleAvaliacao}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors hover:text-paper"
+                className="transition-colors hover:text-papel"
               >
                 Avaliar a CNC no Google
               </a>
             </li>
-            {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
-                Para reativar, descomente este bloco. */}
-            {/* <li>
-              <a
-                href={`mailto:${site.email}`}
-                className="transition-colors hover:text-paper"
-              >
-                {site.email}
-              </a>
-            </li> */}
+            {/* E-mail OCULTO por decisão do Felipe (23/09/2026): a conta
+                contato@ ainda não existe. Valor em site.email. */}
           </ul>
         </div>
 
-        {/* Endereço */}
         <div>
-          <h2 className="label-dado text-paper">Endereço</h2>
-          <address className="mt-4 space-y-1 text-sm not-italic text-brand-200">
+          <h2 className="text-sm font-semibold text-papel">Endereço</h2>
+          <address className="mt-4 space-y-1 text-[0.95rem] not-italic leading-relaxed">
             <p>{e.logradouro}</p>
             <p>
-              {e.bairro} — {e.cidade}/{e.uf}
+              {e.bairro}, {e.cidade}/{e.uf}
             </p>
-            {/* Dado real: CEP e horário em mono. */}
-            <p className="dado">CEP {e.cep}</p>
-            <p className="dado pt-2">{site.horario.semana}</p>
+            <p>
+              CEP <span className="dado text-[0.95rem]">{e.cep}</span>
+            </p>
+            <p className="pt-3 text-papel">{site.horario.semana}</p>
           </address>
         </div>
       </div>
 
-      {/* Barra inferior: dados legais + link discreto de parceria */}
-      <div className="border-t border-paper/15">
-        <div className="container-cnc flex flex-col gap-3 py-6 text-xs text-brand-200 sm:flex-row sm:items-center sm:justify-between">
+      <div className="container-cnc relative z-[2]">
+        <div className="flex flex-col gap-3 border-t border-papel/10 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
           <p>
-            {site.nomeCompleto} — CNPJ <span className="dado">{site.cnpj}</span>
+            {site.nomeCompleto}, CNPJ <span className="dado">{site.cnpj}</span>
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {medicaoAtiva && <BotaoCookies />}
-            <span>© {ano} CNC. Todos os direitos reservados.</span>
+            <span>© {ano} CNC Sistemas</span>
           </div>
         </div>
       </div>
+
+      {/* A marca como fachada: letra de letreiro cortada pela borda de baixo. */}
+      <p
+        aria-hidden="true"
+        className="larga relative z-[2] -mb-[0.2em] select-none whitespace-nowrap text-center text-[11vw] leading-[0.8] text-papel/[0.06]"
+      >
+        CNC Sistemas
+      </p>
     </footer>
   );
 }

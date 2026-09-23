@@ -1,39 +1,49 @@
 import type { Metadata } from "next";
-import LinkContato from "@/components/LinkContato";
+import TopoPagina from "@/components/TopoPagina";
+import FaixaContato from "@/components/FaixaContato";
+import TextoAcende from "@/components/rolagem/TextoAcende";
 
 export const metadata: Metadata = {
   title: "Seja parceiro da CNC",
   description:
     "Programa de parceria da CNC para revenda de sistemas de gestão. Página informativa secundária.",
   alternates: { canonical: "/seja-parceiro" },
-  // Fora do menu/sitemap por enquanto: não indexar nos buscadores.
+  // Fora do menu e do sitemap por enquanto: não indexar nos buscadores.
   robots: { index: false, follow: false },
 };
 
 /**
  * Página de parceria, fora do menu e fora do índice.
  *
- * Até 23/09/2026 ela mostrava ao visitante o texto provisório
- * "{{PREENCHER: descrição real do programa de parceria...}}". Saiu: enquanto
- * as condições (comissão, requisitos) não estiverem definidas pelo Felipe, a
- * página diz só o que é verdade e leva para a conversa.
+ * Diz só o que é verdade enquanto as condições (comissão, requisitos) não
+ * estiverem definidas pelo Felipe, e leva para a conversa. Até 23/09/2026 ela
+ * mostrava ao visitante o texto provisório "{{PREENCHER: ...}}".
  */
 export default function SejaParceiroPage() {
   return (
-    <section className="border-b-2 border-ink bg-paper">
-      <div className="container-cnc pb-16 pt-10 lg:pb-24 lg:pt-16">
-        <h1 className="max-w-[18ch] text-[clamp(2.1rem,5vw,4.4rem)] font-extrabold leading-[1] tracking-tightest text-ink">
-          Seja parceiro da CNC
-        </h1>
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
-          Você atua com tecnologia, contabilidade ou atende o comércio e quer oferecer sistema de
-          gestão com suporte de verdade para os seus clientes? A CNC trabalha com parceria para
-          chegar mais longe, e as condições a gente conversa caso a caso.
-        </p>
-        <LinkContato origem="parceiro" className="btn-primary mt-8 min-h-[48px] px-8">
-          Falar sobre parceria
-        </LinkContato>
-      </div>
-    </section>
+    <>
+      <TopoPagina
+        titulo="Seja parceiro da CNC"
+        texto={
+          <p>
+            Para quem atua com tecnologia, contabilidade ou atende o comércio e quer oferecer sistema
+            de gestão com suporte de verdade.
+          </p>
+        }
+      >
+        <div className="container-cnc pb-24 pt-20 lg:pb-36 lg:pt-32">
+          <TextoAcende
+            texto="O seu cliente ganha um sistema que funciona e alguém que atende quando o caixa trava. Você indica, a CNC implanta e cuida do dia a dia, e as condições da parceria a gente conversa caso a caso."
+            className="semilarga max-w-[28ch] text-[clamp(1.7rem,3.8vw,3.6rem)] leading-[1.1] text-ink"
+          />
+        </div>
+      </TopoPagina>
+
+      <FaixaContato
+        titulo="Quer conversar sobre parceria?"
+        texto="Conte o que você faz e quem você atende. A conversa começa pelo WhatsApp, direto com o dono da CNC."
+        origem="parceiro"
+      />
+    </>
   );
 }

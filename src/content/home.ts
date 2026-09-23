@@ -27,6 +27,10 @@ export const hero = {
   // Original: "A CNC representa e dá suporte aos principais sistemas de gestão e PDV do mercado. ..."
   subtitulo:
     "Quando a nota trava no meio do movimento, você fala direto com quem conhece a sua operação, e o técnico vai até a loja quando o caso pede. A partir de R$ 150 por mês, com instalação, migração dos seus dados e treinamento da equipe inclusos.",
+  // No celular o subtítulo inteiro empurra o botão para fora da primeira tela,
+  // então lá entra só a frase do preço, que é o que filtra quem chega.
+  subtituloCurto:
+    "A partir de R$ 150 por mês, com instalação, migração dos dados e treinamento inclusos.",
   ctaPrimario: "Falar no WhatsApp",
   ctaSecundario: "Pedir orçamento",
   // Slot de imagem: foto real do atendimento/equipe/operação da CNC.
@@ -225,3 +229,51 @@ export function perguntasFrequentes(dados: {
     },
   ];
 }
+
+/**
+ * MANIFESTO — a frase que acende com a rolagem logo abaixo do topo. É a
+ * promessa da CNC dita como o dono diria, e cada parte dela está no site:
+ * sem central (suporte.ts), técnico na loja (cidadesAtendidas).
+ */
+export const manifesto =
+  "Quando a nota trava no meio do movimento, você não abre chamado nem espera fila. Você fala com quem conhece a sua loja, e quando o caso pede, o técnico vai até o balcão.";
+
+/**
+ * CUPOM — a cena travada em que o cupom fiscal sai da impressora enquanto os
+ * quatro passos acendem. Cada passo é um destaque real dos sistemas
+ * (sistemas.ts): frente de caixa, estoque, emissão fiscal e financeiro. O
+ * cupom é ilustração de um objeto do comércio, não tela de sistema, e por isso
+ * a loja dele se chama "Seu comércio".
+ */
+export const cupom = {
+  titulo: "Uma venda, e o resto se resolve sozinho",
+  texto:
+    "Do bipe no caixa ao dinheiro no financeiro, o sistema faz o caminho inteiro enquanto a fila anda.",
+  passos: [
+    {
+      titulo: "Passou no caixa",
+      texto: "A frente de caixa registra a venda rápido, sem travar a fila do movimento.",
+    },
+    {
+      titulo: "Saiu do estoque",
+      texto: "Cada item vendido baixa do estoque na hora, sem planilha paralela e sem surpresa no balanço.",
+    },
+    {
+      titulo: "Nota autorizada",
+      texto: "A NFC-e é emitida junto com a venda, do jeito que a Sefaz pede, e o cupom sai pronto.",
+    },
+    {
+      titulo: "Entrou no financeiro",
+      texto: "O valor cai no caixa do dia, com contas a pagar e a receber no mesmo sistema.",
+    },
+  ],
+  // Itens do cupom ilustrativo. A soma bate com o total (105,31).
+  itens: [
+    { cod: "001", desc: "ARROZ TIPO 1 5KG", qtd: "1", valor: "28,90" },
+    { cod: "002", desc: "FEIJAO CARIOCA 1KG", qtd: "2", valor: "15,80" },
+    { cod: "003", desc: "CAFE TORRADO 500G", qtd: "1", valor: "17,49" },
+    { cod: "004", desc: "LEITE INTEGRAL 1L", qtd: "6", valor: "35,94" },
+    { cod: "005", desc: "PAO FRANCES KG", qtd: "0,480", valor: "7,18" },
+  ],
+  total: "105,31",
+};

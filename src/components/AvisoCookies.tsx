@@ -60,26 +60,26 @@ export default function AvisoCookies() {
   return (
     <section
       aria-label="Aviso de cookies"
-      className="fixed inset-x-0 bottom-0 z-[60] border-t-2 border-signal-500 bg-ink text-paper"
+      className="fixed inset-x-3 bottom-3 z-[60] rounded-cartao bg-noite p-5 text-papel ring-1 ring-papel/10 shadow-[0_30px_60px_-20px_rgba(7,11,24,0.6)] sm:inset-x-auto sm:bottom-6 sm:left-6 sm:max-w-md sm:p-6"
     >
-      <div className="container-cnc flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between md:gap-10">
-        <p className="max-w-3xl text-sm leading-relaxed text-paper/85">
+      <div className="flex flex-col gap-4">
+        <p className="text-sm leading-relaxed text-papel/80">
           Este site usa cookies do Google Analytics e do Google Ads para medir
           quantas pessoas visitam e de qual anúncio vieram. Recusar não muda
           nada no uso do site.
         </p>
-        <div className="grid flex-none grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3">
           <button
             type="button"
             onClick={() => escolher("recusado")}
-            className="btn-ghost-dark min-h-[44px] px-7"
+            className="btn-ghost-dark min-h-[46px] px-5"
           >
             Recusar
           </button>
           <button
             type="button"
             onClick={() => escolher("aceito")}
-            className="btn-ghost-dark min-h-[44px] px-7"
+            className="btn-ghost-dark min-h-[46px] px-5"
           >
             Aceitar
           </button>

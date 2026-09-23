@@ -1,30 +1,34 @@
 import Link from "next/link";
 import { navPrincipal } from "@/content/site";
+import PegasoTraco from "@/components/rolagem/PegasoTraco";
 
 /**
- * NotFound — página 404 global (App Router). Fica fora do layout do site, então
- * traz ela mesma o caminho de volta: a home em destaque e as outras páginas
- * listadas, no mesmo catálogo em linhas do resto do site.
+ * NotFound — página 404 global. Fica fora do layout do site (sem cabeçalho e
+ * rodapé), então traz ela mesma o caminho de volta: a home em destaque e as
+ * outras páginas em lista, na noite do topo com o pégaso em traço.
  */
 export default function NotFound() {
   return (
-    <main className="flex min-h-screen flex-col justify-center bg-paper">
-      <div className="container-cnc py-16">
-        <p className="dado text-sm text-ink-soft">Erro 404</p>
-        <h1 className="mt-3 max-w-[16ch] text-[clamp(2.1rem,5vw,4.4rem)] font-extrabold leading-[1] tracking-tightest text-ink">
+    <main className="grao relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-noite text-papel">
+      <div aria-hidden="true" className="absolute -right-[30%] top-[8%] w-[100vw] opacity-50 lg:-right-[6%] lg:w-[48vw]">
+        <PegasoTraco className="h-auto w-full" />
+      </div>
+      <div className="container-cnc relative z-[2] py-20">
+        <p className="dado text-papel/60">Erro 404</p>
+        <h1 className="larga mt-4 max-w-[14ch] text-[clamp(2.2rem,5.6vw,5.2rem)]">
           Esta página não existe ou mudou de endereço
         </h1>
-        <Link href="/" className="btn-primary mt-8 min-h-[48px] px-8">
+        <Link href="/" className="btn-primary mt-10">
           Voltar para o início
         </Link>
-        <ul className="mt-12 max-w-xl border-t-2 border-ink">
+        <ul className="mt-14 max-w-xl">
           {navPrincipal
             .filter((item) => item.href !== "/")
             .map((item) => (
-              <li key={item.href} className="border-b border-ink/15">
+              <li key={item.href} className="border-t border-papel/10 last:border-b">
                 <Link
                   href={item.href}
-                  className="flex justify-between py-4 text-lg font-bold text-ink hover:text-brand-700"
+                  className="semilarga flex items-center justify-between py-4 text-xl transition-colors hover:text-signal-500"
                 >
                   {item.label}
                   <span aria-hidden="true">→</span>

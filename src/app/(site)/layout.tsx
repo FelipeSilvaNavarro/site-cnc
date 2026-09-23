@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import AvisoCookies from "@/components/AvisoCookies";
+import RolagemSuave from "@/components/rolagem/RolagemSuave";
 import { medicaoAtiva } from "@/lib/analytics";
 import { site } from "@/content/site";
 
@@ -83,10 +84,11 @@ export default function SiteLayout({
       {/* Link de pular para o conteúdo (acessibilidade / teclado). */}
       <a
         href="#conteudo"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-sm focus:bg-brand-700 focus:px-4 focus:py-2 focus:text-sm focus:text-paper"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-signal-500 focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-ink"
       >
         Pular para o conteúdo
       </a>
+      <RolagemSuave />
       <Header />
       <main id="conteudo">{children}</main>
       <Footer />

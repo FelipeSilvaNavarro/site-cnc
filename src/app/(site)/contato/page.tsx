@@ -1,98 +1,142 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
+import { sistemas, recursosComuns } from "@/content/sistemas";
+import { perguntasFrequentes } from "@/content/home";
 import LinkContato from "@/components/LinkContato";
 import StatusAtendimento from "@/components/StatusAtendimento";
-import PlacasCidades from "@/components/PlacasCidades";
+import IconeWhatsApp from "@/components/IconeWhatsApp";
+import TopoComFolha from "@/components/rolagem/TopoComFolha";
+import TituloMascara from "@/components/rolagem/TituloMascara";
+import PegasoTraco from "@/components/rolagem/PegasoTraco";
+import FaixaCidades from "@/components/rolagem/FaixaCidades";
 
 export const metadata: Metadata = {
   title: "Contato da CNC Sistemas em Maceió, WhatsApp e telefone",
-  // Busca por contato é intenção máxima, e quem pesquisa isso quer o número e
-  // o horário na própria lista de resultados, sem abrir a página.
+  // Busca por contato é intenção máxima: o número e o horário já na lista de
+  // resultados, sem precisar abrir a página.
   description:
     "Fale com a CNC Sistemas no WhatsApp ou no telefone (82) 99366-0508, todos os dias das 6h às 22h. Atendimento para o comércio de Maceió e do interior de Alagoas.",
   alternates: { canonical: "/contato" },
 };
 
+/** As perguntas que quem vai chamar faz antes de chamar. */
+const PERGUNTAS_DO_CONTATO = [
+  "Qual o horário de atendimento?",
+  "Preciso abrir chamado para ter suporte?",
+  "O técnico vai até a minha loja?",
+];
+
 /**
  * ContatoPage — rota "/contato".
  *
- * Quem abre esta página quer o número, então o número é o título: em escala de
- * placa, clicável, com o status de atendimento ao vivo embaixo. Endereço e
- * horário vão numa ficha ao lado.
- *
- * Rodada de 23/09/2026: saiu o iframe do Google Maps, que apontava para o
- * Brasil inteiro (o ponto exato não é exposto, por privacidade) e por isso não
- * informava nada e ainda pesava a página. Entraram as placas das cidades onde
- * a CNC já atende, que respondem o que o mapa deveria responder.
- * O texto antigo convidava a mandar e-mail, que está oculto no site.
- *
- * Sem movimento: é página de ação, o conteúdo entra parado.
+ * Quem abre esta página quer o número, então o número é o título do topo, em
+ * letra de letreiro e clicável, com o status ao vivo e os dois botões. Na
+ * folha, horário e endereço, e as três perguntas que se faz antes de chamar;
+ * depois, as cidades onde a CNC já atende. O mapa do Google saiu em
+ * 23/09/2026: apontava para o Brasil inteiro (o ponto exato não é exposto) e
+ * não informava nada.
  */
 export default function ContatoPage() {
   const e = site.endereco;
+  const perguntas = perguntasFrequentes({
+    horario: site.horario.semana,
+    cidades: site.cidadesAtendidas,
+    portes: sistemas.map((s) => ({ nome: s.nome, resumo: s.resumo })),
+    notas: recursosComuns.texto,
+  }).filter((f) => PERGUNTAS_DO_CONTATO.includes(f.pergunta));
 
   return (
     <>
-      <section className="border-b-2 border-ink bg-paper">
-        <div className="container-cnc grid gap-12 pb-12 pt-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:items-end lg:gap-16 lg:pb-20 lg:pt-16">
-          <div>
-            <h1 className="text-lg font-bold text-ink-soft">
-              Fale com a CNC no WhatsApp ou por telefone
-            </h1>
-            <LinkContato
-              origem="contato"
-              className="mt-4 block w-fit whitespace-nowrap text-[clamp(2.2rem,8.5vw,5.25rem)] font-extrabold leading-none tracking-tightest tabular-nums text-ink transition-colors hover:text-brand-700"
+      <TopoComFolha
+        altura="h-[88svh] min-h-[560px]"
+        topo={
+          <>
+            <div
+              aria-hidden="true"
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(45% 55% at 85% 30%, rgba(43,87,196,0.34) 0%, rgba(43,87,196,0.06) 50%, transparent 72%)",
+              }}
+            />
+            <div
+              data-topo-fundo=""
+              className="absolute -right-[38%] top-[10%] w-[110vw] opacity-60 sm:-right-[20%] sm:w-[70vw] lg:-right-[8%] lg:top-[4%] lg:w-[44vw] lg:max-w-[760px]"
             >
-              {site.whatsapp.exibicao}
-            </LinkContato>
-            <StatusAtendimento className="mt-6" />
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <LinkContato origem="contato" className="btn-primary min-h-[48px] px-8">
-                Chamar no WhatsApp
+              <PegasoTraco className="h-auto w-full" />
+            </div>
+            <div
+              data-topo-conteudo=""
+              className="container-cnc relative z-[2] flex h-full origin-bottom flex-col justify-end pb-10 pt-28 lg:pb-16"
+            >
+              <h1 className="max-w-md text-lg font-semibold text-papel/70 sm:text-xl">
+                Fale com a CNC no WhatsApp ou por telefone
+              </h1>
+              <LinkContato origem="contato" className="mt-3 block w-fit hover:text-signal-500">
+                <TituloMascara
+                  as="p"
+                  texto={site.whatsapp.exibicao}
+                  atrasoInicial={0.2}
+                  passo={0.09}
+                  className="larga whitespace-nowrap text-[clamp(2.3rem,8.4vw,7.4rem)] tabular-nums"
+                />
               </LinkContato>
-              <LinkContato
-                origem="contato"
-                canal="telefone"
-                className="btn-secondary min-h-[48px] px-8"
+              <div
+                className="mt-7 w-fit animate-some-entra rounded-full bg-papel/10 px-4 py-2 ring-1 ring-papel/15"
+                style={{ animationDelay: "0.6s" }}
               >
-                Ligar agora
-              </LinkContato>
+                <StatusAtendimento tom="escuro" />
+              </div>
+              <div
+                className="mt-8 flex animate-some-entra flex-col gap-3 sm:flex-row"
+                style={{ animationDelay: "0.75s" }}
+              >
+                <LinkContato origem="contato" className="btn-primary pr-3">
+                  Chamar no WhatsApp
+                  <span className="btn-seta" aria-hidden="true">
+                    <IconeWhatsApp className="h-3.5 w-3.5" />
+                  </span>
+                </LinkContato>
+                <LinkContato origem="contato" canal="telefone" className="btn-ghost-dark">
+                  Ligar agora
+                </LinkContato>
+              </div>
+            </div>
+          </>
+        }
+      >
+        <div className="container-cnc grid gap-12 pb-24 pt-20 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20 lg:pb-36 lg:pt-28">
+          <div className="flex flex-col gap-3">
+            <div className="rounded-cartao bg-noite p-7 text-papel sm:p-8">
+              <p className="text-sm font-semibold text-papel/60">Horário</p>
+              <p className="semilarga mt-3 text-2xl">{site.horario.semana}</p>
+              <p className="mt-1 text-papel/70">{site.horario.sabado}</p>
+            </div>
+            <div className="rounded-cartao bg-papel-claro p-7 ring-1 ring-ink/10 sm:p-8">
+              <p className="text-sm font-semibold text-ink-muted">Endereço</p>
+              <address className="mt-3 text-lg not-italic leading-relaxed text-ink">
+                {e.logradouro}, {e.bairro}
+                <br />
+                {e.cidade}/{e.uf}, CEP <span className="dado text-[1.05rem]">{e.cep}</span>
+              </address>
             </div>
           </div>
 
-          <dl className="border-t-2 border-ink">
-            <div className="flex justify-between gap-6 border-b border-ink/15 py-4">
-              <dt className="text-sm font-semibold text-ink-soft">Horário</dt>
-              <dd className="text-right text-base text-ink">
-                {site.horario.semana}
-                <br />
-                <span className="text-ink-soft">{site.horario.sabado}</span>
-              </dd>
-            </div>
-            <div className="flex justify-between gap-6 border-b border-ink/15 py-4">
-              <dt className="text-sm font-semibold text-ink-soft">Endereço</dt>
-              <dd className="text-right text-base text-ink">
-                {e.logradouro}, {e.bairro}
-                <br />
-                {e.cidade}/{e.uf}, CEP <span className="dado text-base">{e.cep}</span>
-              </dd>
-            </div>
-          </dl>
+          <div>
+            <h2 className="larga text-[clamp(2.1rem,4.4vw,4rem)] text-ink">Antes de chamar</h2>
+            <dl className="mt-10 flex flex-col gap-8">
+              {perguntas.map((f) => (
+                <div key={f.pergunta} className="border-t border-ink/15 pt-6">
+                  <dt className="semilarga text-[clamp(1.3rem,2vw,1.7rem)] text-ink">{f.pergunta}</dt>
+                  <dd className="mt-3 max-w-xl text-lg leading-relaxed text-ink-soft">{f.resposta}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
-      </section>
+      </TopoComFolha>
 
-      <section className="bg-paper py-16 lg:py-24">
-        <div className="container-cnc">
-          <h2 className="max-w-3xl text-3xl font-extrabold tracking-tightest text-ink sm:text-4xl lg:text-5xl">
-            Onde a CNC já atende
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">
-            Cidades de Alagoas onde a CNC já tem cliente. A sua não está aqui? Chama no WhatsApp
-            que a gente vê o deslocamento.
-          </p>
-          <PlacasCidades className="mt-10" />
-        </div>
-      </section>
+      <FaixaCidades />
     </>
   );
 }

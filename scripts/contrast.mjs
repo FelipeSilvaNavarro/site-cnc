@@ -28,6 +28,18 @@ const cores = {
   "brand-900": "#0e1b3d",
   "signal-400": "#ffd43b",
   "signal-500": "#ffc400",
+  // Direção de 23/09/2026 (PRODUCT.md). Transparências já misturadas com o
+  // fundo em que aparecem, porque o contraste é da cor que chega ao olho.
+  "noite": "#070b18",
+  "noite-800": "#111a33",
+  "papel": "#f4f5f7",
+  "papel-claro": "#ffffff",
+  "brand-600": "#22459b",
+  "papel/70 sobre noite": "#adafb4",
+  "papel/60 sobre noite": "#95979e",
+  "papel/60 sobre noite-800": "#999da9",
+  "ink/75 sobre signal": "#483c0d",
+  "ink/80 sobre signal": "#3c320e",
 };
 
 /** Pares texto/fundo realmente usados no site, com o mínimo exigido. */
@@ -56,6 +68,23 @@ const pares = [
   ["brand-100", "brand-700", 4.5, "rotulo Base na placa de Maceio"],
   ["signal-500", "ink", 4.5, "preco no cartaz e na ficha do hero"],
   ["paper", "ink", 4.5, "texto da ficha de atendimento"],
+  // Direção "balcão de Maceió à noite"
+  ["papel", "noite", 4.5, "titulo e texto no topo escuro"],
+  ["papel/70 sobre noite", "noite", 4.5, "subtitulo do topo, texto das cenas escuras"],
+  ["papel/60 sobre noite", "noite", 4.5, "rotulos no rodape e no topo"],
+  ["papel/60 sobre noite-800", "noite-800", 4.5, "rotulo da ficha de atendimento"],
+  ["papel", "noite-800", 4.5, "valor da ficha, cartao do MEDIO"],
+  ["signal-500", "noite", 4.5, "preco e destaque amarelo no escuro"],
+  ["ink", "papel", 4.5, "texto na folha clara"],
+  ["ink-soft", "papel", 4.5, "texto de apoio na folha"],
+  ["ink-muted", "papel", 4.5, "rotulos na folha"],
+  ["ink-muted", "papel-claro", 4.5, "rotulo dos cartoes claros"],
+  ["brand-600", "papel", 4.5, "rotulo azul da cena"],
+  ["papel", "brand-600", 4.5, "cartao e painel do PRO"],
+  ["brand-100", "brand-600", 4.5, "texto de apoio no painel do PRO"],
+  ["ink", "signal-500", 4.5, "fechamento amarelo, painel do SIMPLES"],
+  ["ink/75 sobre signal", "signal-500", 4.5, "texto de apoio no amarelo"],
+  ["ink/80 sobre signal", "signal-500", 4.5, "texto do fechamento"],
   ["signal-500", "brand-900", 3, "filete de sinalizacao sobre azul (nao-texto)"],
   ["signal-500", "ink", 3, "anel de foco sobre tinta (nao-texto)"],
 ];

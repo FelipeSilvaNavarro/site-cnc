@@ -1,52 +1,54 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import LinkContato from "./LinkContato";
+import IconeWhatsApp from "./IconeWhatsApp";
 
 /**
- * Botão flutuante de WhatsApp, presente em todas as páginas do site.
+ * Botão flutuante do WhatsApp, o CTA mais visto do site.
  *
- * Placa de sinalização, não bolha de chat: pictograma em campo de tinta ao lado
- * do rótulo em campo amarelo, os dois dentro da mesma moldura de 2px. É a
- * mesma mecânica da placa aparafusada que o resto do site usa, e o motivo de o
- * ícone morar num campo escuro é legibilidade: o glifo do WhatsApp é
- * reconhecido pela silhueta clara sobre fundo escuro, e invertido (preto sobre
- * amarelo, como estava até 24/08/2026) o balão vira mancha e o telefone dentro
- * dele some.
- *
- * O rótulo existe porque este é o CTA mais visto do site, aparece em toda
- * página e estava mudo: ícone sozinho não diz o que acontece ao clicar. No
- * celular o texto sai, porque lá a largura é do conteúdo e o flutuante é o
- * único caminho sempre visível já que o menu está colapsado, mas o campo
- * amarelo continua como faixa: sem ele o botão vira um bloco escuro e perde o
- * sinal de ação, que é a única função que o amarelo tem neste site.
- *
- * Sem círculo, sem sombra e sem `scale` no hover, que é a assinatura do botão
- * flutuante de template e está proibida no PRODUCT.md.
+ * Entra depois da primeira tela, porque no topo o botão amarelo do título já
+ * está à vista e dois botões iguais disputando o mesmo olhar só dividem o
+ * clique. No celular é o círculo amarelo com o glifo; do tablet para cima
+ * ganha o rótulo, porque ícone sozinho não diz o que acontece ao clicar.
  */
 export default function WhatsAppFloat() {
+  const [visivel, setVisivel] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // Some sobre a faixa amarela do fechamento (data-sem-flutuante): amarelo
+    // sobre amarelo não se vê, e ali o convite gigante já é o botão.
+    let sobreFaixa = false;
+    const decidir = () =>
+      setVisivel(window.scrollY > window.innerHeight * 0.6 && !sobreFaixa);
+    const obs = new IntersectionObserver(
+      (entradas) => {
+        sobreFaixa = entradas.some((e) => e.isIntersecting);
+        decidir();
+      },
+      { rootMargin: "0px 0px -15% 0px" },
+    );
+    document.querySelectorAll("[data-sem-flutuante]").forEach((el) => obs.observe(el));
+    decidir();
+    window.addEventListener("scroll", decidir, { passive: true });
+    return () => {
+      obs.disconnect();
+      window.removeEventListener("scroll", decidir);
+    };
+  }, [pathname]);
+
   return (
     <LinkContato
       origem="flutuante"
       aria-label="Falar no WhatsApp"
-      className="group fixed bottom-5 right-5 z-50 inline-flex items-stretch border-2 border-ink"
+      className={`fixed bottom-4 right-4 z-40 inline-flex h-14 items-center gap-3 rounded-full bg-signal-500 px-[1.05rem] text-ink ring-4 ring-noite/10 transition-[transform,opacity,background-color] duration-500 ease-expo hover:bg-signal-400 sm:bottom-6 sm:right-6 sm:pl-5 sm:pr-6 ${
+        visivel ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-6 opacity-0"
+      }`}
     >
-      {/* Campo do pictograma: tinta chapada, glifo em amarelo. */}
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-ink text-signal-500 transition-colors duration-150 group-hover:bg-ink-soft">
-        {/* Ícone WhatsApp (SVG inline, sem dependência externa). */}
-        <svg
-          viewBox="0 0 24 24"
-          className="h-5 w-5"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.13c-1.52 0-3-.41-4.29-1.18l-.31-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.35c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z" />
-        </svg>
-      </span>
-
-      {/* Campo de ação: faixa no celular, placa com rótulo a partir de 640px. */}
-      <span className="flex w-3 items-center bg-signal-500 transition-colors duration-150 group-hover:bg-signal-400 sm:w-auto sm:px-4">
-        <span className="hidden text-sm font-semibold text-ink sm:inline">
-          Falar no WhatsApp
-        </span>
-      </span>
+      <IconeWhatsApp className="h-5 w-5" />
+      <span className="hidden text-[0.95rem] font-semibold sm:inline">Falar no WhatsApp</span>
     </LinkContato>
   );
 }

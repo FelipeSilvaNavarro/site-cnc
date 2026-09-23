@@ -7,22 +7,18 @@ import { site } from "@/content/site";
 import "./globals.css";
 
 /**
- * Tipografia — direção "direto e utilitário".
+ * Tipografia — direção "balcão de Maceió à noite" (PRODUCT.md, 23/09/2026).
  *
- * UMA família (Archivo) em pesos extremos, não duas fontes disputando. O
- * contraste tipográfico vem do peso (800 no título, 400 no corpo) e do
- * tamanho, que é mais robusto e mais rápido que um par display+corpo.
- *
- * Archivo é grotesca de alta legibilidade desenhada para uso em destaque e
- * sinalização — o oposto da sans geométrica de startup que estava aqui antes
- * (Space Grotesk + Inter + JetBrains Mono eram, as três, escolha por reflexo).
- *
- * Azeret Mono entra SÓ para dado real: telefone, CNPJ, CEP, horário. Nunca
- * como decoração "técnica".
+ * Uma família, Archivo, em dois registros: larga e pesada no título (letreiro
+ * de fachada), normal e 400 no corpo. Azeret Mono entra só no cupom fiscal e
+ * em dado real (telefone, CNPJ, CEP).
  */
 const display = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  // Fonte variável com o eixo de largura: o título usa Archivo larga
+  // (font-stretch 115% a 125%), que é a letra de letreiro de fachada da
+  // direção de 23/09/2026. Um arquivo só serve peso e largura.
+  axes: ["wdth"],
   variable: "--font-display",
   display: "swap",
 });
@@ -153,7 +149,17 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       className={`${display.variable} ${mono.variable}`}
+      // `data-cenas` é posto pelo script abaixo antes do React hidratar.
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.setAttribute('data-cenas','')",
+          }}
+        />
+      </head>
       <body>
         {children}
         {/* Medição de conversa iniciada. Sem os IDs em variável de ambiente,

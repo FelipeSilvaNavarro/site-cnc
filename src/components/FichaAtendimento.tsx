@@ -62,8 +62,8 @@ export default function FichaAtendimento({
   }
 
   return (
-    <div className={`bg-ink text-paper ${className}`}>
-      <div className="flex items-center justify-between gap-4 border-b border-paper/15 px-6 py-5">
+    <div className={`overflow-hidden rounded-cartao bg-noite-800 text-papel ring-1 ring-papel/10 ${className}`}>
+      <div className="flex items-center justify-between gap-4 border-b border-papel/10 px-6 py-5">
         <p className="text-lg font-extrabold tracking-tightest">{titulo}</p>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -72,18 +72,18 @@ export default function FichaAtendimento({
           aria-hidden="true"
           width={32}
           height={28}
-          className="h-7 w-auto opacity-80"
+          className="h-7 w-auto opacity-70"
         />
       </div>
-      <dl className="divide-y divide-paper/15 px-6">
+      <dl className="divide-y divide-papel/10 px-6">
         {linhas.map(([rotulo, valor]) => (
           <div key={rotulo} className="flex items-baseline justify-between gap-6 py-4">
-            <dt className="text-sm text-paper/70">{rotulo}</dt>
-            <dd className="text-right text-sm text-paper">{valor}</dd>
+            <dt className="text-sm text-papel/60">{rotulo}</dt>
+            <dd className="text-right text-sm text-papel">{valor}</dd>
           </div>
         ))}
       </dl>
-      <div className="border-t-2 border-signal-500 px-6 py-5">
+      <div className="border-t border-papel/10 bg-papel/[0.04] px-6 py-4">
         <StatusAtendimento tom="escuro" />
       </div>
     </div>

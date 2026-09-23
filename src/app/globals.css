@@ -7,12 +7,8 @@
     color-scheme: light;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
-    @apply bg-paper text-ink font-sans antialiased;
+    @apply bg-papel font-sans text-ink antialiased;
     text-rendering: optimizeLegibility;
   }
 
@@ -20,100 +16,153 @@
   h2,
   h3,
   h4 {
-    @apply font-display text-ink;
+    @apply font-display;
     text-wrap: balance;
   }
 
-  /* Prosa longa: reduz órfãs sem mexer no layout. */
   p {
     text-wrap: pretty;
   }
 
   /**
-   * Foco visível de duas cores (amarelo + tinta).
-   *
-   * Por que duas: um anel de uma cor só falha em metade do site. O amarelo
-   * some sobre fundo claro; a tinta some sobre as seções azul-escuro. O par
-   * amarelo-sobre-tinta é legível nos dois, e é a convenção de sinalização
-   * que a marca adotou (mesma lógica do GOV.UK).
+   * Foco visível de duas cores (amarelo + tinta), legível sobre a folha clara
+   * e sobre a noite.
    */
   :focus-visible {
     outline: 3px solid theme("colors.signal.500");
-    outline-offset: 2px;
-    box-shadow: 0 0 0 6px theme("colors.ink.DEFAULT");
+    outline-offset: 3px;
+    box-shadow: 0 0 0 7px theme("colors.ink.DEFAULT");
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: theme("colors.signal.500");
+    color: theme("colors.ink.DEFAULT");
   }
 }
 
 @layer components {
-  /* Largura de conteúdo e respiro lateral padrão do layout. */
   .container-cnc {
-    @apply mx-auto w-full max-w-content px-6 sm:px-8 lg:px-10;
+    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-12;
   }
 
   /**
-   * Botões. Cantos retos, sem sombra, sem gradiente.
-   *
-   * O primário é amarelo de sinalização com texto preto (12.12:1). É a única
-   * superfície amarela do site: se está amarelo, é ação. O secundário é uma
-   * moldura de 2px que inverte no hover — peso de placa, não de card.
+   * Título largo: Archivo no eixo de largura, a letra de letreiro de fachada.
+   * `larga` para título de cena, `semilarga` para título de seção e cartão.
+   */
+  .larga {
+    font-stretch: 125%;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+  }
+  .semilarga {
+    font-stretch: 112%;
+    font-weight: 750;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+  }
+
+  /**
+   * Botões em pílula. O primário é amarelo de etiqueta com tinta (12:1). O
+   * ícone de seta mora num círculo que corre para a direita no hover, o único
+   * gesto de botão do site.
    */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-semibold transition-colors duration-150;
+    @apply inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full px-7 text-[0.95rem] font-semibold transition-[background-color,color,border-color,transform] duration-300 ease-expo;
   }
   .btn-primary {
     @apply btn bg-signal-500 text-ink hover:bg-signal-400;
   }
   .btn-secondary {
-    @apply btn border-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-paper;
+    @apply btn border border-ink/25 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-papel;
   }
-  /* Secundário sobre superfície escura. */
   .btn-ghost-dark {
-    @apply btn border-2 border-paper/40 bg-transparent text-paper hover:border-paper hover:bg-paper hover:text-ink;
+    @apply btn border border-papel/30 bg-transparent text-papel hover:border-papel hover:bg-papel hover:text-ink;
+  }
+  .btn-seta {
+    @apply flex h-7 w-7 flex-none items-center justify-center rounded-full bg-ink text-signal-500 transition-transform duration-300 ease-expo;
+  }
+  .btn:hover .btn-seta {
+    transform: translateX(3px);
   }
 
-  /**
-   * Ficha técnica: rótulo e valor.
-   *
-   * O rótulo usa peso alto em caixa normal — NÃO versalete espaçado, que era
-   * a assinatura repetida em todo o site. O valor usa mono com algarismo
-   * tabular, e só vale para dado real: telefone, CNPJ, CEP, horário, versão.
-   */
   .label-dado {
     @apply text-sm font-semibold leading-tight;
   }
   .dado {
     @apply font-mono text-sm font-normal tabular-nums;
   }
-}
 
-@layer utilities {
-  /* Filete de sinalização: marca início de bloco numerado. 2px, não 1px. */
-  .rule-signal::before {
+  /* Rótulo de cena: pequeno, caixa normal, com ponto. Um por cena, nunca
+     versalete espaçado. */
+  .rotulo {
+    @apply inline-flex items-center gap-2 text-sm font-semibold;
+  }
+  .rotulo::before {
     content: "";
-    @apply mb-5 block h-0.5 w-10 bg-signal-500;
+    @apply h-1.5 w-1.5 rounded-full bg-current;
   }
 }
 
+@layer utilities {
+  /* Grão de filme sobre as cenas escuras: tira a cara de tela plana. SVG
+     inline, sem requisição. */
+  .grao {
+    position: relative;
+    isolation: isolate;
+  }
+  .grao::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.09;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Borda serrilhada do papel do cupom fiscal. */
+  .serrilha {
+    --dente: 10px;
+    mask:
+      conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--dente) 100%;
+  }
+}
+
+/* Lenis: rolagem suave. Recomendado pela própria biblioteca. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 /**
- * Rede de segurança da revelação.
+ * Movimento reduzido e impressão: tudo no estado final, parado.
  *
- * O conteúdo NUNCA pode depender da animação para existir. Em impressão e
- * para quem pede menos movimento, tudo aparece no estado final imediatamente.
- * O componente Reveal tem ainda um timeout próprio para o caso de o
- * IntersectionObserver não disparar (aba oculta, renderer headless).
+ * As cenas do GSAP também conferem a preferência e nem se montam, então isto é
+ * a rede de segurança para as animações de CSS e para o estado inicial.
  */
 @media print {
-  [data-reveal] {
+  [data-reveal],
+  [data-anima] {
     opacity: 1 !important;
     transform: none !important;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  [data-reveal] {
+  [data-reveal],
+  [data-anima] {
     opacity: 1 !important;
     transform: none !important;
   }
@@ -123,5 +172,38 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/**
+ * Pégaso em traço de luz (PegasoTraco.tsx): o traço corre o contorno inteiro
+ * em 2,6s e depois o preenchimento acende fraco por baixo.
+ */
+.pegaso .pegaso-traco {
+  fill: theme("colors.brand.400");
+  fill-opacity: 0;
+  stroke: theme("colors.brand.300");
+  stroke-width: 1.25px;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation:
+    pegaso-desenha 2.6s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards,
+    pegaso-acende 1.6s ease-out 2.4s forwards;
+}
+@keyframes pegaso-desenha {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes pegaso-acende {
+  to {
+    fill-opacity: 0.12;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pegaso .pegaso-traco {
+    stroke-dashoffset: 0;
+    fill-opacity: 0.12;
   }
 }

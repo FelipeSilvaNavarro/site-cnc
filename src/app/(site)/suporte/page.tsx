@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import ImageSlot from "@/components/ImageSlot";
-import Reveal from "@/components/Reveal";
-import CtaButtons from "@/components/CtaButtons";
+import Image from "next/image";
+import TopoPagina from "@/components/TopoPagina";
 import FichaAtendimento from "@/components/FichaAtendimento";
-import PlacasCidades from "@/components/PlacasCidades";
+import FaixaContato from "@/components/FaixaContato";
+import LinkContato from "@/components/LinkContato";
+import IconeWhatsApp from "@/components/IconeWhatsApp";
+import TextoAcende from "@/components/rolagem/TextoAcende";
+import CartoesEmpilhados from "@/components/rolagem/CartoesEmpilhados";
+import FaixaCidades from "@/components/rolagem/FaixaCidades";
 import { fotoExiste } from "@/lib/fotos";
 import { suporte } from "@/content/suporte";
-import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Suporte de sistema de gestão em Maceió, com técnico na loja",
   // A objeção que esta página responde é medo de ficar na mão com a loja
-  // cheia, então a descrição precisa dizer o horário real e a ida à loja, que
-  // é o que nenhum fornecedor nacional promete. "Suporte humanizado" sozinho
-  // é adjetivo e não prova nada.
+  // cheia, então a descrição diz o horário real e a ida à loja.
   description:
     "Suporte de sistema de gestão e PDV em Maceió e no interior de Alagoas, todos os dias das 6h às 22h, direto com quem conhece a sua operação e com técnico na loja quando o caso pede. Sem central e sem fila de chamado.",
   alternates: { canonical: "/suporte" },
@@ -22,85 +23,66 @@ export const metadata: Metadata = {
 /**
  * SuportePage — rota "/suporte".
  *
- * Quem chega aqui muitas vezes já é cliente e está com o caixa parado, então a
- * primeira dobra entrega o canal e diz se tem gente atendendo agora (ficha de
- * atendimento), no lugar do painel vazio que esperava a foto. Com a foto em
- * /public/fotos/suporte.jpg, ela entra acima da ficha sem mexer em código.
- *
- * Movimento: um momento só, os três itens do atendimento escalonados.
+ * Quem chega aqui muitas vezes já é cliente e está com o caixa parado, então o
+ * topo entrega o botão e, ao lado, a ficha de atendimento com o status ao vivo.
+ * No celular a ficha desce para o começo da folha, porque o topo preso precisa
+ * caber numa tela. Com a foto em /public/fotos/suporte.jpg, ela entra na folha.
  */
 export default function SuportePage() {
   const temFoto = fotoExiste(suporte.imagem.src);
 
   return (
     <>
-      <section className="border-b-2 border-ink bg-paper">
-        <div className="container-cnc grid gap-10 pb-12 pt-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-16 lg:pb-20 lg:pt-16">
-          <div>
-            <h1 className="max-w-[16ch] text-[clamp(2.1rem,5vw,4.4rem)] font-extrabold leading-[1] tracking-tightest text-ink">
-              {suporte.titulo}
-            </h1>
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft">{suporte.intro}</p>
-            <CtaButtons
-              origem="suporte"
-              primario="Falar com o suporte"
-              secundario="Pedir orçamento"
-              className="mt-8"
-            />
-          </div>
-          <div className="animate-rise">
-            {temFoto && (
-              <ImageSlot
+      <TopoPagina
+        titulo={suporte.titulo}
+        texto={<p>{suporte.intro}</p>}
+        acoes={
+          <LinkContato origem="suporte" className="btn-primary pr-3">
+            Falar com o suporte
+            <span className="btn-seta" aria-hidden="true">
+              <IconeWhatsApp className="h-3.5 w-3.5" />
+            </span>
+          </LinkContato>
+        }
+        lado={<FichaAtendimento titulo="Suporte CNC" origem="suporte" preco={false} />}
+      >
+        <div className="container-cnc pb-8 pt-16 lg:pt-32">
+          <FichaAtendimento
+            titulo="Suporte CNC"
+            origem="suporte"
+            preco={false}
+            className="mb-16 lg:hidden"
+          />
+          <TextoAcende
+            texto={suporte.canais.observacao}
+            className="semilarga max-w-[30ch] text-[clamp(1.6rem,3.4vw,3.2rem)] leading-[1.12] text-ink"
+          />
+          {temFoto && (
+            <figure className="relative mt-16 aspect-[4/3] overflow-hidden rounded-cartao lg:aspect-[21/9]">
+              <Image
                 src={suporte.imagem.src}
                 alt={suporte.imagem.alt}
-                priority
-                sizes="(max-width: 1024px) 100vw, 26rem"
-                className="aspect-[4/3] w-full"
+                fill
+                sizes="(max-width: 1320px) 100vw, 1320px"
+                className="object-cover"
               />
-            )}
-            <FichaAtendimento titulo="Suporte CNC" origem="suporte" preco={false} />
-          </div>
+            </figure>
+          )}
         </div>
-      </section>
+        <CartoesEmpilhados
+          titulo={suporte.comoFunciona.titulo}
+          texto="Do primeiro chamado no WhatsApp até o caixa rodando de novo, com a mesma pessoa do outro lado."
+          cartoes={suporte.comoFunciona.itens}
+        />
+      </TopoPagina>
 
-      {/* Como funciona o atendimento: três linhas de título e texto, não três
-          caixas iguais. */}
-      <section className="bg-paper-soft py-16 lg:py-24">
-        <div className="container-cnc">
-          <h2 className="max-w-2xl text-3xl font-extrabold tracking-tightest text-ink sm:text-4xl lg:text-5xl">
-            {suporte.comoFunciona.titulo}
-          </h2>
-          <div className="mt-10 border-t-2 border-ink">
-            {suporte.comoFunciona.itens.map((item, i) => (
-              <Reveal
-                key={item.titulo}
-                delay={i * 90}
-                className="grid gap-3 border-b border-ink/15 py-7 md:grid-cols-[minmax(0,22rem)_1fr] md:gap-12 lg:py-9"
-              >
-                <h3 className="text-2xl font-extrabold tracking-tightest text-ink lg:text-3xl">
-                  {item.titulo}
-                </h3>
-                <p className="max-w-2xl text-lg leading-relaxed text-ink-soft">{item.texto}</p>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FaixaCidades />
 
-      {/* Até onde o técnico vai. */}
-      <section className="bg-paper py-16 lg:py-24">
-        <div className="container-cnc">
-          <h2 className="max-w-3xl text-3xl font-extrabold tracking-tightest text-ink sm:text-4xl lg:text-5xl">
-            Quando o caso pede, o técnico vai até a loja
-          </h2>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">
-            O atendimento é {site.horario.semana.toLowerCase()},{" "}
-            {site.horario.sabado.toLowerCase()}, e a ida à loja vale para as cidades onde a CNC
-            já tem cliente.
-          </p>
-          <PlacasCidades className="mt-10" />
-        </div>
-      </section>
+      <FaixaContato
+        titulo="O caixa travou agora?"
+        texto="Mande a mensagem dizendo o que aparece na tela. Quem responde conhece o seu sistema e resolve na conversa, ou vai até a loja quando o caso pede."
+        origem="suporte"
+      />
     </>
   );
 }

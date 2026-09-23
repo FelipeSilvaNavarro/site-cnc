@@ -1,141 +1,104 @@
 # PRODUCT.md — direção de marca do site da CNC
 
-Documento curto e travado. Existe porque a direção visual já se perdeu uma vez:
-a decisão original era "serif nos títulos", e sem registro virou Space Grotesk +
-Inter + JetBrains Mono (o trio que um modelo escolhe quando não escolhe nada).
+Leia antes de mexer em tipografia, cor, espaçamento ou movimento. Mudança que
+contraria o que está aqui começa editando este arquivo, não abrindo exceção
+silenciosa num componente.
 
-**Antes de mexer em tipografia, cor ou espaçamento, leia este arquivo.**
-Se uma mudança contraria o que está aqui, o certo é discutir e editar este
-arquivo primeiro, não abrir exceção silenciosa no componente.
+## Histórico da direção
+
+- **Até 21/07/2026:** Space Grotesk + Inter + JetBrains Mono, azul sobre azul,
+  eyebrow em toda seção. Auditoria da `impeccable` chamou de cara de template.
+- **21/07 a 23/09/2026:** "direto e utilitário", catálogo técnico e
+  sinalização industrial, cantos retos, sem sombra, sem gradiente, no máximo
+  dois movimentos por página. Em 23/09/2026 o Felipe olhou o resultado
+  publicado e chamou de "horrivelmente horrível", pedindo site bonito, fora da
+  curva, sem cara de IA e com efeito de rolagem. As travas de movimento e de
+  forma dessa fase eram exatamente o que impedia o pedido, então caíram.
+- **Desde 23/09/2026:** a direção abaixo.
 
 ## O que a CNC é
 
-Revenda e suporte de sistemas de gestão e PDV, com base em Maceió/AL e
-posicionamento nacional. Cerca de 90 clientes ativos. O dono atende.
-O diferencial declarado é suporte humanizado, direto e contínuo — sem central de
-chamados, sem fila.
+Revenda e suporte de sistema de gestão e PDV em Maceió, 93 clientes ativos,
+nota 5,0 no Google. O dono atende, sem central e sem fila. O cliente é dono de
+mercadinho, açougue, padaria, loja e distribuidora de Alagoas, que abre o site
+no celular, muitas vezes vindo do Google ou de um anúncio.
 
-**O que a CNC não é:** não é SaaS, não é dev tool, não é startup. O site não
-deve vestir a roupa de nenhum dos três.
+## Direção em uma frase
 
-## Direção: direto e utilitário
+**Balcão de Maceió à noite:** azul-noite profundo, tipografia larga de
+letreiro de fachada, amarelo de etiqueta de preço como único acento, o cupom
+fiscal como objeto de assinatura, e uma rolagem que monta cenas em vez de
+empilhar blocos.
 
-Referência física: **catálogo técnico e sinalização industrial**.
-Não moodboard de produto digital.
+## Referências (pesquisadas em 23/09/2026, Awwwards, abertas no Firefox)
 
-A promessa é "a gente resolve, e você fala com gente". O visual correspondente é
-o de quem trabalha: legível, sem enfeite, sem ornamento que não carregue função.
-Sóbrio sem ser corporativo genérico, direto sem ser tosco.
+| Site | O que empresta |
+|---|---|
+| daqconsulting.com | Texto grande que acende palavra por palavra conforme a rolagem |
+| cerebrium.ai | Folha clara com canto arredondado subindo por cima do topo escuro |
+| thirdway.com | Frase curta e enorme por cena, ritmo de uma ideia por tela |
+| mindrobotics.com | Tipografia gigante que atravessa a tela e cena que trava |
+| boonglobal.io | Fundo escuro com um único objeto visual forte, sem foto de banco |
+| wama.com.br | Referência brasileira de acabamento: respiro, título centrado, faixa de marcas |
 
-Teste rápido para qualquer decisão: **isto informa ou só decora?**
-Se só decora, sai.
-
-## Tipografia
-
-- **Uma família: Archivo.** O contraste vem do peso (800 no título, 400 no
-  corpo) e do tamanho, não de duas fontes disputando.
-- Títulos fecham o tracking (`tracking-tightest`, -0.035em). Nunca abaixo disso.
-- **Azeret Mono só para dado real**: telefone, CNPJ, CEP, horário, versão,
-  número de etapa. Nunca como decoração "técnica".
-- **Proibido:** Space Grotesk, Inter, JetBrains Mono, Poppins, Montserrat.
-  Não por serem ruins, mas por serem a escolha-reflexo.
+Nenhuma marca, texto ou imagem dessas referências entra no site. Elas emprestam
+mecânica e ritmo.
 
 ## Cor
 
-Três papéis, cada um com função declarada. Definidos em `tailwind.config.ts` —
-edite SOMENTE lá.
-
-| Papel | Token | Função |
+| Papel | Token | Uso |
 |---|---|---|
-| Tinta | `ink` | Texto e superfícies de máxima ênfase |
-| Marca | `brand` | Azul CNC saturado. **Comete superfícies inteiras**, não faixas decorativas |
-| Sinal | `signal` | Amarelo. **Só CTA e dado crítico.** Se está amarelo, é ação |
+| Noite | `noite` (#070b18) | Fundo das cenas escuras: topo, portes, preço, rodapé |
+| Papel | `papel` (#f4f5f7) | A folha clara que sobe por cima. Cinza de croma zero, nunca creme |
+| Tinta | `ink` | Texto sobre papel |
+| Marca | `brand` | Azul do logo. Luz do topo, portes, detalhes |
+| Sinal | `signal` | Amarelo de etiqueta. Ação e preço, e o cartão de destaque |
 
-Regras:
+Sem roxo, sem gradiente em texto, sem vidro fosco decorativo. A única luz é um
+halo azul do logo atrás do pégaso no topo.
 
-- O amarelo é a única superfície de ação do site. Não usar amarelo para "dar um
-  charme" — isso queima o sinal.
-- Neutros são cinza de croma ~0 (papel de catálogo), não branco-azulado. O
-  branco-azulado era o reflexo "empresa de software".
-- Contraste é verificado, não estimado: `npm run check:contrast`. Rode ao mexer
-  em qualquer token. Menor razão aceitável: 4.5:1 para texto.
+## Tipografia
 
-## Forma
-
-- **Cantos retos.** `borderRadius` está travado em 2px no config. O raio grande
-  é a assinatura do card de template; a ausência dele é decisão, não descuido.
-- **Sem sombra, sem gradiente, sem `backdrop-blur`.** Separação vem de filete
-  (border) e de superfície chapada.
-- Filetes de ênfase são 2px, não 1px. Peso de placa.
-- Grades densas usam `gap-px` sobre fundo contrastante (as células se separam
-  pela linha, não por moldura individual).
+- **Archivo, com o eixo de largura.** Título em Archivo larga (font-stretch
+  115% a 125%, peso 700 a 800), que é a letra de letreiro de fachada. Corpo em
+  Archivo normal, 400. Uma família, dois registros.
+- **Azeret Mono** só no cupom fiscal e em dado real (telefone, CNPJ, CEP).
+- Proibidas: Space Grotesk, Inter, JetBrains Mono, Poppins, Montserrat e o
+  resto da lista de reflexo da `impeccable`.
 
 ## Movimento
 
-- O conteúdo **nunca** depende de animação para existir. O HTML do servidor sai
-  visível; a revelação melhora um estado já visível. Ver `Reveal.tsx`.
-- **No máximo dois momentos de movimento por página**, escolhidos. Animar toda
-  seção é preenchimento, não intenção.
-- Escalonar os itens de UMA lista é legítimo. Escalonar seções inteiras não.
-- Entrada curta e seca (~450ms, sem bounce, sem elástico).
-- `prefers-reduced-motion` sempre respeitado.
+Movimento agora é parte da marca, com regra:
 
-## Anti-padrões — já removidos, não reintroduzir
+- **Cada cena tem um movimento, e ele conta alguma coisa.** O cupom imprime
+  porque o sistema vende; o texto acende porque a promessa se lê; a folha sobe
+  porque a página muda de assunto. Nada de fade igual em toda seção.
+- **Stack:** Lenis (rolagem suave) + GSAP ScrollTrigger (cenas). Código em
+  `src/components/rolagem/`.
+- **O HTML do servidor sai completo e visível.** Animação melhora um estado
+  que já existe; sem JavaScript o site aparece inteiro.
+- **`prefers-reduced-motion` desliga tudo:** sem Lenis, sem pin, sem
+  animação, conteúdo parado e legível.
+- **Celular não é versão cortada:** as cenas travadas viram sequência vertical
+  com a mesma animação disparada ao entrar.
 
-Estes eram os "tells" de página gerada que a auditoria de 21/jul/2026 encontrou:
+## Forma
 
-- **Eyebrow/kicker versalete espaçado acima de cada seção.** Havia 15. O site
-  tem no máximo um rótulo superior, no hero, com tratamento próprio. As seções
-  se separam por espaçamento e peso tipográfico.
-- **Numeração decorativa 01/02/03** em blocos que não são sequência. Só numerar
-  quando a ordem carrega informação (ex.: "Como funciona").
-- **Ritmo uniforme** (`py-20 lg:py-28` em toda seção). Espaçamento igual elimina
-  hierarquia. Ver a régua de respiro documentada no topo de `(site)/page.tsx`.
-- **Grades de cards repetidas.** Uma lista de nomes é uma lista, não oito caixas
-  emolduradas. Um sistema é entrada de catálogo, não cartão de marketing.
-- **Malha de fundo "tech-grid"**, gradiente diagonal, botão flutuante redondo
-  com sombra e `hover:scale`.
+- Folha com canto de 28 a 36px no topo, cartões com 20 a 24px, botão em
+  pílula. O raio agora é linguagem: a folha que sobe, o cupom, a etiqueta.
+- Sombra só para dar peso físico ao cupom e à folha. Nunca sombra de card.
+
+## Anti-padrões que continuam proibidos
+
+- Eyebrow versalete espaçado acima de cada seção; numeração 01/02/03 de enfeite;
+  grade de três cards iguais com ícone; métrica gigante com rótulo pequeno em
+  três colunas; metade do título pintada em outra cor; gradiente roxo-azul.
 
 ## Restrições permanentes
 
-- **Nunca usar imagem ou vídeo gerado por IA no site.** Piora credibilidade.
-  Só foto real da operação e telas dos sistemas. Enquanto a foto real não
-  existir, `ImageSlot` mostra painel de marca — o que é honesto.
-- **Nunca inventar** depoimentos, números, nomes de clientes ou fatos. Usar
-  `{{PREENCHER:...}}`. Seção sem conteúdo real fica oculta (ver depoimentos em
-  `(site)/page.tsx`), não recebe conteúdo fabricado.
-- **Não citar marcas de fornecedores** (decisão de negócio — ver `sistemas.ts`).
-  As soluções são referidas por porte: PRO, MÉDIO, SIMPLES.
-- Conteúdo mora em `src/content/*.ts`. Trocar copy não deve tocar layout.
-
-## Rodada de 23/09/2026: a mesma direção, levada ao extremo
-
-Pedido do Felipe: site "fora da curva, exclusivo". A resposta foi apertar a
-direção travada acima, sem abrir exceção nela. Referências e o que cada uma
-empresta:
-
-| Referência | Empresta |
-|---|---|
-| Placa de rodovia do DNIT (azul de serviço, filete branco interno) | As placas de cidade da seção de cobertura |
-| Cartaz de oferta de mercadinho | O preço em escala de cartaz, sem letra miúda |
-| Manual de sinalização do metrô de Nova York (Vignelli/Noorda) | Título em escala de placa, grotesca pesada, filete como separador |
-| Ficha técnica de catálogo industrial | A ficha de atendimento do hero, rótulo à esquerda e dado à direita |
-
-Peças de assinatura, cada uma com dado real e nenhuma decorativa:
-
-- **Ficha de atendimento** no hero, com status ao vivo pelo relógio de Maceió
-  (`StatusAtendimento.tsx`), no lugar do painel azul vazio que esperava foto.
-- **Placas de cidade** a partir de `site.cidadesAtendidas`.
-- **Cartaz de preço** em tinta com o valor em amarelo (dado crítico + ação).
-- **Telefone em escala de placa** abrindo o rodapé.
-- **Telas do sistema** reservadas: a seção só existe com captura real.
-
-Componente de biblioteca (21st.dev, Spell UI) ficou de fora nesta rodada: o
-que eles oferecem para hero e card é exatamente raio, sombra, gradiente e blur,
-que este arquivo proíbe.
-
-Ajustes da mesma rodada, depois da passada da `impeccable`: a faixa "93 / 5,0 / 6"
-virou frase corrida (número grande com rótulo pequeno é o molde de métrica de
-SaaS), o "01 02 03" gigante do Como funciona saiu (a ordem ficou no `<ol>` e na
-seta), e o título do hero voltou a ser todo em tinta, porque pintar metade da
-frase na cor da marca é o tique mais batido de landing gerada.
+- **Nunca imagem ou vídeo gerado por IA, nunca foto de banco.** Só foto real da
+  operação e captura real dos sistemas (`npm run foto`). O cupom fiscal é
+  ilustração declarada de um objeto do comércio, não tela do sistema.
+- **Nunca inventar** depoimento, número, cliente ou fato.
+- **Não citar marca de fornecedor.** Portes: PRO, MÉDIO, SIMPLES.
+- Conteúdo mora em `src/content/*.ts`.
