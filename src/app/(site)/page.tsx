@@ -5,6 +5,9 @@ import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import CtaButtons from "@/components/CtaButtons";
 import StatusAtendimento from "@/components/StatusAtendimento";
+import FichaAtendimento from "@/components/FichaAtendimento";
+import PlacasCidades from "@/components/PlacasCidades";
+import FaixaContato from "@/components/FaixaContato";
 import { site } from "@/content/site";
 import { sistemas, sistemasIntro, recursosComuns } from "@/content/sistemas";
 import LinkContato from "@/components/LinkContato";
@@ -129,7 +132,7 @@ export default function HomePage() {
                   className="aspect-[4/3] w-full"
                 />
               )}
-              <FichaAtendimento />
+              <FichaAtendimento origem="hero" />
             </div>
           </div>
         </div>
@@ -329,22 +332,7 @@ export default function HomePage() {
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">
             {cobertura.texto}
           </p>
-          <ul className="mt-10 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-            <li className="col-span-2 flex min-h-[7.5rem] flex-col justify-between bg-brand-700 p-5 text-paper outline outline-2 outline-offset-[-7px] outline-paper sm:col-span-3 lg:col-span-2 lg:row-span-2">
-              <span className="text-xs font-semibold text-brand-100">Base</span>
-              <span className="text-4xl font-extrabold tracking-tightest lg:text-6xl">
-                {baseCidade}
-              </span>
-            </li>
-            {outrasCidades.map((cidade) => (
-              <li
-                key={cidade}
-                className="flex min-h-[4.5rem] items-end bg-brand-700 px-4 py-3.5 text-base font-bold leading-tight text-paper outline outline-2 outline-offset-[-6px] outline-paper/85"
-              >
-                {cidade}
-              </li>
-            ))}
-          </ul>
+          <PlacasCidades className="mt-10" />
         </div>
       </section>
 
@@ -440,85 +428,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 12. CTA FINAL — generoso */}
-      <section className="bg-brand-800 py-20 text-paper lg:py-28">
-        <div className="container-cnc flex flex-col items-start gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <h2 className="text-4xl font-extrabold tracking-tightest text-paper sm:text-5xl lg:text-6xl">
-              {ctaFinal.titulo}
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-brand-100">{ctaFinal.texto}</p>
-            <StatusAtendimento tom="escuro" className="mt-6" />
-          </div>
-          <CtaButtons
-            primario={ctaFinal.ctaPrimario}
-            secundario={ctaFinal.ctaSecundario}
-            origem="cta-final"
-            variant="dark"
-          />
-        </div>
-      </section>
+      {/* 12. CTA FINAL */}
+      <FaixaContato titulo={ctaFinal.titulo} texto={ctaFinal.texto} origem="cta-final" />
     </>
-  );
-}
-
-/**
- * Ficha de atendimento — a placa do hero.
- *
- * Substitui o painel azul vazio que ocupava o lugar da foto. Em vez de esperar
- * a foto, a primeira dobra mostra o que a pessoa vai perguntar no WhatsApp:
- * se tem alguém atendendo, em que horário, até onde o técnico vai e quanto
- * custa. Tudo vem de `site.ts`, nada escrito à mão aqui.
- *
- * MOMENTO DE MOVIMENTO 1 de 2: entra com `animate-rise` no carregamento. Fica
- * fora do título de propósito, para a animação nunca atrasar o LCP.
- */
-function FichaAtendimento() {
-  const linhas: [string, React.ReactNode][] = [
-    ["Horário", <span key="h" className="tabular-nums">Todos os dias, 6h às 22h</span>],
-    [
-      "WhatsApp",
-      <LinkContato key="w" origem="hero" className="font-semibold tabular-nums underline-offset-4 hover:underline">
-        {site.whatsapp.exibicao}
-      </LinkContato>,
-    ],
-    [
-      "Técnico na loja",
-      `${site.cidadesAtendidas[0]} e mais ${site.cidadesAtendidas.length - 1} cidades`,
-    ],
-    [
-      "A partir de",
-      <span key="p" className="font-bold text-signal-500">
-        {site.precos.pisoMensalPorExtenso}
-      </span>,
-    ],
-  ];
-
-  return (
-    <div className="bg-ink text-paper">
-      <div className="flex items-center justify-between gap-4 border-b border-paper/15 px-6 py-5">
-        <p className="text-lg font-extrabold tracking-tightest">Atendimento CNC</p>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/pegaso-branco.svg"
-          alt=""
-          aria-hidden="true"
-          width={32}
-          height={29}
-          className="h-7 w-auto opacity-80"
-        />
-      </div>
-      <dl className="divide-y divide-paper/15 px-6">
-        {linhas.map(([rotulo, valor]) => (
-          <div key={rotulo} className="flex items-baseline justify-between gap-6 py-4">
-            <dt className="text-sm text-paper/70">{rotulo}</dt>
-            <dd className="text-right text-sm text-paper">{valor}</dd>
-          </div>
-        ))}
-      </dl>
-      <div className="border-t-2 border-signal-500 px-6 py-5">
-        <StatusAtendimento tom="escuro" />
-      </div>
-    </div>
   );
 }

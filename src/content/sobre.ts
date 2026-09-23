@@ -23,7 +23,7 @@ export const sobre = {
     paragrafos: [
       "A CNC nasceu em Maceió em 2020 com um objetivo claro: aproximar o comércio da região de sistemas de gestão confiáveis e de um suporte que realmente acompanha o dia a dia de quem está no balcão.",
       // Sem citar marcas de fornecedores (decisão de negócio — ver sistemas.ts).
-      "Desde então, a empresa cresceu junto com seus clientes e hoje atende cerca de 90 negócios ativos em segmentos variados — de mercados e restaurantes a óticas, confecções, materiais de construção e distribuidoras. Com soluções para diferentes portes de operação, a CNC reúne a escolha do software e o suporte humanizado em um só lugar, mantendo o atendimento próximo como marca registrada.",
+      `Desde então a empresa cresceu junto com os clientes e hoje atende ${metrics.clientesAtivos} negócios ativos, de mercados e restaurantes a óticas, confecções, materiais de construção e distribuidoras, com um porte de sistema para cada tamanho de operação e o suporte feito por quem vendeu.`,
     ],
   },
 

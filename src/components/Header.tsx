@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navPrincipal, site } from "@/content/site";
 import Logo from "./Logo";
 import LinkContato from "./LinkContato";
@@ -23,6 +23,18 @@ export default function Header() {
   const [aberto, setAberto] = useState(false);
   // Rota atual, para marcar o link ativo na navegação.
   const pathname = usePathname();
+
+  // Menu aberto: Esc fecha e o fundo não rola por baixo dele.
+  useEffect(() => {
+    if (!aberto) return;
+    const fechar = (e: KeyboardEvent) => e.key === "Escape" && setAberto(false);
+    document.addEventListener("keydown", fechar);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", fechar);
+      document.body.style.overflow = "";
+    };
+  }, [aberto]);
 
   return (
     // Fundo sólido e filete de 2px. O par "translúcido + backdrop-blur" é a

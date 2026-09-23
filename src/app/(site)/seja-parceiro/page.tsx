@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Reveal from "@/components/Reveal";
 import LinkContato from "@/components/LinkContato";
 
 export const metadata: Metadata = {
@@ -11,43 +10,29 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+/**
+ * Página de parceria, fora do menu e fora do índice.
+ *
+ * Até 23/09/2026 ela mostrava ao visitante o texto provisório
+ * "{{PREENCHER: descrição real do programa de parceria...}}". Saiu: enquanto
+ * as condições (comissão, requisitos) não estiverem definidas pelo Felipe, a
+ * página diz só o que é verdade e leva para a conversa.
+ */
 export default function SejaParceiroPage() {
   return (
-    <section className="bg-paper py-20 lg:py-28">
-      <div className="container-cnc max-w-2xl">
-        <Reveal>
-          <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tightest text-ink sm:text-5xl">
-            Seja parceiro da CNC
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-            Você atua com tecnologia, contabilidade ou atende o comércio e quer
-            oferecer sistemas de gestão com suporte humanizado? A CNC trabalha
-            com parcerias para ampliar o atendimento.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-ink-soft">
-            {/* Texto institucional genérico; condições reais a definir. */}
-            {"{{PREENCHER: descrição real do programa de parceria, se houver condições, comissões ou requisitos}}"}
-          </p>
-
-          <div className="mt-8">
-            <LinkContato origem="parceiro" className="btn-primary">
-              Falar sobre parceria
-            </LinkContato>
-          </div>
-
-          {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
-              Para reativar, descomente este bloco. */}
-          {/* <p className="mt-8 text-sm text-ink-muted">
-            Ou envie um e-mail para{" "}
-            <a
-              href={`mailto:${site.email}`}
-              className="text-brand-700 hover:underline"
-            >
-              {site.email}
-            </a>
-            .
-          </p> */}
-        </Reveal>
+    <section className="border-b-2 border-ink bg-paper">
+      <div className="container-cnc pb-16 pt-10 lg:pb-24 lg:pt-16">
+        <h1 className="max-w-[18ch] text-[clamp(2.1rem,5vw,4.4rem)] font-extrabold leading-[1] tracking-tightest text-ink">
+          Seja parceiro da CNC
+        </h1>
+        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
+          Você atua com tecnologia, contabilidade ou atende o comércio e quer oferecer sistema de
+          gestão com suporte de verdade para os seus clientes? A CNC trabalha com parceria para
+          chegar mais longe, e as condições a gente conversa caso a caso.
+        </p>
+        <LinkContato origem="parceiro" className="btn-primary mt-8 min-h-[48px] px-8">
+          Falar sobre parceria
+        </LinkContato>
       </div>
     </section>
   );

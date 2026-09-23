@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import ImageSlot from "@/components/ImageSlot";
 import Reveal from "@/components/Reveal";
 import CtaButtons from "@/components/CtaButtons";
+import FichaAtendimento from "@/components/FichaAtendimento";
+import PlacasCidades from "@/components/PlacasCidades";
+import { fotoExiste } from "@/lib/fotos";
 import { suporte } from "@/content/suporte";
 import { site } from "@/content/site";
-import LinkContato from "@/components/LinkContato";
 
 export const metadata: Metadata = {
   title: "Suporte de sistema de gestão em Maceió, com técnico na loja",
@@ -20,24 +22,25 @@ export const metadata: Metadata = {
 /**
  * SuportePage — rota "/suporte".
  *
- * Apresenta o diferencial central (suporte humanizado, sem central de
- * chamados): cabeçalho + imagem, "como funciona o atendimento" e a tabela de
- * canais (WhatsApp/telefone e horário de atendimento). Conteúdo de `content/suporte.ts` e
- * contatos/horário de `content/site.ts`.
+ * Quem chega aqui muitas vezes já é cliente e está com o caixa parado, então a
+ * primeira dobra entrega o canal e diz se tem gente atendendo agora (ficha de
+ * atendimento), no lugar do painel vazio que esperava a foto. Com a foto em
+ * /public/fotos/suporte.jpg, ela entra acima da ficha sem mexer em código.
+ *
+ * Movimento: um momento só, os três itens do atendimento escalonados.
  */
 export default function SuportePage() {
+  const temFoto = fotoExiste(suporte.imagem.src);
+
   return (
     <>
-      {/* Cabeçalho com imagem */}
-      <section className="border-b border-ink/10 bg-paper">
-        <div className="container-cnc grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+      <section className="border-b-2 border-ink bg-paper">
+        <div className="container-cnc grid gap-10 pb-12 pt-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:gap-16 lg:pb-20 lg:pt-16">
           <div>
-            <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tightest text-ink sm:text-5xl">
+            <h1 className="max-w-[16ch] text-[clamp(2.1rem,5vw,4.4rem)] font-extrabold leading-[1] tracking-tightest text-ink">
               {suporte.titulo}
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-              {suporte.intro}
-            </p>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft">{suporte.intro}</p>
             <CtaButtons
               origem="suporte"
               primario="Falar com o suporte"
@@ -45,101 +48,57 @@ export default function SuportePage() {
               className="mt-8"
             />
           </div>
-          <ImageSlot
-            src={suporte.imagem.src}
-            alt={suporte.imagem.alt}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="aspect-[4/3] w-full"
-          />
+          <div className="animate-rise">
+            {temFoto && (
+              <ImageSlot
+                src={suporte.imagem.src}
+                alt={suporte.imagem.alt}
+                priority
+                sizes="(max-width: 1024px) 100vw, 26rem"
+                className="aspect-[4/3] w-full"
+              />
+            )}
+            <FichaAtendimento titulo="Suporte CNC" origem="suporte" preco={false} />
+          </div>
         </div>
       </section>
 
-      {/* Como funciona o atendimento — médio, denso.
-          Único momento de movimento da página: os 3 itens escalonados. */}
-      <section className="bg-paper-soft py-16 lg:py-20">
+      {/* Como funciona o atendimento: três linhas de título e texto, não três
+          caixas iguais. */}
+      <section className="bg-paper-soft py-16 lg:py-24">
         <div className="container-cnc">
-          <h2 className="max-w-2xl text-3xl font-bold tracking-tightest text-ink sm:text-4xl">
+          <h2 className="max-w-2xl text-3xl font-extrabold tracking-tightest text-ink sm:text-4xl lg:text-5xl">
             {suporte.comoFunciona.titulo}
           </h2>
-          <div className="mt-10 grid gap-px bg-ink/15 md:grid-cols-3">
+          <div className="mt-10 border-t-2 border-ink">
             {suporte.comoFunciona.itens.map((item, i) => (
               <Reveal
                 key={item.titulo}
                 delay={i * 90}
-                className="bg-paper-soft p-7"
+                className="grid gap-3 border-b border-ink/15 py-7 md:grid-cols-[minmax(0,22rem)_1fr] md:gap-12 lg:py-9"
               >
-                <h3 className="text-xl font-bold tracking-tightest text-ink">
+                <h3 className="text-2xl font-extrabold tracking-tightest text-ink lg:text-3xl">
                   {item.titulo}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  {item.texto}
-                </p>
+                <p className="max-w-2xl text-lg leading-relaxed text-ink-soft">{item.texto}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Canais e horários — generoso */}
-      <section className="bg-paper py-20 lg:py-28">
-        <div className="container-cnc grid gap-10 lg:grid-cols-2">
-          <div>
-            <h2 className="text-3xl font-bold tracking-tightest text-ink sm:text-4xl">
-              {suporte.canais.titulo}
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-ink-soft">
-              {suporte.canais.observacao}
-            </p>
-          </div>
-          <div>
-            <dl className="divide-y divide-ink/15 border-t-2 border-ink">
-              <div className="flex items-center justify-between gap-4 py-4">
-                <dt className="label-dado text-ink">WhatsApp</dt>
-                <dd>
-                  <LinkContato
-                    origem="suporte"
-                    className="dado text-brand-700 hover:underline"
-                  >
-                    {site.whatsapp.exibicao}
-                  </LinkContato>
-                </dd>
-              </div>
-              <div className="flex items-center justify-between gap-4 py-4">
-                <dt className="label-dado text-ink">Telefone</dt>
-                <dd>
-                  <LinkContato
-                    origem="suporte"
-                    canal="telefone"
-                    className="dado text-brand-700 hover:underline"
-                  >
-                    {site.telefone.exibicao}
-                  </LinkContato>
-                </dd>
-              </div>
-              {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
-                  Para reativar, descomente este bloco. */}
-              {/* <div className="flex items-center justify-between gap-4 p-5">
-                <dt className="text-sm font-semibold text-ink">E-mail</dt>
-                <dd>
-                  <a
-                    href={`mailto:${site.email}`}
-                    className="text-sm text-brand-700 hover:underline"
-                  >
-                    {site.email}
-                  </a>
-                </dd>
-              </div> */}
-              {/* Horário de atendimento (valores em site.horario). */}
-              <div className="flex items-center justify-between gap-4 py-4">
-                <dt className="label-dado text-ink">Atendimento</dt>
-                <dd className="dado text-ink-soft">{site.horario.semana}</dd>
-              </div>
-              <div className="flex items-center justify-between gap-4 py-4">
-                <dt className="label-dado text-ink">Disponibilidade</dt>
-                <dd className="dado text-ink-soft">{site.horario.sabado}</dd>
-              </div>
-            </dl>
-          </div>
+      {/* Até onde o técnico vai. */}
+      <section className="bg-paper py-16 lg:py-24">
+        <div className="container-cnc">
+          <h2 className="max-w-3xl text-3xl font-extrabold tracking-tightest text-ink sm:text-4xl lg:text-5xl">
+            Quando o caso pede, o técnico vai até a loja
+          </h2>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">
+            O atendimento é {site.horario.semana.toLowerCase()},{" "}
+            {site.horario.sabado.toLowerCase()}, e a ida à loja vale para as cidades onde a CNC
+            já tem cliente.
+          </p>
+          <PlacasCidades className="mt-10" />
         </div>
       </section>
     </>
