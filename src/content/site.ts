@@ -98,6 +98,13 @@ export const site = {
     sabado: "Inclusive sábado, domingo e feriado",
   },
 
+  /**
+   * Link curto do perfil no Google Meu Negócio que abre direto a caixa de
+   * avaliação, passado pelo Felipe em 23/09/2026. Serve de prova (a nota 5,0
+   * vira clicável) e de pedido de avaliação no rodapé.
+   */
+  googleAvaliacao: "https://g.page/r/CQzbNkzsTUhrEBM/review",
+
   // Redes sociais — string vazia oculta o link (não usado hoje, reservado).
   redes: {
     instagram: "https://www.instagram.com/cncsistemas/",

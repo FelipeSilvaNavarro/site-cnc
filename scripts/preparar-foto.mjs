@@ -36,6 +36,11 @@ const SLOTS = {
   "cliente-1": { arquivo: "depoimentos/cliente-1.jpg", largura: 400, altura: 400, onde: "Home, depoimento" },
   "cliente-2": { arquivo: "depoimentos/cliente-2.jpg", largura: 400, altura: 400, onde: "Home, depoimento" },
   "cliente-3": { arquivo: "depoimentos/cliente-3.jpg", largura: 400, altura: 400, onde: "Home, depoimento" },
+  // Captura de tela do sistema, 16:9 como o monitor do caixa. Qualidade maior
+  // porque JPEG em 82 borra letra pequena de tela, que é o que a captura mostra.
+  "tela-pro": { arquivo: "telas/pro.jpg", largura: 1600, altura: 900, qualidade: 90, onde: "Home (O sistema por dentro) e /sistemas#pro" },
+  "tela-medio": { arquivo: "telas/medio.jpg", largura: 1600, altura: 900, qualidade: 90, onde: "Home (O sistema por dentro) e /sistemas#medio" },
+  "tela-simples": { arquivo: "telas/simples.jpg", largura: 1600, altura: 900, qualidade: 90, onde: "Home (O sistema por dentro) e /sistemas#simples" },
 };
 
 const TETO_KB = 350;
@@ -44,7 +49,7 @@ function ajuda() {
   console.log("uso: node scripts/preparar-foto.mjs <slot> <foto> [--foco north|south|east|west] [--forcar]\n");
   console.log("slot         saida                        proporcao   onde aparece");
   for (const [slot, s] of Object.entries(SLOTS)) {
-    const prop = s.largura > s.altura ? "4:3" : s.largura === s.altura ? "1:1" : "4:5";
+    const prop = s.altura === 900 ? "16:9" : s.largura > s.altura ? "4:3" : s.largura === s.altura ? "1:1" : "4:5";
     console.log(`${slot.padEnd(12)} ${s.arquivo.padEnd(28)} ${prop.padEnd(11)} ${s.onde}`);
   }
 }
@@ -109,7 +114,7 @@ execFileSync("magick", [
   "-strip",
   "-interlace", "Plane",
   "-sampling-factor", "4:2:0",
-  "-quality", "82",
+  "-quality", String(alvo.qualidade ?? 82),
   saida,
 ]);
 

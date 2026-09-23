@@ -52,6 +52,10 @@ const pares = [
   // Sinalização: e a superficie do CTA, texto preto por cima
   ["ink", "signal-500", 4.5, "texto do botao primario"],
   ["ink", "signal-400", 4.5, "texto do botao primario em hover"],
+  ["paper", "brand-700", 4.5, "nome da cidade na placa de cobertura"],
+  ["brand-100", "brand-700", 4.5, "rotulo Base na placa de Maceio"],
+  ["signal-500", "ink", 4.5, "preco no cartaz e na ficha do hero"],
+  ["paper", "ink", 4.5, "texto da ficha de atendimento"],
   ["signal-500", "brand-900", 3, "filete de sinalizacao sobre azul (nao-texto)"],
   ["signal-500", "ink", 3, "anel de foco sobre tinta (nao-texto)"],
 ];

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import CtaButtons from "@/components/CtaButtons";
+import ImageSlot from "@/components/ImageSlot";
+import { fotoExiste } from "@/lib/fotos";
 import { sistemas, sistemasIntro, recursosComuns } from "@/content/sistemas";
 
 export const metadata: Metadata = {
@@ -117,6 +119,19 @@ export default function SistemasPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Captura real do porte, só quando o arquivo existe. Mesmo
+                  arquivo da seção "O sistema por dentro" da home. */}
+              {fotoExiste(`/fotos/telas/${s.slug}.jpg`) && (
+                <figure className="mt-10 border-2 border-ink">
+                  <ImageSlot
+                    src={`/fotos/telas/${s.slug}.jpg`}
+                    alt={`Tela real do sistema ${s.nome}`}
+                    sizes="(max-width: 1240px) 100vw, 1240px"
+                    className="aspect-[16/9] w-full"
+                  />
+                </figure>
+              )}
             </Reveal>
           ))}
         </div>

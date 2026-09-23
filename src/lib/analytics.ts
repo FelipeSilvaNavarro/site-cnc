@@ -29,6 +29,9 @@ export const ADS_LABEL = process.env.NEXT_PUBLIC_ADS_CONVERSION_LABEL ?? "";
 
 export const medicaoAtiva = Boolean(GA_ID || ADS_ID);
 
+/** Onde fica a escolha do aviso de cookies no navegador: "aceito" ou "recusado". */
+export const CHAVE_CONSENTIMENTO = "cnc-cookies";
+
 /** Onde a pessoa estava quando pediu contato. Vira parâmetro do evento. */
 export type OrigemContato =
   | "hero"

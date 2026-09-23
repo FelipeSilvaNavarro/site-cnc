@@ -107,3 +107,35 @@ Estes eram os "tells" de página gerada que a auditoria de 21/jul/2026 encontrou
 - **Não citar marcas de fornecedores** (decisão de negócio — ver `sistemas.ts`).
   As soluções são referidas por porte: PRO, MÉDIO, SIMPLES.
 - Conteúdo mora em `src/content/*.ts`. Trocar copy não deve tocar layout.
+
+## Rodada de 23/09/2026: a mesma direção, levada ao extremo
+
+Pedido do Felipe: site "fora da curva, exclusivo". A resposta foi apertar a
+direção travada acima, sem abrir exceção nela. Referências e o que cada uma
+empresta:
+
+| Referência | Empresta |
+|---|---|
+| Placa de rodovia do DNIT (azul de serviço, filete branco interno) | As placas de cidade da seção de cobertura |
+| Cartaz de oferta de mercadinho | O preço em escala de cartaz, sem letra miúda |
+| Manual de sinalização do metrô de Nova York (Vignelli/Noorda) | Título em escala de placa, grotesca pesada, filete como separador |
+| Ficha técnica de catálogo industrial | A ficha de atendimento do hero, rótulo à esquerda e dado à direita |
+
+Peças de assinatura, cada uma com dado real e nenhuma decorativa:
+
+- **Ficha de atendimento** no hero, com status ao vivo pelo relógio de Maceió
+  (`StatusAtendimento.tsx`), no lugar do painel azul vazio que esperava foto.
+- **Placas de cidade** a partir de `site.cidadesAtendidas`.
+- **Cartaz de preço** em tinta com o valor em amarelo (dado crítico + ação).
+- **Telefone em escala de placa** abrindo o rodapé.
+- **Telas do sistema** reservadas: a seção só existe com captura real.
+
+Componente de biblioteca (21st.dev, Spell UI) ficou de fora nesta rodada: o
+que eles oferecem para hero e card é exatamente raio, sombra, gradiente e blur,
+que este arquivo proíbe.
+
+Ajustes da mesma rodada, depois da passada da `impeccable`: a faixa "93 / 5,0 / 6"
+virou frase corrida (número grande com rótulo pequeno é o molde de métrica de
+SaaS), o "01 02 03" gigante do Como funciona saiu (a ordem ficou no `<ol>` e na
+seta), e o título do hero voltou a ser todo em tinta, porque pintar metade da
+frase na cor da marca é o tique mais batido de landing gerada.

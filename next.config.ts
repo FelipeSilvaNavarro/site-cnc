@@ -104,6 +104,21 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  /**
+   * O www abria o site inteiro sem redirecionar (medido em 23/09/2026 pelo
+   * site-health), o que faz o Google ver dois sites iguais disputando a mesma
+   * busca. 308 permanente para o domínio sem www, preservando o caminho.
+   */
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.cncsistemas.com.br" }],
+        destination: "https://cncsistemas.com.br/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

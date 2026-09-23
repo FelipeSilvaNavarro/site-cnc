@@ -13,6 +13,13 @@ basta salvar o arquivo com o nome exato que a imagem aparece automaticamente
 | `sobre.jpg`                          | Página Sobre — bloco de história      | Fachada ou escritório da CNC em Maceió               |
 | `equipe/membro-1.jpg` (2, 3)         | Página Sobre — equipe                 | Retrato de cada membro da equipe                     |
 | `depoimentos/cliente-1.jpg` (2, 3)   | Home — depoimentos (opcional)         | Foto do cliente que deu o depoimento                 |
+| `telas/pro.jpg`, `medio.jpg`, `simples.jpg` | Home (O sistema por dentro) e /sistemas | Captura de tela real de cada porte, 16:9 |
+
+A seção "O sistema por dentro" da home só aparece quando existe pelo menos uma
+tela; com uma, ela ocupa a largura toda, com três a primeira fica grande em cima.
+Gerar com `npm run foto tela-pro ~/Imagens/captura-pdv.png` (mínimo 1600x900,
+captura de monitor Full HD já passa). Tela com dado de cliente real (nome, CPF,
+valor) precisa ser borrada antes, porque vai para o site público.
 
 ## Logo
 
@@ -62,6 +69,7 @@ que a foto entra no build sem passo nenhum de aprovação.
 | `sobre`, `suporte` | 1600x1200 | 1600x1200 |
 | `equipe-1` a `equipe-3` | 800x1000 | 800x1000 |
 | `cliente-1` a `cliente-3` | 400x400 | 400x400 |
+| `tela-pro`, `tela-medio`, `tela-simples` | 1600x900 | 1600x900 |
 
 Celular atual passa disso com folga na horizontal e na vertical, então o que
 importa é fotografar em paisagem o que vai para `sobre` e `suporte`, e em retrato

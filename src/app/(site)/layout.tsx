@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import AvisoCookies from "@/components/AvisoCookies";
+import { medicaoAtiva } from "@/lib/analytics";
 import { site } from "@/content/site";
 
 /**
@@ -89,6 +91,9 @@ export default function SiteLayout({
       <main id="conteudo">{children}</main>
       <Footer />
       <WhatsAppFloat />
+      {/* Sem medição configurada não há cookie de terceiro, e sem cookie não
+          há o que perguntar. */}
+      {medicaoAtiva && <AvisoCookies />}
     </>
   );
 }

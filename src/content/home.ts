@@ -39,7 +39,7 @@ export const hero = {
 export const diferenciais = {
   titulo: "Por que trabalhar com a CNC",
   texto:
-    "Mais do que vender licença: a CNC acompanha a escolha, a implantação e o uso do sistema no seu dia a dia.",
+    "A CNC acompanha a escolha, a implantação e o uso do sistema no dia a dia da loja, e quem vende é quem atende depois.",
   blocos: [
     {
       titulo: "Suporte humanizado",
@@ -99,6 +99,25 @@ export type Depoimento = {
 };
 
 /**
+ * TELAS DO SISTEMA — capturas reais, uma por porte.
+ *
+ * A seção da home e o bloco de cada porte em /sistemas só aparecem quando o
+ * arquivo existe em /public (conferido no build por `fotoExiste`). Enquanto
+ * não houver captura, nada é mostrado: tela desenhada imitando o sistema seria
+ * conteúdo inventado. Gerar com `npm run foto tela-pro <captura.png>`.
+ */
+export const telas = {
+  titulo: "O sistema por dentro",
+  texto:
+    "Telas reais dos sistemas que a CNC instala e atende, do jeito que aparecem no caixa da loja.",
+  itens: [
+    { slug: "pro", src: "/fotos/telas/pro.jpg" },
+    { slug: "medio", src: "/fotos/telas/medio.jpg" },
+    { slug: "simples", src: "/fotos/telas/simples.jpg" },
+  ],
+};
+
+/**
  * DEPOIMENTOS REAIS APENAS. Não inventar. Cada item espera nome, empresa e texto
  * reais autorizados pelo cliente. Enquanto vazio, a seção de depoimentos fica
  * oculta na home (ver condicional em app/(site)/page.tsx).
@@ -143,9 +162,66 @@ export const preco = {
 };
 
 export const ctaFinal = {
-  titulo: "Fale com um especialista da CNC",
+  titulo: "Conte como é a sua loja",
   texto:
-    "Conte como funciona o seu negócio. Indicamos o sistema certo e cuidamos do suporte para você focar no que importa.",
+    "Quantos caixas, que nota você emite e o que mais trava hoje. Com isso a CNC indica o porte certo e diz o valor na mesma conversa.",
   ctaPrimario: "Falar no WhatsApp",
   ctaSecundario: "Pedir orçamento",
 };
+
+/**
+ * ONDE O TÉCNICO VAI — as cidades vêm de `site.cidadesAtendidas`, que é onde a
+ * CNC já tem cliente. A lista é o argumento: concorrente nacional não tem placa
+ * nenhuma para mostrar aqui.
+ */
+export const cobertura = {
+  texto:
+    "Cidades onde a CNC já tem cliente e já foi até a loja. A sua não está na placa? Chama no WhatsApp que a gente vê o deslocamento.",
+};
+
+/**
+ * PERGUNTAS FREQUENTES — respostas montadas só com dado que já está no site
+ * (preço, o que inclui, horário, cidades, portes e notas fiscais). Alimentam a
+ * seção visível e o JSON-LD `FAQPage`, que é o formato que o Google e as IAs de
+ * busca usam para citar resposta direta.
+ */
+export function perguntasFrequentes(dados: {
+  horario: string;
+  cidades: readonly string[];
+  portes: { nome: string; resumo: string }[];
+  notas: string;
+}) {
+  return [
+    {
+      pergunta: "Quanto custa o sistema de gestão da CNC?",
+      resposta: `A partir de ${preco.valor} ${preco.periodo}, para o comércio de um caixa. ${preco.texto.split(". ").slice(1).join(". ")}`,
+    },
+    {
+      pergunta: "O que está incluso na mensalidade?",
+      resposta: `${preco.inclui.join(", ")}.`,
+    },
+    {
+      pergunta: "Preciso abrir chamado para ter suporte?",
+      resposta:
+        "Não. Você fala direto com quem conhece o seu sistema e o seu negócio, pelo WhatsApp ou por telefone, sem central, sem protocolo e sem ficar pulando de setor.",
+    },
+    {
+      pergunta: "Qual o horário de atendimento?",
+      resposta: `${dados.horario}, inclusive sábado, domingo e feriado.`,
+    },
+    {
+      pergunta: "O técnico vai até a minha loja?",
+      resposta: `Vai, quando o caso pede. A CNC já atende clientes em ${dados.cidades.join(", ")}, todas em Alagoas.`,
+    },
+    {
+      pergunta: "Qual sistema serve para o meu comércio?",
+      resposta: `Depende do porte da operação. ${dados.portes
+        .map((p) => `${p.nome}: ${p.resumo}`)
+        .join(" ")} A CNC olha a sua rotina e indica o porte certo antes de você fechar.`,
+    },
+    {
+      pergunta: "O sistema emite nota fiscal?",
+      resposta: dados.notas,
+    },
+  ];
+}

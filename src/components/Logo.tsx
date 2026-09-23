@@ -33,7 +33,7 @@ export default function Logo({ className = "" }: { className?: string }) {
       width={771}
       height={686}
       priority
-      className={`h-11 w-auto lg:h-14 ${className}`}
+      className={`h-12 w-auto lg:h-16 ${className}`}
       onError={() => setErro(true)}
     />
   );

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { navPrincipal, site } from "@/content/site";
 import LinkContato from "./LinkContato";
+import { BotaoCookies } from "./AvisoCookies";
+import { medicaoAtiva } from "@/lib/analytics";
 
 /**
  * Footer — rodapé global do site institucional (renderizado pelo layout de
@@ -14,6 +16,21 @@ export default function Footer() {
 
   return (
     <footer className="bg-brand-900 text-paper/80">
+      {/* O número em escala de placa: é o único dado do rodapé que alguém
+          procura, então ele abre o rodapé em vez de ficar numa coluna. */}
+      <div className="border-b border-paper/15">
+        <div className="container-cnc py-12 lg:py-16">
+          <p className="text-sm font-semibold text-brand-200">
+            WhatsApp e telefone, {site.horario.semana.toLowerCase()}
+          </p>
+          <LinkContato
+            origem="rodape"
+            className="mt-3 block w-fit text-[clamp(2.2rem,8.5vw,7.5rem)] font-extrabold leading-none tracking-tightest text-paper transition-colors hover:text-signal-500"
+          >
+            {site.whatsapp.exibicao}
+          </LinkContato>
+        </div>
+      </div>
       <div className="container-cnc grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         {/* Identidade */}
         <div className="lg:col-span-1">
@@ -71,6 +88,16 @@ export default function Footer() {
                 Telefone: {site.telefone.exibicao}
               </LinkContato>
             </li>
+            <li>
+              <a
+                href={site.googleAvaliacao}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-paper"
+              >
+                Avaliar a CNC no Google
+              </a>
+            </li>
             {/* E-mail OCULTO por enquanto (conta contato@ a criar no Zoho).
                 Para reativar, descomente este bloco. */}
             {/* <li>
@@ -106,6 +133,7 @@ export default function Footer() {
             {site.nomeCompleto} — CNPJ <span className="dado">{site.cnpj}</span>
           </p>
           <div className="flex items-center gap-4">
+            {medicaoAtiva && <BotaoCookies />}
             <span>© {ano} CNC. Todos os direitos reservados.</span>
           </div>
         </div>

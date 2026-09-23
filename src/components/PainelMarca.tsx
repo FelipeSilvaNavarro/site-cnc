@@ -17,6 +17,8 @@ export default function PainelMarca() {
         src="/pegaso-branco.svg"
         alt=""
         aria-hidden="true"
+        width={771}
+        height={686}
         className="w-2/5 max-w-[170px] opacity-20"
       />
     </div>
