@@ -4,22 +4,24 @@ Coloque aqui as fotos REAIS. Os nomes abaixo já estão referenciados no código
 basta salvar o arquivo com o nome exato que a imagem aparece automaticamente
 (sem editar código). Use JPG ou WEBP, otimizadas.
 
-## Onde cada foto entra
+## Onde cada foto entra (mapa conferido em 23/09/2026, depois do redesenho)
 
-| Arquivo                              | Onde aparece                          | Sugestão de conteúdo                                  |
-| ------------------------------------ | ------------------------------------- | ---------------------------------------------------- |
-| `hero.jpg`                           | Home — primeira dobra (hero)          | Técnico/atendente da CNC atendendo cliente no balcão |
-| `suporte.jpg`                        | Página Suporte — topo                 | Equipe de suporte em atendimento                     |
-| `sobre.jpg`                          | Página Sobre — bloco de história      | Fachada ou escritório da CNC em Maceió               |
-| `equipe/membro-1.jpg` (2, 3)         | Página Sobre — equipe                 | Retrato de cada membro da equipe                     |
-| `depoimentos/cliente-1.jpg` (2, 3)   | Home — depoimentos (opcional)         | Foto do cliente que deu o depoimento                 |
-| `telas/pro.jpg`, `medio.jpg`, `simples.jpg` | Home (O sistema por dentro) e /sistemas | Captura de tela real de cada porte, 16:9 |
+Toda foto é opcional: sem o arquivo, o lugar dela simplesmente não aparece (nada
+de painel vazio). Soltou o arquivo pelo `npm run foto` e publicou, ela entra sozinha.
 
-A seção "O sistema por dentro" da home só aparece quando existe pelo menos uma
-tela; com uma, ela ocupa a largura toda, com três a primeira fica grande em cima.
-Gerar com `npm run foto tela-pro ~/Imagens/captura-pdv.png` (mínimo 1600x900,
-captura de monitor Full HD já passa). Tela com dado de cliente real (nome, CPF,
-valor) precisa ser borrada antes, porque vai para o site público.
+| Slot do `npm run foto` | Arquivo | Onde aparece | O que fotografar |
+| --- | --- | --- | --- |
+| `tela-pro` | `telas/pro.jpg` | Home, painel do PRO na esteira de portes; `/sistemas`, ficha do PRO | Captura da tela do sistema PRO (PDV ou retaguarda) |
+| `tela-medio` | `telas/medio.jpg` | Home, painel do MÉDIO; `/sistemas`, ficha do MÉDIO | Captura da tela do MÉDIO |
+| `tela-simples` | `telas/simples.jpg` | Home, painel do SIMPLES; `/sistemas`, ficha do SIMPLES | Captura da tela do SIMPLES |
+| `suporte` | `suporte.jpg` | `/suporte`, faixa larga logo abaixo do texto que acende | Atendimento real: técnico no balcão, instalação na loja |
+| `sobre` | `sobre.jpg` | `/sobre`, ao lado da história | Fachada, escritório ou o dono atendendo |
+| `equipe-1` a `equipe-3` | `equipe/membro-N.jpg` | `/sobre`, seção de equipe (precisa também do nome e cargo em `src/content/sobre.ts`) | Retrato de cada pessoa |
+| `cliente-1` a `cliente-3` | `depoimentos/cliente-N.jpg` | Reservado para depoimento real (a seção ainda não existe no layout novo) | Foto do cliente que autorizou o depoimento |
+| `hero` | `hero.jpg` | **Não aparece mais.** Desde 23/09/2026 o topo da home é o pégaso em traço; foto de balcão vai para `suporte` ou `sobre` | — |
+
+Captura de tela com nome, CPF ou valor de cliente real precisa ser borrada antes,
+porque vai para o site público.
 
 ## Logo
 

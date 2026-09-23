@@ -102,3 +102,74 @@ Movimento agora é parte da marca, com regra:
 - **Nunca inventar** depoimento, número, cliente ou fato.
 - **Não citar marca de fornecedor.** Portes: PRO, MÉDIO, SIMPLES.
 - Conteúdo mora em `src/content/*.ts`.
+
+## Aprovação
+
+Publicado em 23/09/2026 (commit `e0b66c5`) e aprovado pelo Felipe na hora:
+"CARALHOOO TA MT FODAAAA, AGORA SIM". **Esta direção está travada.** Mudança de
+cor, fonte, movimento ou estrutura de cena começa perguntando a ele se é mudança
+de direção ou ajuste pontual.
+
+## Como mexer depois (mapa de manutenção)
+
+### Onde mora cada coisa
+
+| O que | Onde |
+|---|---|
+| Texto de qualquer página | `src/content/*.ts` (home, sistemas, suporte, sobre, site). Trocar texto não toca layout |
+| Telefone, horário, cidades, nota do Google, link de avaliação, preço | `src/content/site.ts` (fonte única, alimenta página, JSON-LD e llms.txt) |
+| Número de clientes (93) | `src/content/metrics.json`, atualizado sozinho pela action do vault |
+| Cores, raio, animações de CSS | `tailwind.config.ts` |
+| Botões, título largo (`larga`, `semilarga`), grão, pégaso em traço | `src/app/globals.css` |
+| Cenas de rolagem | `src/components/rolagem/` (uma cena por arquivo) |
+| Topo das páginas internas | `src/components/TopoPagina.tsx` |
+| Fechamento amarelo "Chama no WhatsApp" | `src/components/FaixaContato.tsx` |
+| Cabeçalho, menu do celular, botão flutuante, rodapé | `src/components/Header.tsx`, `WhatsAppFloat.tsx`, `Footer.tsx` |
+| Fotos e capturas | `public/fotos/`, sempre pelo `npm run foto <slot> <arquivo>`, mapa em `public/fotos/LEIA-ME.md` |
+
+### As cenas e o que cada uma faz
+
+| Cena | Arquivo | Desktop | Celular |
+|---|---|---|---|
+| Topo com folha | `TopoComFolha.tsx` | topo preso, folha sobe por cima, conteúdo recua | igual |
+| Título | `TituloMascara.tsx` | palavras sobem por trás da máscara, só CSS | igual |
+| Pégaso | `PegasoTraco.tsx` | traço se desenha e acende, só CSS | igual |
+| Manifesto | `TextoAcende.tsx` | palavras acendem com a rolagem | igual |
+| Cupom fiscal | `CenaCupom.tsx` | trava 3 telas, papel sai da impressora em 4 passos | sem travar, mesma sequência |
+| Portes | `CenaPortes.tsx` | trava, esteira anda de lado | painéis empilhados |
+| Diferenciais | `CartoesEmpilhados.tsx` | cartões presos se empilham | igual |
+| Etapas | `LinhaEtapas.tsx` | linha amarela enche e acende cada etapa | igual |
+| Cidades | `FaixaCidades.tsx` | duas linhas gigantes em sentidos opostos | igual |
+| Preço | `EtiquetaPreco.tsx` | etiqueta balança | igual |
+
+Toda cena se monta por `useCena` (`rolagem/gsap.ts`), que usa `gsap.matchMedia`
+com `MIDIA.desktop`, `MIDIA.celular` e `MIDIA.movimento`. Cena nova segue o mesmo
+molde, senão ela roda para quem pediu menos movimento.
+
+### Como conferir antes de publicar
+
+1. `npm run build` (com `nice`, a máquina é fraca) e `npx next start -p 3100`.
+2. `node scripts/conferir-rolagem.mjs / 1440 700 40 home` e o mesmo em `390`, e
+   olhar as fotos em `/tmp/rolagem/`. Screenshot de página inteira não serve:
+   ele não mostra cena nenhuma.
+3. Repetir com `reducedMotion: "reduce"` no roteiro: tudo tem que aparecer
+   inteiro e parado.
+4. `npm run check:contrast` se mexeu em cor.
+5. Commit, e o push só com o aval do Felipe (deploy automático na Vercel).
+
+### Armadilhas que já custaram retrabalho (23/09/2026)
+
+- **Layout que só existe com a cena rodando usa a variante `cenas:`** (ex.:
+  `lg:cenas:flex-row`). O `<html>` ganha `data-cenas` num script do layout raiz
+  antes da primeira pintura. Sem isso, sem JavaScript ou com movimento reduzido,
+  a esteira de portes ficava deitada e MÉDIO e SIMPLES sumiam para fora da tela.
+- **Título largo estoura coluna.** Archivo a 125% de largura ocupa ~0,72 em por
+  letra; calcular `letras × 0,72 × tamanho` contra a largura da coluna antes de
+  escolher o `clamp`. Foi assim com "SIMPLES", "atendimento" e "R$ 150" no celular.
+- **Nada fica fora de elemento com `mask`.** O papel do cupom usa máscara de
+  serrilha e cortava as baixas de estoque; tudo que é do papel mora dentro dele.
+- **Não escurecer cartão amarelo** (`brightness`) no empilhamento: vira oliva.
+- **Cupom revela de cima para baixo com `clip-path`**, não com `translate`, senão
+  aparece primeiro o rodapé do cupom.
+- **Botão flutuante some sobre a faixa amarela** (`data-sem-flutuante`), senão
+  some de verdade: amarelo sobre amarelo.
