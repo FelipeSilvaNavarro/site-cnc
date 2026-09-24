@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: "%s | CNC Sistemas Maceió",
   },
   description:
-    "Sistema de gestão e PDV para o comércio de Maceió e do interior de Alagoas, com técnico que vai na sua loja. A partir de R$ 150 por mês, com instalação, migração e treinamento inclusos.",
+    "Sistema de gestão e PDV para o comércio de Maceió e do interior de Alagoas, com técnico que vai na sua loja. A partir de R$ 100 por mês, com instalação, migração e treinamento inclusos.",
   /**
    * `keywords` não move ranqueamento: o Google ignora essa meta desde 2009, e
    * quem decide por qual termo a página entra é o texto visível dela (título,
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     siteName: "CNC Sistemas & Representações",
     title: "CNC Sistemas — Sistema de gestão e PDV em Maceió e no interior de Alagoas",
     description:
-      "Técnico que vai na sua loja, sem central de chamados. A partir de R$ 150 por mês, com instalação, migração e treinamento inclusos.",
+      "Técnico que vai na sua loja, sem central de chamados. A partir de R$ 100 por mês, com instalação, migração e treinamento inclusos.",
     images: [
       {
         url: "/og.png",
@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CNC Sistemas — Sistema de gestão e PDV em Maceió e no interior de Alagoas",
     description:
-      "Técnico que vai na sua loja, sem central de chamados. A partir de R$ 150 por mês, com instalação, migração e treinamento inclusos.",
+      "Técnico que vai na sua loja, sem central de chamados. A partir de R$ 100 por mês, com instalação, migração e treinamento inclusos.",
     images: ["/og.png"],
   },
   /**

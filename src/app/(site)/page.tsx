@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   // Sem `title` aqui de propósito: a Home usa o `title.default` do layout raiz.
   // Sem citar marcas de fornecedores (ver sistemas.ts).
   description:
-    "Sistema de gestão e PDV para mercadinho, açougue, padaria, loja e distribuidora em Maceió e no interior de Alagoas. A partir de R$ 150 por mês, com instalação, migração e treinamento inclusos.",
+    "Sistema de gestão e PDV para mercadinho, açougue, padaria, loja e distribuidora em Maceió e no interior de Alagoas. A partir de R$ 100 por mês, com instalação, migração e treinamento inclusos.",
   alternates: { canonical: "/" },
 };
 

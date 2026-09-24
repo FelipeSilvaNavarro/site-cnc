@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   // Descrição escrita para a lista de resultados: cita o ramo, a cidade e o
   // preço de entrada, que filtra quem não tem orçamento antes do clique.
   description:
-    "Três portes de sistema de gestão e PDV para mercadinho, açougue, padaria, loja e distribuidora em Maceió e no interior de Alagoas, a partir de R$ 150 por mês. A CNC indica o porte que serve à sua operação.",
+    "Três portes de sistema de gestão e PDV para mercadinho, açougue, padaria, loja e distribuidora em Maceió e no interior de Alagoas, a partir de R$ 100 por mês. A CNC indica o porte que serve à sua operação.",
   alternates: { canonical: "/sistemas" },
 };
 

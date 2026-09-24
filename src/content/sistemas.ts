@@ -80,7 +80,7 @@ export const sistemas: Sistema[] = [
     slug: "simples", // originalmente: "prodo"
     nome: "SIMPLES", // originalmente: "PRODO"
     resumo:
-      "A porta de entrada, a partir de R$ 150 por mês, para quem tem um caixa só.",
+      "A porta de entrada, a partir de R$ 100 por mês, para quem tem um caixa só e precisa emitir nota.",
     paraQueServe:
       "Cobre o que o balcão pede todo dia, que é vender rápido, emitir a nota na hora e saber o que tem no estoque, sem tela cheia de coisa que você nunca vai abrir.",
     indicadoPara:
@@ -101,7 +101,7 @@ export const sistemasIntro = {
   // dez segundos se cabe no bolso dele e se o atendimento chega até a loja.
   titulo: "Três portes, um preço de entrada, o mesmo atendimento",
   texto:
-    "A escolha começa em R$ 150 por mês e depende do tamanho da operação, não do tamanho do discurso: um caixa e estoque simples pedem uma coisa, várias frentes de caixa e exigência fiscal pesada pedem outra. A CNC olha a sua rotina, indica o porte que serve e entrega instalação, migração dos seus dados e treinamento da equipe junto, com técnico que vai na loja em Maceió e no interior de Alagoas.",
+    "A escolha começa em R$ 100 por mês e depende do tamanho da operação, não do tamanho do discurso: um caixa e estoque simples pedem uma coisa, várias frentes de caixa e exigência fiscal pesada pedem outra. A CNC olha a sua rotina, indica o porte que serve e entrega instalação, migração dos seus dados e treinamento da equipe junto, com técnico que vai na loja em Maceió e no interior de Alagoas.",
 };
 
 /**

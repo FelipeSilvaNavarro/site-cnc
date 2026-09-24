@@ -26,11 +26,11 @@ export const hero = {
   // Texto sem citar marcas de fornecedores (decisão de negócio — ver sistemas.ts).
   // Original: "A CNC representa e dá suporte aos principais sistemas de gestão e PDV do mercado. ..."
   subtitulo:
-    "Quando a nota trava no meio do movimento, você fala direto com quem conhece a sua operação, e o técnico vai até a loja quando o caso pede. A partir de R$ 150 por mês, com instalação, migração dos seus dados e treinamento da equipe inclusos.",
+    "Quando a nota trava no meio do movimento, você fala direto com quem conhece a sua operação, e o técnico vai até a loja quando o caso pede. A partir de R$ 100 por mês, com instalação, migração dos seus dados e treinamento da equipe inclusos.",
   // No celular o subtítulo inteiro empurra o botão para fora da primeira tela,
   // então lá entra só a frase do preço, que é o que filtra quem chega.
   subtituloCurto:
-    "A partir de R$ 150 por mês, com instalação, migração dos dados e treinamento inclusos.",
+    "A partir de R$ 100 por mês, com instalação, migração dos dados e treinamento inclusos.",
   ctaPrimario: "Falar no WhatsApp",
   ctaSecundario: "Pedir orçamento",
   // Slot de imagem: foto real do atendimento/equipe/operação da CNC.
@@ -146,16 +146,16 @@ export const segmentos = {
 /**
  * PREÇO — seção nova, e ela existe para filtrar antes de custar conversa.
  *
- * O valor de entrada é o mesmo do vault (R$ 150,00 por mês). Se o piso mudar
+ * O valor de entrada é o Simples (PRODO), R$ 100,00 por mês desde 23/09/2026. Se o piso mudar
  * lá, muda aqui, porque página que promete um número e proposta que entrega
  * outro queima a conversa que o anúncio pagou para acontecer.
  */
 export const preco = {
   titulo: "Quanto custa",
-  valor: "R$ 150",
+  valor: "R$ 100",
   periodo: "por mês",
   texto:
-    "É o valor de entrada, para o comércio de um caixa. O preço final depende do porte da operação, do número de caixas e do que a sua rotina fiscal exige, e a gente fecha isso na conversa, sem enrolação.",
+    "É o valor de entrada do Simples, para quem tem um caixa e precisa emitir nota. O preço final depende do porte da operação, do número de caixas e do que a sua rotina fiscal exige, e a gente fecha isso na conversa, sem enrolação.",
   inclui: [
     "Instalação e configuração do sistema na sua loja",
     "Migração dos dados que você já tem hoje",
