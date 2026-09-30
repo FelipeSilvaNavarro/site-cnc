@@ -293,7 +293,7 @@ export default function ChatLead() {
       falar(
         [
           `Os planos começam em ${site.precos.pisoMensalPorExtenso}, e o que muda o valor é o tamanho da operação`,
-          "Última pergunta: qual é o seu WhatsApp com DDD? É por ele que o Felipe te chama",
+          "Última pergunta: qual é o seu WhatsApp com DDD? É por ele que a gente irá te chamar",
         ],
         "whatsapp",
       );
