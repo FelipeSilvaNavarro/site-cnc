@@ -192,14 +192,25 @@ export default function ChatLead() {
       visto = sessionStorage.getItem("cnc-chat-visto") === "1";
     } catch {}
     if (visto) return;
-    const t1 = setTimeout(() => setConvite(true), 9000);
-    const t2 = setTimeout(() => {
-      if (window.matchMedia("(min-width: 1024px)").matches && window.scrollY > 200) abrir();
-    }, 20000);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
+    // Com o aviso de cookies aberto (só existe em produção, com o GA ligado) o
+    // convite nasceria escondido atrás dele no celular, então os dois gatilhos
+    // esperam a pessoa decidir o aviso. Achado na conferência no ar, 29/09/2026.
+    const avisoAberto = () => Boolean(document.querySelector('[aria-label="Aviso de cookies"]'));
+    const inicio = Date.now();
+    let convidou = false;
+    const relogio = setInterval(() => {
+      if (avisoAberto()) return;
+      const passou = Date.now() - inicio;
+      if (!convidou && passou >= 9000) {
+        convidou = true;
+        setConvite(true);
+      }
+      if (passou >= 20000) {
+        clearInterval(relogio);
+        if (window.matchMedia("(min-width: 1024px)").matches && window.scrollY > 200) abrir();
+      }
+    }, 1000);
+    return () => clearInterval(relogio);
   }, [abrir]);
 
   useEffect(() => {
