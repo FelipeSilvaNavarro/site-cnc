@@ -26,11 +26,11 @@ export const hero = {
   // Texto sem citar marcas de fornecedores (decisão de negócio — ver sistemas.ts).
   // Original: "A CNC representa e dá suporte aos principais sistemas de gestão e PDV do mercado. ..."
   subtitulo:
-    "Quando a nota trava no meio do movimento, você fala direto com quem conhece a sua operação, e o técnico vai até a loja quando o caso pede. A partir de R$ 100 por mês, com instalação, migração dos seus dados e treinamento da equipe inclusos.",
+    "Quando a nota trava no meio do movimento, você fala direto com quem conhece a sua operação, com planos a partir de R$ 100 por mês.",
   // No celular o subtítulo inteiro empurra o botão para fora da primeira tela,
   // então lá entra só a frase do preço, que é o que filtra quem chega.
   subtituloCurto:
-    "A partir de R$ 100 por mês, com instalação, migração dos dados e treinamento inclusos.",
+    "Planos a partir de R$ 100 por mês.",
   ctaPrimario: "Falar no WhatsApp",
   ctaSecundario: "Pedir orçamento",
   // Slot de imagem: foto real do atendimento/equipe/operação da CNC.
@@ -236,7 +236,7 @@ export function perguntasFrequentes(dados: {
  * sem central (suporte.ts), técnico na loja (cidadesAtendidas).
  */
 export const manifesto =
-  "Quando a nota trava no meio do movimento, você não abre chamado nem espera fila. Você fala com quem conhece a sua loja, e quando o caso pede, o técnico vai até o balcão.";
+  "Quando a nota trava no meio do movimento, você não abre chamado nem espera fila. Você fala com quem conhece a sua operação, e o problema se resolve onde ele estiver.";
 
 /**
  * CUPOM — a cena travada em que o cupom fiscal sai da impressora enquanto os
@@ -260,7 +260,7 @@ export const cupom = {
     },
     {
       titulo: "Nota autorizada",
-      texto: "A NFC-e é emitida junto com a venda, do jeito que a Sefaz pede, e o cupom sai pronto.",
+      texto: "A NFC-e é emitida junto com a venda, de acordo com as normas da Sefaz, e o cupom sai pronto.",
     },
     {
       titulo: "Entrou no financeiro",
