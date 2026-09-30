@@ -4,7 +4,7 @@
 //
 // Custo: rating e userRatingCount são SKU Place Details Enterprise, com 1.000
 // chamadas grátis por mês (conferido em 29/09/2026). A trava abaixo impede mais
-// de uma chamada de detalhe por dia, então o teto é 31 por mês. A busca do
+// de uma chamada de detalhe por dia, então o teto é 31 por mês. O
 // placeId já vem fixo no google.json, tirado do link de avaliação do perfil
 // (site.googleAvaliacao), porque a busca por texto não achou a CNC.
 import { readFileSync, writeFileSync } from "node:fs";
