@@ -193,6 +193,7 @@ export function mensagemPorOrigem(origem: string): string {
     "cta-final":
       "Oi! Vi o site da CNC e quero conversar sobre qual sistema serve para o meu negócio.",
     preco: `Oi! Vi no site que começa em ${site.precos.pisoMensal} por mês e quero entender o que entra nesse valor.`,
+    chat: "Oi! Vim pelo chat do site da CNC.",
     header: "Oi! Vim pelo site da CNC e quero falar sobre sistema de gestão.",
     "menu-mobile": "Oi! Vim pelo site da CNC e quero falar sobre sistema de gestão.",
     flutuante: "Oi! Vim pelo site da CNC e quero falar sobre sistema de gestão.",

@@ -46,7 +46,8 @@ export type OrigemContato =
   | "sobre"
   | "parceiro"
   | "area-do-cliente"
-  | "preco";
+  | "preco"
+  | "chat";
 
 type Gtag = (...args: unknown[]) => void;
 
@@ -70,7 +71,8 @@ declare global {
  */
 export function rastrearContato(
   origem: OrigemContato,
-  canal: "whatsapp" | "telefone",
+  // "chat" é o lead deixado no chat do site, sem sair para o WhatsApp.
+  canal: "whatsapp" | "telefone" | "chat",
 ): void {
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
 

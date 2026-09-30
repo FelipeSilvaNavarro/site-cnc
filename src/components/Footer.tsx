@@ -93,6 +93,9 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {medicaoAtiva && <BotaoCookies />}
+            <Link href="/privacidade" className="transition-colors hover:text-papel">
+              Privacidade
+            </Link>
             <span>© {ano} CNC Sistemas</span>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
+import ChatLead from "@/components/ChatLead";
 import AvisoCookies from "@/components/AvisoCookies";
 import RolagemSuave from "@/components/rolagem/RolagemSuave";
 import { medicaoAtiva } from "@/lib/analytics";
@@ -92,7 +92,9 @@ export default function SiteLayout({
       <Header />
       <main id="conteudo">{children}</main>
       <Footer />
-      <WhatsAppFloat />
+      {/* O chat substitui o WhatsAppFloat desde 29/09/2026; o arquivo antigo
+          continua no projeto, desligado. */}
+      <ChatLead />
       {/* Sem medição configurada não há cookie de terceiro, e sem cookie não
           há o que perguntar. */}
       {medicaoAtiva && <AvisoCookies />}
