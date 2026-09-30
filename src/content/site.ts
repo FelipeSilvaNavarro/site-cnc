@@ -19,6 +19,7 @@
  */
 
 import metrics from "./metrics.json";
+import google from "./google.json";
 
 export const site = {
   nome: "CNC",
@@ -112,20 +113,17 @@ export const site = {
   },
 
   /**
-   * Números de prova social. `clientesAtivos` é DINÂMICO: vem do `metrics.json`
-   * sincronizado do Obsidian (rode `npm run sync:obsidian` quando a base mudar).
-   * `anosMercado` é fixo (a CNC nasceu em 2020).
-   *
-   * `avaliacoesGoogle` é a prova mais forte que a CNC tem e estava fora do site.
-   * CONFERIR no perfil do Google Meu Negócio antes de cada publicação: número
-   * exposto que não bate com o painel do Google destrói a confiança que ele
-   * deveria construir.
+   * Números de prova social, todos dinâmicos. `clientesAtivos` vem do
+   * `metrics.json`, que a action do vault atualiza quando as fichas mudam.
+   * `notaGoogle` e `avaliacoesGoogle` vêm do `google.json`, que a action
+   * `sync-google` atualiza uma vez por dia pela Places API. `anosMercado` conta
+   * a partir de 2020 na hora do build.
    */
   numeros: {
     clientesAtivos: String(metrics.clientesAtivos),
-    anosMercado: "6",
-    avaliacoesGoogle: "39",
-    notaGoogle: "5,0",
+    anosMercado: String(new Date().getFullYear() - 2020),
+    avaliacoesGoogle: String(google.avaliacoes),
+    notaGoogle: google.nota.toFixed(1).replace(".", ","),
   },
 
   /**

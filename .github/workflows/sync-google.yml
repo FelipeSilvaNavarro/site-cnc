@@ -1,0 +1,37 @@
+name: Sync nota do Google -> site CNC
+
+# Uma vez por dia lê a nota e o total de avaliações do perfil da CNC no Google
+# e, mudando alguma coisa, commita o google.json, o que dispara o deploy na
+# Vercel. A chave fica no secret GOOGLE_PLACES_KEY e nunca vai para o site.
+on:
+  schedule:
+    - cron: "0 10 * * *" # 07:00 em Maceió
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Consultar Places API
+        env:
+          GOOGLE_PLACES_KEY: ${{ secrets.GOOGLE_PLACES_KEY }}
+        run: node scripts/sync-google.mjs
+      - name: Publicar se mudou
+        run: |
+          # Só nota ou total mudando vale deploy, a data sozinha não.
+          if git diff --quiet -I '"atualizadoEm"' -I '"fonte"' -I '"placeId"' src/content/google.json; then
+            echo "Nota e avaliações iguais, nada a publicar."
+            exit 0
+          fi
+          git config user.name "cnc-clientes-bot"
+          git config user.email "bot@cncsistemas.com.br"
+          git add src/content/google.json
+          git commit -m "chore: atualiza nota do Google (action sync-google)"
+          git push
