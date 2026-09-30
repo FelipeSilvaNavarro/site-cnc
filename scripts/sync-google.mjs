@@ -5,7 +5,8 @@
 // Custo: rating e userRatingCount são SKU Place Details Enterprise, com 1.000
 // chamadas grátis por mês (conferido em 29/09/2026). A trava abaixo impede mais
 // de uma chamada de detalhe por dia, então o teto é 31 por mês. A busca do
-// placeId só roda uma vez e pede só o id, que é SKU IDs Only, grátis sem limite.
+// placeId já vem fixo no google.json, tirado do link de avaliação do perfil
+// (site.googleAvaliacao), porque a busca por texto não achou a CNC.
 import { readFileSync, writeFileSync } from "node:fs";
 
 const ARQ = new URL("../src/content/google.json", import.meta.url);
