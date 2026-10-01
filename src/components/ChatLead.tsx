@@ -22,6 +22,39 @@ import { rastrearContato } from "@/lib/analytics";
  * por /api/lead, que é quem conhece o token do CRM.
  */
 
+/**
+ * Origem da visita, lida na primeira página e guardada na aba até o envio, porque
+ * quem chega por anúncio na home e abre o chat no /suporte perderia a UTM da URL.
+ * Prioridade: UTM, gclid (Google Ads com marcação automática, que não manda UTM),
+ * site de onde veio, e "direto" quando não há nada. Não guarda nada digitado.
+ */
+const CHAVE_ORIGEM = "cnc-origem";
+function origemDaVisita(): string {
+  const p = new URLSearchParams(window.location.search);
+  const utm = ["utm_source", "utm_medium", "utm_campaign", "utm_term"]
+    .map((k) => p.get(k))
+    .filter(Boolean)
+    .join(" / ");
+  if (utm) return utm;
+  if (p.get("gclid") || p.get("gbraid") || p.get("wbraid")) return "google ads";
+  try {
+    const ref = new URL(document.referrer).hostname.replace(/^www\./, "");
+    if (ref && ref !== window.location.hostname.replace(/^www\./, "")) return ref;
+  } catch {}
+  return "direto";
+}
+function lerOrigem(): string {
+  try {
+    const salva = sessionStorage.getItem(CHAVE_ORIGEM);
+    if (salva) return salva;
+    const nova = origemDaVisita();
+    sessionStorage.setItem(CHAVE_ORIGEM, nova);
+    return nova;
+  } catch {
+    return origemDaVisita();
+  }
+}
+
 type Momento = "TROCAR" | "PRIMEIRO" | "SO_NOTA";
 type Respostas = {
   nome: string;
@@ -110,6 +143,10 @@ function PegasoAvatar({ tamanho = "h-10 w-10" }: { tamanho?: string }) {
 }
 
 export default function ChatLead() {
+  // Grava a origem já na página de chegada, antes de qualquer navegação interna.
+  useEffect(() => {
+    lerOrigem();
+  }, []);
   const pathname = usePathname();
   const [aberto, setAberto] = useState(false);
   const [visivel, setVisivel] = useState(false);
@@ -232,11 +269,7 @@ export default function ChatLead() {
 
   async function enviar() {
     setEtapa("espera");
-    const params = new URLSearchParams(window.location.search);
-    const utm = ["utm_source", "utm_campaign", "utm_term"]
-      .map((k) => params.get(k))
-      .filter(Boolean)
-      .join(" / ");
+    const utm = lerOrigem().slice(0, 200);
     let status = 0;
     try {
       const r = await fetch("/api/lead", {

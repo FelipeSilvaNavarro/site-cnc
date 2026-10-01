@@ -22,7 +22,7 @@
 import fs from "node:fs";
 
 const PLAYWRIGHT = "/home/felipe/.npm/_npx/86170c4cd1c5da32/node_modules/playwright/index.mjs";
-const FIREFOX = "/home/felipe/.cache/ms-playwright/firefox-1549/firefox/firefox";
+const FIREFOX = "/home/felipe/.cache/ms-playwright/firefox-1553/firefox/firefox";
 const { firefox } = await import(PLAYWRIGHT);
 
 const [, , rota = "/", largura = "1440", passo = "700", total = "40", pref = "pag"] = process.argv;
