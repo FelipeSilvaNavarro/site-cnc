@@ -2,19 +2,21 @@ import { NextResponse, type NextRequest } from "next/server";
 import { site } from "@/content/site";
 
 /**
- * Recebe o lead do chat e repassa para o CRM.
+ * Recebe o lead do chat e grava na fila que o CRM puxa.
  *
- * Existe para o token do CRM nunca chegar ao navegador: o visitante fala com esta
- * rota, que roda na Vercel do site, e so ela conhece CRM_SITE_TOKEN. Nada do que
- * a pessoa digitou vai para log, e a resposta nunca ecoa o conteudo, porque o
- * site e publico e o lead e dado pessoal (nome e celular).
+ * Desde 01/10/2026 o CRM roda so na maquina do Felipe e nao recebe chamada de
+ * fora, entao esta rota grava o lead na tabela lead_site de um banco Neon proprio
+ * da fila (FILA_DATABASE_URL, criado em 21/10/2026, sem nenhum outro dado), e o
+ * CRM local puxa de la a cada 5 minutos (crm-cnc/scripts/puxar-leads-site.ts),
+ * apagando o que importou. Fala com o Neon pela API HTTP /sql com fetch, sem
+ * dependencia. Nada do que a pessoa digitou vai para log, e a resposta nunca ecoa
+ * o conteudo, porque o site e publico e o lead e dado pessoal (nome e celular).
  */
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const CRM_URL = process.env.CRM_URL ?? "";
-const CRM_TOKEN = process.env.CRM_SITE_TOKEN ?? "";
+const FILA_URL = process.env.FILA_DATABASE_URL ?? "";
 
 const ORIGENS = new Set([
   site.url,
@@ -24,7 +26,7 @@ const ORIGENS = new Set([
 
 // ponytail: memoria por instancia serverless, entao o teto real e este vezes o
 // numero de instancias quentes. O teto global de verdade mora no CRM, contado no
-// banco (servicos/entrada-site.ts). Trocar por Upstash se robo passar pelos dois.
+// CRM, contado no banco quando ele puxa a fila (servicos/entrada-site.ts). Trocar por Upstash se robo passar pelos dois.
 const JANELA_MS = 10 * 60_000;
 const TETO_POR_IP = 5;
 const envios = new Map<string, number[]>();
@@ -36,6 +38,37 @@ function estourou(ip: string): boolean {
   envios.set(ip, recentes);
   if (envios.size > 5000) envios.clear();
   return recentes.length > TETO_POR_IP;
+}
+
+/**
+ * Celular brasileiro com DDD, a mesma regra de `normalizarCelular` do CRM. Fica
+ * aqui tambem porque o CRM so le a fila depois, e o visitante precisa saber na
+ * hora que digitou o numero errado.
+ */
+function celularValido(bruto: unknown): boolean {
+  if (typeof bruto !== "string" || bruto.length > 25) return false;
+  let d = bruto.replace(/\D/g, "");
+  if (d.startsWith("55") && d.length >= 12) d = d.slice(2);
+  return d.length === 11 && d[2] === "9" && !/^(\d)\1+$/.test(d.slice(2));
+}
+
+/**
+ * Grava uma linha na fila pela API HTTP do Neon.
+ * @returns true quando o banco confirmou a gravacao.
+ */
+async function gravarNaFila(ip: string, dados: Record<string, unknown>): Promise<boolean> {
+  const host = new URL(FILA_URL).host;
+  const resposta = await fetch(`https://${host}/sql`, {
+    method: "POST",
+    headers: { "content-type": "application/json", "Neon-Connection-String": FILA_URL },
+    body: JSON.stringify({
+      query: "insert into lead_site (ip, dados) values ($1, $2)",
+      params: [ip, JSON.stringify(dados)],
+    }),
+    signal: AbortSignal.timeout(8000),
+    cache: "no-store",
+  });
+  return resposta.ok;
 }
 
 const nada = (status: number) =>
@@ -64,25 +97,15 @@ export async function POST(request: NextRequest) {
   // em menos de 4 segundos. Responde 200 para o robo nao aprender o que o barrou.
   if (corpo.site || typeof corpo.ms !== "number" || corpo.ms < 4000) return nada(200);
 
-  if (!CRM_URL || !CRM_TOKEN) return nada(503);
+  if (!FILA_URL) return nada(503);
 
   const { nome, comercio, segmento, cidade, momento, whatsapp, pagina, utm } = corpo;
+  // 422 faz o chat pedir o numero de novo; o resto da validacao e do CRM.
+  if (!celularValido(whatsapp)) return nada(422);
   try {
-    const resposta = await fetch(`${CRM_URL}/api/v1/sync/site`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "x-crm-token": CRM_TOKEN,
-        "x-forwarded-for": ip,
-      },
-      body: JSON.stringify({ nome, comercio, segmento, cidade, momento, whatsapp, pagina, utm }),
-      signal: AbortSignal.timeout(8000),
-      cache: "no-store",
-    });
-    // 400 e 409 sao do visitante (celular invalido); o resto e falha nossa, e a
-    // tela oferece o WhatsApp com o resumo para o lead nao se perder.
-    if (resposta.ok) return nada(200);
-    return nada(resposta.status === 400 || resposta.status === 409 ? 422 : 502);
+    // Falhando, a tela oferece o WhatsApp com o resumo para o lead nao se perder.
+    const gravou = await gravarNaFila(ip, { nome, comercio, segmento, cidade, momento, whatsapp, pagina, utm });
+    return nada(gravou ? 200 : 502);
   } catch {
     return nada(502);
   }
