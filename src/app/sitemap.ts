@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
+import { segmentos } from "@/content/segmentos";
 
 /**
  * sitemap — gera o /sitemap.xml (App Router Metadata API).
@@ -26,6 +27,8 @@ const rotas: { caminho: string; atualizadoEm: string; prioridade: number }[] = [
   { caminho: "/suporte", atualizadoEm: "2026-09-20", prioridade: 0.8 },
   { caminho: "/sobre", atualizadoEm: "2026-09-20", prioridade: 0.5 },
   { caminho: "/contato", atualizadoEm: "2026-09-20", prioridade: 0.6 },
+  // Páginas por ramo (content/segmentos.ts), criadas em 15/10/2026.
+  ...segmentos.map((s) => ({ caminho: `/${s.slug}`, atualizadoEm: "2026-10-15", prioridade: 0.8 })),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

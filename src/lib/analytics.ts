@@ -47,6 +47,7 @@ export type OrigemContato =
   | "parceiro"
   | "area-do-cliente"
   | "preco"
+  | "segmento"
   | "chat";
 
 type Gtag = (...args: unknown[]) => void;

@@ -15,10 +15,13 @@ export default function FaixaContato({
   titulo,
   texto,
   origem,
+  mensagem,
 }: {
   titulo: string;
   texto: string;
   origem: OrigemContato;
+  /** Texto pré-preenchido do WhatsApp; sem ele vale o da origem. */
+  mensagem?: string;
 }) {
   return (
     <section data-sem-flutuante="" className="relative z-10 bg-signal-500 py-20 text-ink lg:py-32">
@@ -26,6 +29,7 @@ export default function FaixaContato({
         <h2 className="text-lg font-semibold sm:text-xl">{titulo}</h2>
         <LinkContato
           origem={origem}
+          mensagem={mensagem}
           className="larga group mt-4 block text-[clamp(2.6rem,8.2vw,7.8rem)]"
         >
           Chama no WhatsApp
@@ -44,7 +48,7 @@ export default function FaixaContato({
           <div className="flex flex-col gap-3 md:items-end">
             <StatusAtendimento tom="sinal" />
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-base font-semibold">
-              <LinkContato origem={origem} className="inline-flex items-center gap-2 tabular-nums underline-offset-4 hover:underline">
+              <LinkContato origem={origem} mensagem={mensagem} className="inline-flex items-center gap-2 tabular-nums underline-offset-4 hover:underline">
                 <IconeWhatsApp className="h-4 w-4" />
                 {site.whatsapp.exibicao}
               </LinkContato>
