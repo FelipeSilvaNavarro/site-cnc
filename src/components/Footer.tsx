@@ -3,14 +3,17 @@ import { navPrincipal, site } from "@/content/site";
 import LinkContato from "./LinkContato";
 import { BotaoCookies } from "./AvisoCookies";
 import { medicaoAtiva } from "@/lib/analytics";
+import { segmentos } from "@/content/segmentos";
 
 /**
- * Rodapé — cor da noite, quatro colunas (a marca, navegação, contato e
- * endereço) e o nome "CNC Sistemas" em letra de letreiro ocupando a largura
+ * Rodapé — cor da noite, cinco colunas (a marca, navegação, páginas por ramo,
+ * contato e endereço) e o nome "CNC Sistemas" em letra de letreiro ocupando a largura
  * inteira, cortado pela borda de baixo como fachada vista da calçada.
  *
  * A barra inferior leva razão social, CNPJ, o ano gerado e as preferências de
- * cookies. O telefone gigante que abria o rodapé saiu em 23/09/2026, porque
+ * cookies. A coluna de ramos (21/10/2026) é o único caminho de dentro do site
+ * para as páginas de `segmentos.ts`, que nasceram para busca no Google, e o link
+ * interno também ajuda o Google a achá-las. O telefone gigante que abria o rodapé saiu em 23/09/2026, porque
  * a faixa amarela logo acima já faz esse papel.
  */
 export default function Footer() {
@@ -19,7 +22,7 @@ export default function Footer() {
 
   return (
     <footer className="grao relative overflow-hidden bg-noite text-papel/70">
-      <div className="container-cnc relative z-[2] grid gap-12 pb-16 pt-20 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-10">
+      <div className="container-cnc relative z-[2] grid gap-12 pb-16 pt-20 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr_1.1fr] lg:gap-10">
         <div>
           <p className="semilarga text-2xl text-papel">CNC Sistemas</p>
           <p className="mt-4 max-w-xs text-[0.95rem] leading-relaxed">{site.descricaoCurta}</p>
@@ -40,6 +43,23 @@ export default function Footer() {
                 Área do cliente
               </Link>
             </li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Sistema por ramo">
+          <h2 className="text-sm font-semibold text-papel">Sistema para</h2>
+          <ul className="mt-4 space-y-2.5 text-[0.95rem]">
+            {segmentos.map((s) => {
+              // "loja de roupas e calçados" vira "Loja de roupas" no rodapé.
+              const nome = s.ramo.split(" e ")[0];
+              return (
+                <li key={s.slug}>
+                  <Link href={`/${s.slug}`} className="transition-colors hover:text-papel">
+                    {nome[0].toUpperCase() + nome.slice(1)}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

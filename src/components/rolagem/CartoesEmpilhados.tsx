@@ -49,8 +49,10 @@ export default function CartoesEmpilhados({
   });
 
   return (
+    // Em 360 px "Acompanhamento" a 1.9rem passava da coluna e a página rolava de
+    // lado 21 px (21/10/2026): a coluna ganhou minmax(0,1fr) e o título encolhe só no celular.
     <section ref={ref} className="bg-papel py-24 lg:py-36" aria-labelledby="empilhados-titulo">
-      <div className="container-cnc grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+      <div className="container-cnc grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <h2 id="empilhados-titulo" className="larga text-[clamp(2.1rem,3.7vw,3.6rem)] text-ink">
             {titulo}
@@ -69,7 +71,7 @@ export default function CartoesEmpilhados({
                 style={{ top: `${6.5 + i * 1.4}rem` }}
               >
                 <div>
-                  <h3 className={`semilarga text-[clamp(1.9rem,3.4vw,3rem)] ${cor.titulo}`}>{c.titulo}</h3>
+                  <h3 className={`semilarga text-[1.6rem] sm:text-[clamp(1.9rem,3.4vw,3rem)] ${cor.titulo}`}>{c.titulo}</h3>
                   <p className={`mt-4 max-w-lg text-lg leading-relaxed ${cor.texto}`}>{c.texto}</p>
                 </div>
               </li>
