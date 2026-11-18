@@ -26,11 +26,11 @@ export const hero = {
   // Texto sem citar marcas de fornecedores (decisão de negócio — ver sistemas.ts).
   // Original: "A CNC representa e dá suporte aos principais sistemas de gestão e PDV do mercado. ..."
   subtitulo:
-    "Quando a nota trava no meio do movimento, você fala direto com quem conhece a sua operação, com planos a partir de R$ 100 por mês.",
+    "Quando a nota trava no meio do movimento, você fala direto com quem conhece a sua operação, com planos a partir de R$ 150 por mês.",
   // No celular o subtítulo inteiro empurra o botão para fora da primeira tela,
   // então lá entra só a frase do preço, que é o que filtra quem chega.
   subtituloCurto:
-    "Planos a partir de R$ 100 por mês.",
+    "Planos a partir de R$ 150 por mês.",
   ctaPrimario: "Falar no WhatsApp",
   ctaSecundario: "Pedir orçamento",
   // Slot de imagem: foto real do atendimento/equipe/operação da CNC.
@@ -146,13 +146,13 @@ export const segmentos = {
 /**
  * PREÇO — seção nova, e ela existe para filtrar antes de custar conversa.
  *
- * O valor de entrada é o Simples (PRODO), R$ 100,00 por mês desde 23/09/2026. Se o piso mudar
+ * O valor de entrada é o Simples (PRODO), R$ 150,00 por mês desde 18/11/2026 (era R$ 100,00 desde 23/09/2026). Se o piso mudar
  * lá, muda aqui, porque página que promete um número e proposta que entrega
  * outro queima a conversa que o anúncio pagou para acontecer.
  */
 export const preco = {
   titulo: "Quanto custa",
-  valor: "R$ 100",
+  valor: "R$ 150",
   periodo: "por mês",
   texto:
     "É o valor de entrada do Simples, para quem tem um caixa e precisa emitir nota. O preço final depende do porte da operação, do número de caixas e do que a sua rotina fiscal exige, e a gente fecha isso na conversa, sem enrolação.",

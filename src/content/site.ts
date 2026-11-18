@@ -133,13 +133,13 @@ export const site = {
    * conversa para descobrir que não é para ele, e em mídia paga isso é o custo
    * que mais dói. Preço na página é o filtro mais barato que existe.
    *
-   * O piso é R$ 100,00 por mês desde 23/09/2026, que é o Simples (PRODO) para quem só
-   * precisa emitir nota, a pedido do Felipe, com licença de R$ 26,60 e margem de 73%. Mudar
+   * O piso é R$ 150,00 por mês desde 18/11/2026 (era R$ 100,00 desde 23/09/2026), que é o Simples (PRODO) para quem só
+   * precisa emitir nota, a pedido do Felipe, com licença de R$ 26,60 e margem de 82%. Mudar
    * aqui exige mudar lá também, senão a página promete o que a proposta desmente.
    */
   precos: {
-    pisoMensal: "R$ 100",
-    pisoMensalPorExtenso: "R$ 100 por mês",
+    pisoMensal: "R$ 150",
+    pisoMensalPorExtenso: "R$ 150 por mês",
   },
 
   /** Cidades onde a CNC já tem cliente. Alimenta o JSON-LD de área atendida. */

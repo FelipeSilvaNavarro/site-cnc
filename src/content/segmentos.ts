@@ -52,7 +52,7 @@ export const segmentos: Segmento[] = [
     ramo: "mercadinho e mercearia",
     titulo: "Sistema para mercadinho em Maceió",
     descricao:
-      "Sistema de PDV e gestão para mercadinho e mercearia em Maceió e no interior de Alagoas, com nota fiscal no caixa, estoque e financeiro, a partir de R$ 100 por mês.",
+      "Sistema de PDV e gestão para mercadinho e mercearia em Maceió e no interior de Alagoas, com nota fiscal no caixa, estoque e financeiro, a partir de R$ 150 por mês.",
     promessa:
       "Caixa rápido, nota fiscal na hora e estoque que avisa o que está acabando, para mercadinho em Maceió e no interior de Alagoas.",
     dores: [
@@ -73,7 +73,7 @@ export const segmentos: Segmento[] = [
     ramo: "açougue e peixaria",
     titulo: "Sistema para açougue em Maceió",
     descricao:
-      "Sistema de PDV para açougue e peixaria em Maceió e Alagoas, com venda por peso, nota fiscal e controle de estoque, a partir de R$ 100 por mês.",
+      "Sistema de PDV para açougue e peixaria em Maceió e Alagoas, com venda por peso, nota fiscal e controle de estoque, a partir de R$ 150 por mês.",
     promessa:
       "Venda por peso, nota fiscal no balcão e controle do que entra e do que sai, configurado para a rotina do seu açougue.",
     dores: [
